@@ -1,0 +1,7 @@
+{
+  "name": "Arena",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
