@@ -12,13 +12,16 @@ import { SignInPage } from '../pages/sign-in/sign-in';
 import { AccountProvider } from '../providers/account/account';
 import { HttpClientModule } from '@angular/common/Http';
 import { LocalhostProvider } from '../providers/localhost/localhost';
+import { PlayerSignupPage } from '../pages/player-signup/player-signup';
+import { MenuProvider } from '../providers/menu/menu';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    SignInPage
+    SignInPage,
+    PlayerSignupPage
   ],
   imports: [
     BrowserModule,
@@ -30,14 +33,16 @@ import { LocalhostProvider } from '../providers/localhost/localhost';
     MyApp,
     HomePage,
     ListPage,
-    SignInPage
+    SignInPage,
+    PlayerSignupPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AccountProvider,
-    LocalhostProvider
+    LocalhostProvider,
+    MenuProvider
   ]
 })
 export class AppModule {}

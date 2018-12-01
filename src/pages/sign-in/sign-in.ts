@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AccountProvider } from "../../providers/account/account";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
+import { PlayerSignupPage } from '../player-signup/player-signup';
 /**
  * Generated class for the SignInPage page.
  *
@@ -19,6 +20,8 @@ export class SignInPage {
   //VARIABLES
   username: string;
   password: string;
+  testRadioResult: any;
+  testRadioOpen: boolean;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -75,8 +78,44 @@ export class SignInPage {
     }
 
     register(){
-      this.navCtrl.push(HomePage);//replace with signup page 
+      if(this.testRadioResult=='player')
+        this.navCtrl.push(PlayerSignupPage); 
+      
+      if(this.testRadioResult=='club_owner')
+        this.navCtrl.push(HomePage);
+    }
+    showRadio() {
+      let alert = this.alertCtrl.create();
+      alert.setTitle('Sign up as player or club owner');
+  
+      alert.addInput({
+        type: 'radio',
+        label: 'Player',
+        value: 'player',
+        checked: true
+      });
+  
+      alert.addInput({
+        type: 'radio',
+        label: 'Club Owner',
+        value: 'club_owner',
+        checked: false
+      });
+
+      alert.addButton('Cancel');
+      alert.addButton({
+        text: 'OK',
+        handler: data => {
+          this.testRadioOpen = false;
+          this.testRadioResult = data;
+          this.register();
+        }
+      });
+      alert.present();
     }
   }
+
+
+  
 
 
