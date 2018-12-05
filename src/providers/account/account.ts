@@ -29,4 +29,15 @@ export class AccountProvider {
    return this.http.post(this.localhostProvider.localhost+"api/DB",JSON.stringify(
    {'username':username,'password':password}), {headers:header});
   }
+
+  player_signup(username,password,fname,lname,email,phone,visa,bdate){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    
+    console.log("Inside sign up service ::: ",this.localhostProvider.localhost+"api/DB/PostPlayer");
+    return this.http.post(this.localhostProvider.localhost+"api/DB/PostPlayer",JSON.stringify({'username':username,
+    'password':password,'fname':fname,'lname':lname,'email':email,
+    'phone':phone,'visa':visa,'bdate':bdate}),{headers:header});
+  }
 }

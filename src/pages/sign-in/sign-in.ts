@@ -4,6 +4,7 @@ import { AccountProvider } from "../../providers/account/account";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { PlayerSignupPage } from '../player-signup/player-signup';
+import { ClubOwnerSignupPage } from '../club-owner-signup/club-owner-signup';
 /**
  * Generated class for the SignInPage page.
  *
@@ -36,8 +37,7 @@ export class SignInPage {
     if (this.validate()) {
       console.log('inside signin()')          
       this.accountProvider.signin(this.username, this.password).subscribe(data => {
-        console.log(data)
-        console.log("jimy.....")
+
         if (data) {
           
           // console.log((<any>data).length)
@@ -82,7 +82,7 @@ export class SignInPage {
         this.navCtrl.push(PlayerSignupPage); 
       
       if(this.testRadioResult=='club_owner')
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(ClubOwnerSignupPage);
     }
     showRadio() {
       let alert = this.alertCtrl.create();

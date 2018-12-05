@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/Http';
 import { LocalhostProvider } from '../providers/localhost/localhost';
 import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuProvider } from '../providers/menu/menu';
+import { ClubOwnerSignupPage } from '../pages/club-owner-signup/club-owner-signup'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MenuProvider } from '../providers/menu/menu';
     HomePage,
     ListPage,
     SignInPage,
-    PlayerSignupPage
+    PlayerSignupPage,
+    ClubOwnerSignupPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { MenuProvider } from '../providers/menu/menu';
     HomePage,
     ListPage,
     SignInPage,
-    PlayerSignupPage
+    PlayerSignupPage,
+    ClubOwnerSignupPage
   ],
   providers: [
     StatusBar,
