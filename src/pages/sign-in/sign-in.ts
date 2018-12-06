@@ -4,6 +4,8 @@ import { AccountProvider } from "../../providers/account/account";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { PlayerSignupPage } from '../player-signup/player-signup';
+import { ClubOwnerSignupPage } from '../club-owner-signup/club-owner-signup';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the SignInPage page.
  *
@@ -26,7 +28,8 @@ export class SignInPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public accountProvider: AccountProvider,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public dataProvider:DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,20 +37,24 @@ export class SignInPage {
   }
   signIn() {
     if (this.validate()) {
-      console.log('inside signin()')          
+      
+      
       this.accountProvider.signin(this.username, this.password).subscribe(data => {
-        console.log(data)
-        console.log("jimy.....")
+// Data returned in an array form so we must index the data
+// (in our case only one row are returned as a player or owner)
         if (data) {
-          
-          // console.log((<any>data).length)
-          console.log('Account found')
-         
-          this.navCtrl.push(HomePage);
-          
+          if(data[0].type=='player')
+          {
+            this.navCtrl.push(HomePage); //to be added player main screen
+          }
+          if(data[0].type=='owner')
+          {
+            this.navCtrl.push(HomePage);//to be added ClubOwner main screen
+          }     
+              this.dataProvider.set_user(data[0]); 
+              //Saving user info in provider so we can access it in any time in any ther component 
         }
         else {
-          console.log('Account not found');
           this.showAlert('Account not found ,Please retry.');
         }
       });
@@ -56,7 +63,7 @@ export class SignInPage {
         this.showAlert('Fill in username and password.');
         
       }
-
+    //========================
       
     }
     showAlert(msg:any) {
@@ -67,6 +74,7 @@ export class SignInPage {
       });
       alert.present();
     }
+    //===============================
     validate(){
       if (!this.username) {
         return false;
@@ -76,14 +84,15 @@ export class SignInPage {
       }
       return true;
     }
-
+    //===============================
     register(){
       if(this.testRadioResult=='player')
         this.navCtrl.push(PlayerSignupPage); 
       
       if(this.testRadioResult=='club_owner')
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(ClubOwnerSignupPage);
     }
+    //=====================================
     showRadio() {
       let alert = this.alertCtrl.create();
       alert.setTitle('Sign up as player or club owner');
