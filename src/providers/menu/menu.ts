@@ -14,6 +14,7 @@ export class MenuProvider {
   test(){}
   constructor(public http: HttpClient) {
     console.log('Hello MenuProvider Provider');
+    console.log("ay 7aga");
   }
 
 }
