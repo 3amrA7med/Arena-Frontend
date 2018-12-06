@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountProvider } from "../../providers/account/account";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the PlayerSignupPage page.
  *
@@ -31,7 +32,8 @@ export class PlayerSignupPage {
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public accountProvider:AccountProvider,
-     public alertCtrl:AlertController) {
+     public alertCtrl:AlertController,
+     public dataProvider:DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -55,14 +57,14 @@ export class PlayerSignupPage {
 
 
   save(){
-    console.log(this.signupform.valid);
-    console.log(this.data_phone);
-    console.log(this.data_visa);
+
     this.accountProvider.player_signup(this.data_username,this.data_password
       ,this.data_fname,this.data_lname,this.data_email,this.data_phone,this.data_visa,
     this.data_bdate).subscribe(data =>{
       if(data){
         //TODO sent an confirmation email
+        this.dataProvider.set_user(data[0]); 
+        //Saving user info in provider so we can access it in any time in any ther component 
         this.navCtrl.push(HomePage);
       }
       else{

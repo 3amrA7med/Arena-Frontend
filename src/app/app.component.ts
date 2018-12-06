@@ -7,7 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { PlayerSignupPage } from '../pages/player-signup/player-signup';
-
+import { MenuController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,20 +16,24 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = SignInPage;
-  
+  // pages1: Array<{title: string, component: any}>;
+  // pages2: Array<{title: string, component: any}>;
 
-  pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform,
      public statusBar: StatusBar,
-      public splashScreen: SplashScreen) {
+      public splashScreen: SplashScreen,
+      public menuCtrl:MenuController) {
     this.initializeApp();
+            // used for an example of ngFor and navigation
+    // this.pages1 = [
+    //   { title: 'Home', component: HomePage },
+    //   { title: 'List', component: ListPage }
+    // ];
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+    // this.pages2 = [
+    //   { title: 'Home', component: HomePage }
+    // ];
 
   }
 
@@ -40,6 +44,7 @@ export class MyApp {
       this.statusBar.styleDefault();
      
       this.splashScreen.hide();
+      // this.disableAll();
     });
   }
 
@@ -49,7 +54,22 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  test(){
-    console.log('inside test')
-  }
+
+  // public enableMenu1(){
+  //   this.menuCtrl.enable(true, 'menu1');
+  //   this.menuCtrl.enable(false, 'menu2');
+  
+  // }
+
+  // public enableMenu2(){
+  //   this.menuCtrl.enable(false, 'menu1');
+  //   this.menuCtrl.enable(true, 'menu2');
+  
+  // }
+  // public disableAll(){
+  //   this.menuCtrl.enable(false, 'menu1');
+  //   this.menuCtrl.enable(false, 'menu2');
+  
+  // }
+
 }

@@ -103,7 +103,7 @@
           </ion-item>
 
             <ion-item>
-                <ion-label floating>Phone number</ion-label>
+                <ion-label floating>Phone number for example(+20XXXXXXXXXX)</ion-label>
                 <ion-input type="text" [(ngModel)]="data_phone" formControlName="phone" [class.error1]="!signupform.controls.phone.valid && signupform.controls.phone.dirty"></ion-input>
               </ion-item>
         
@@ -115,10 +115,10 @@
                     please enter your phone number
                   </div>
                 <div class="error" *ngIf="signupform.get('phone').hasError('minlength') && signupform.get('phone').touched">
-                  Minimum 11 number
+                  Minimum 10 number
                 </div>
                 <div class="error" *ngIf="signupform.get('phone').hasError('maxlength') && signupform.get('phone').touched">
-                  Maximum 11 number
+                  Maximum 10 number
                 </div>
               </ion-item>
 

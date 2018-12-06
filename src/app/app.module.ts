@@ -15,6 +15,7 @@ import { LocalhostProvider } from '../providers/localhost/localhost';
 import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuProvider } from '../providers/menu/menu';
 import { ClubOwnerSignupPage } from '../pages/club-owner-signup/club-owner-signup'
+import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ClubOwnerSignupPage } from '../pages/club-owner-signup/club-owner-signu
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AccountProvider,
     LocalhostProvider,
-    MenuProvider
+    MenuProvider,
+    DataProvider 
   ]
 })
 export class AppModule {}
