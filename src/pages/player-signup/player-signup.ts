@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountProvider } from "../../providers/account/account";
+import { ActiveProvider } from "../../providers/active/active";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
@@ -33,11 +34,12 @@ export class PlayerSignupPage {
      public navParams: NavParams,
      public accountProvider:AccountProvider,
      public alertCtrl:AlertController,
-     public dataProvider:DataProvider) {
+     public dataProvider:DataProvider,
+     public activeProvider: ActiveProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PlayerSignupPage');
+    this.activeProvider.set_component('signup');
   }
 
 

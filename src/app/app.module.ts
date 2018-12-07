@@ -16,6 +16,7 @@ import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuProvider } from '../providers/menu/menu';
 import { ClubOwnerSignupPage } from '../pages/club-owner-signup/club-owner-signup'
 import { DataProvider } from '../providers/data/data';
+import { ActiveProvider } from '../providers/active/active';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DataProvider } from '../providers/data/data';
     AccountProvider,
     LocalhostProvider,
     MenuProvider,
-    DataProvider 
+    DataProvider,
+    ActiveProvider 
   ]
 })
 export class AppModule {}
