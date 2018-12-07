@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuController } from 'ionic-angular';
+import { PlayerProfilePage} from '../pages/player-profile/player-profile';
 import { ActiveProvider } from '../providers/active/active';
 
 @Component({
