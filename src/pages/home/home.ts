@@ -4,7 +4,8 @@ import { DataProvider } from'../../providers/data/data';
 import { ListPage } from '../../pages/list/list';
 import { Nav, Platform } from 'ionic-angular';
 // import { MyApp } from '../../app/app.component';
-// import { MenuController } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
+import { SignInPage } from '../sign-in/sign-in'
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
   public dataProvider:DataProvider,
-  // public menuCtrl:MenuController
+  public menuCtrl:MenuController
  // public myApp:MyApp
   ) {
 
@@ -32,11 +33,16 @@ export class HomePage {
   
   // }
 
+
   ionViewDidLoad(){
     let user =this.dataProvider.get_user() 
     this.name=user.firstName;
     this.type=this.dataProvider.get_user().type; 
    // this.myApp.enableMenu1();
+  }
+
+  openPage(page){
+    this.navCtrl.push(page);
   }
 
 
