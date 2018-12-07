@@ -5,6 +5,7 @@ import { AccountProvider } from "../../providers/account/account";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { ClubownerPage } from '../clubowner/clubowner';
 
 
 /**
@@ -72,7 +73,7 @@ export class ClubOwnerSignupPage {
          //TODO sent an confirmation email
          this.dataProvider.set_user(data[0]); 
          //Saving user info in provider so we can access it in any time in any ther component 
-         this.navCtrl.push(HomePage); // Adding Owner main screen here
+         this.navCtrl.push(ClubownerPage); // Adding Owner main screen here
       }
       else{
         this.showAlert('Username is taken or already existing E-mail');

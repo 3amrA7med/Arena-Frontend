@@ -10,6 +10,7 @@ import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuController } from 'ionic-angular';
 import { PlayerProfilePage} from '../pages/player-profile/player-profile';
 import { ActiveProvider } from '../providers/active/active';
+import { ClubownerPage } from '../pages/clubowner/clubowner';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +18,7 @@ import { ActiveProvider } from '../providers/active/active';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SignInPage;
+  rootPage: any = ClubownerPage;
   // pages1: Array<{title: string, component: any}>;
   // pages2: Array<{title: string, component: any}>;
 
@@ -37,6 +38,8 @@ export class MyApp {
         { title: 'List-signup', component: ListPage }],
       'signin': [
         { title: 'List-signin', component: ListPage }],
+        'owner':[  //doda hat7ot el pages el enta 3amlha fel side menu hena
+          {title: 'Maintance', component: ListPage}],
     };
     // used for an example of ngFor and navigation
     // this.pages1 = [

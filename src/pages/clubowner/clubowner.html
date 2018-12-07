@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ClubownerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>clubowner</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <H1>Events</H1>
+  <ion-list>
+    <button ion-item *ngFor="let item of events_items">
+          {{item.title}}
+          <div class="item-note" item-end>
+            {{item.note}}
+          </div>
+        </button>
+  </ion-list>
+
+  <H1>Reservations</H1>
+  <ion-list>
+    <button ion-item *ngFor="let item of reservations_items">
+            {{item.title}}
+            <div class="item-note" item-end>
+              {{item.note}}
+            </div>
+          </button>
+  </ion-list>
+
+  <H1>Maintanence</H1>
+  <ion-list>
+    <button ion-item *ngFor="let item of maint_items">
+              {{item.title}}
+              <div class="item-note" item-end>
+                {{item.note}}
+              </div>
+            </button>
+  </ion-list>
+
+</ion-content>
