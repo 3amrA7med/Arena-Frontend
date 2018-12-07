@@ -6,6 +6,7 @@ import { AlertController } from 'ionic-angular';
 import { PlayerSignupPage } from '../player-signup/player-signup';
 import { ClubOwnerSignupPage } from '../club-owner-signup/club-owner-signup';
 import { DataProvider } from '../../providers/data/data';
+import { PlayerProfilePage } from '../player-profile/player-profile';
 /**
  * Generated class for the SignInPage page.
  *
@@ -45,7 +46,7 @@ export class SignInPage {
         if (data) {
           if(data[0].type=='player')
           {
-            this.navCtrl.push(HomePage); //to be added player main screen
+            this.navCtrl.push(PlayerProfilePage); //to be added player main screen
           }
           if(data[0].type=='owner')
           {

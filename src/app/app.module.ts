@@ -16,7 +16,11 @@ import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuProvider } from '../providers/menu/menu';
 import { ClubOwnerSignupPage } from '../pages/club-owner-signup/club-owner-signup'
 import { DataProvider } from '../providers/data/data';
-
+import { PlayerEventsPage } from '../pages/player-events/player-events';
+import { PlayerReservationsPage } from '../pages/player-reservations/player-reservations';
+import { PlayerAcademiesPage} from '../pages/player-academies/player-academies';
+import { ReviewsPage } from '../pages/reviews/reviews';
+import { PlayerProfilePage } from '../pages/player-profile/player-profile'
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +28,12 @@ import { DataProvider } from '../providers/data/data';
     ListPage,
     SignInPage,
     PlayerSignupPage,
-    ClubOwnerSignupPage
+    ClubOwnerSignupPage,
+    PlayerProfilePage,
+    PlayerEventsPage,
+    PlayerReservationsPage,
+    PlayerAcademiesPage,
+    ReviewsPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,12 @@ import { DataProvider } from '../providers/data/data';
     ListPage,
     SignInPage,
     PlayerSignupPage,
-    ClubOwnerSignupPage
+    ClubOwnerSignupPage,
+    PlayerProfilePage,
+    PlayerEventsPage,
+    PlayerReservationsPage,
+    PlayerAcademiesPage,
+    ReviewsPage
   ],
   providers: [
     StatusBar,
