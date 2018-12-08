@@ -59,7 +59,7 @@ export class PlayerSignupPage {
 
 
   save(){
-
+    
     this.accountProvider.player_signup(this.data_username,this.data_password
       ,this.data_fname,this.data_lname,this.data_email,this.data_phone,this.data_visa,
     this.data_bdate).subscribe(data =>{

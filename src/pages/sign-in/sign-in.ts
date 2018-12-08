@@ -8,6 +8,7 @@ import { ClubOwnerSignupPage } from '../club-owner-signup/club-owner-signup';
 import { DataProvider } from '../../providers/data/data';
 import { PlayerProfilePage } from '../player-profile/player-profile';
 import { ActiveProvider } from "../../providers/active/active";
+import { ClubownerPage } from '../clubowner/clubowner';
 /**
  * Generated class for the SignInPage page.
  *
@@ -32,7 +33,7 @@ export class SignInPage {
     public accountProvider: AccountProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider,
-    public activeProvider : ActiveProvider) {
+    public activeProvider: ActiveProvider) {
   }
 
   ionViewDidLoad() {
@@ -51,7 +52,7 @@ export class SignInPage {
             this.navCtrl.push(PlayerProfilePage); //to be added player main screen
           }
           if (data[0].type == 'owner') {
-            this.navCtrl.push(HomePage);//to be added ClubOwner main screen
+            this.navCtrl.push(ClubownerPage);//to be added ClubOwner main screen
           }
           this.dataProvider.set_user(data[0]);
           //Saving user info in provider so we can access it in any time in any ther component 

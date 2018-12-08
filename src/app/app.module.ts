@@ -22,6 +22,9 @@ import { PlayerReservationsPage } from '../pages/player-reservations/player-rese
 import { PlayerAcademiesPage} from '../pages/player-academies/player-academies';
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { PlayerProfilePage } from '../pages/player-profile/player-profile'
+import { OwnerProvider } from '../providers/owner/owner';
+import { ClubownerPage } from '../pages/clubowner/clubowner';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +37,8 @@ import { PlayerProfilePage } from '../pages/player-profile/player-profile'
     PlayerEventsPage,
     PlayerReservationsPage,
     PlayerAcademiesPage,
-    ReviewsPage
+    ReviewsPage,
+    ClubownerPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { PlayerProfilePage } from '../pages/player-profile/player-profile'
     PlayerEventsPage,
     PlayerReservationsPage,
     PlayerAcademiesPage,
-    ReviewsPage
+    ReviewsPage,
+    ClubownerPage
   ],
   providers: [
     StatusBar,
@@ -63,7 +68,9 @@ import { PlayerProfilePage } from '../pages/player-profile/player-profile'
     LocalhostProvider,
     MenuProvider,
     DataProvider,
-    ActiveProvider 
+    ActiveProvider,
+    OwnerProvider,
+    OwnerProvider 
   ]
 })
 export class AppModule {}
