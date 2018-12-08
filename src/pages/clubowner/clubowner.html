@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>clubowner</ion-title>
   </ion-navbar>
 
@@ -14,34 +14,43 @@
 
 
 <ion-content padding>
-  <H1>Events</H1>
-  <ion-list>
-    <button ion-item *ngFor="let item of events_items">
-          {{item.title}}
-          <div class="item-note" item-end>
-            {{item.note}}
-          </div>
-        </button>
-  </ion-list>
 
-  <H1>Reservations</H1>
-  <ion-list>
-    <button ion-item *ngFor="let item of reservations_items">
-            {{item.title}}
-            <div class="item-note" item-end>
-              {{item.note}}
-            </div>
+  <ion-item>
+    <ion-label floating>View On date</ion-label>
+    <ion-datetime displayFormat="MMM/DD/YYYY " pickerFormat="MMMM/DD/YYYY " min="2017" [(ngModel)]="date" (ionChange)="dateChanged()">
+    </ion-datetime>
+  </ion-item>
+
+  <div *ngIf="date">
+    <ion-list>
+      <ion-list-header>
+        Events
+      </ion-list-header>
+      <button ion-item *ngFor="let item of events_items" (click)="view(item,'Event')">
+        <ion-icon [name]="'arrow-forward'" item-end></ion-icon>
+        {{item.name}} 
           </button>
-  </ion-list>
+    </ion-list>
 
-  <H1>Maintanence</H1>
-  <ion-list>
-    <button ion-item *ngFor="let item of maint_items">
-              {{item.title}}
-              <div class="item-note" item-end>
-                {{item.note}}
-              </div>
+    <ion-list>
+      <ion-list-header>
+        Reservations
+      </ion-list-header>
+      <button ion-item *ngFor="let item of reservations_items" (click)="view(item,'Reservation')">
+        <ion-icon [name]="'arrow-forward'" item-end></ion-icon>
+             Pitch Number:{{item.pitch_number}}, Start Time: {{item.startTime.split('T')[1] }}
             </button>
-  </ion-list>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        Maintenance
+      </ion-list-header>
+      <button ion-item *ngFor="let item of maint_items" (click)="view(item,'Maintenance')">
+        <ion-icon [name]="'arrow-forward'" item-end></ion-icon>
+      Pitch Number:{{item.pitch_number}},   Start Time: {{item.startTime.split('T')[1] }}
+        </button>
+    </ion-list>
+  </div>
 
 </ion-content>

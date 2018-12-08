@@ -69,6 +69,7 @@ import { ClubownerPage } from '../pages/clubowner/clubowner';
     MenuProvider,
     DataProvider,
     ActiveProvider,
+    OwnerProvider,
     OwnerProvider 
   ]
 })
