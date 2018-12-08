@@ -8,6 +8,7 @@ import { PlayerEventsPage } from '../../pages/player-events/player-events';
 import { PlayerReservationsPage } from '../../pages/player-reservations/player-reservations';
 import { PlayerAcademiesPage} from '../../pages/player-academies/player-academies';
 import { ReviewsPage } from '../../pages/reviews/reviews';
+import { ActiveProvider } from "../../providers/active/active";
 /**
  * Generated class for the PlayerProfilePage page.
  *
@@ -23,7 +24,10 @@ import { ReviewsPage } from '../../pages/reviews/reviews';
 export class PlayerProfilePage {
   name:string;
   type:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider:DataProvider) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+      public dataProvider:DataProvider,
+        public activeProvider : ActiveProvider) {
   }
 
 
@@ -33,6 +37,7 @@ export class PlayerProfilePage {
     this.name=user.firstName;
     this.type=this.dataProvider.get_user().type; 
    // this.myApp.enableMenu1();
+   this.activeProvider.set_component('playerprofile');
   }
   openPage(x:any)
   {

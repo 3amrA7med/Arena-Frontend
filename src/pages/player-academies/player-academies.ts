@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ActiveProvider } from "../../providers/active/active";
 /**
  * Generated class for the PlayerAcademiesPage page.
  *
@@ -15,11 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PlayerAcademiesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public activeProvider : ActiveProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlayerAcademiesPage');
+    this.activeProvider.set_component('playeracademies');
   }
 
 }

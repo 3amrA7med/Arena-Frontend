@@ -15,4 +15,16 @@
 
 <ion-content padding>
 
+  <ion-item>
+    <ion-label>City</ion-label>
+    <ion-select [(ngModel)]="city">
+      <ion-option value="f">Female</ion-option>
+      <ion-option value="m">Male</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="DDD DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="date" (ionChange)="dateChanged()"></ion-datetime>
+  </ion-item>
+
 </ion-content>
