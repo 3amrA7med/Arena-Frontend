@@ -8,6 +8,10 @@ import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuController } from 'ionic-angular';
+import { ClubOwnerMaintanancePage } from '../pages/club-owner-maintanance/club-owner-maintanance'
+import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
+import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-academy'
+import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
 
 @Component({
   templateUrl: 'app.html'

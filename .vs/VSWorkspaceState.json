@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\pages",
+    "\\src\\pages\\club-owner-academy",
+    "\\src\\pages\\club-owner-maintanance",
+    "\\src\\pages\\sign-in",
+    "\\src\\providers",
+    "\\src\\providers\\account",
+    "\\src\\providers\\localhost"
+  ],
+  "SelectedNode": "\\src\\pages\\sign-in\\sign-in.ts",
+  "PreviewInSolutionExplorer": false
+}

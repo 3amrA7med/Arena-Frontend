@@ -5,6 +5,13 @@ import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { PlayerSignupPage } from '../player-signup/player-signup';
 import { ClubOwnerSignupPage } from '../club-owner-signup/club-owner-signup';
+import { ClubOwnerAcademyPage } from '../club-owner-academy/club-owner-academy';
+import { ClubOwnerMaintanancePage } from '../club-owner-maintanance/club-owner-maintanance';
+import { ClubOwnerEventPage } from '../club-owner-event/club-owner-event';
+import { ClubOwnerPitchPage } from '../club-owner-pitch/club-owner-pitch';
+import { ClubOwnerAddacademyPage } from '../club-owner-addacademy/club-owner-addacademy';
+
+
 import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the SignInPage page.
@@ -49,7 +56,7 @@ export class SignInPage {
           }
           if(data[0].type=='owner')
           {
-            this.navCtrl.push(HomePage);//to be added ClubOwner main screen
+            this.navCtrl.push(ClubOwnerPitchPage);//to be added ClubOwner main screen
           }     
               this.dataProvider.set_user(data[0]); 
               //Saving user info in provider so we can access it in any time in any ther component 
