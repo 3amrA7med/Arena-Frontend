@@ -8,6 +8,11 @@ import { ListPage } from '../pages/list/list';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { PlayerSignupPage } from '../pages/player-signup/player-signup';
 import { MenuController } from 'ionic-angular';
+import { ClubOwnerMaintanancePage } from '../pages/club-owner-maintanance/club-owner-maintanance'
+import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
+import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-academy'
+import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
+import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
 import { PlayerProfilePage} from '../pages/player-profile/player-profile';
 import { ActiveProvider } from '../providers/active/active';
 import { Title } from '@angular/platform-browser';
@@ -43,8 +48,15 @@ export class MyApp {
         { title: 'List-signup', component: ListPage }],
       'signin': [
         { title: 'List-signin', component: ListPage }],
-      'owner': [  //doda hat7ot el pages el enta 3amlha fel side menu hena
-        { title: 'Maintance', component: ListPage }],
+      'owner': [
+        { title: 'Home', component: ClubownerPage},
+        { title: 'Maintanance', component: ClubOwnerMaintanancePage  },
+        { title: 'Create Academy', component: ClubOwnerAddacademyPage },
+        { title: 'View Academy', component: ClubOwnerAcademyPage },
+        { title: 'Insert Event', component: ClubOwnerEventPage },
+        { title: 'Add Pitch', component: ClubOwnerPitchPage },
+        { title: 'Log Out', component: SignInPage }
+      ],
       'playerprofile':[
         {title: 'Home',component: PlayerProfilePage},
         {title: 'Reservations',component: PlayerReservationsPage},
