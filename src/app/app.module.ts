@@ -28,6 +28,11 @@ import { UpdatePlayerProfilePage } from '../pages/update-player-profile/update-p
 import { MyAcademyPage } from '../pages/my-academy/my-academy'
 import { PlayerProvider } from '../providers/player/player';
 
+import { ClubOwnerMaintanancePage } from '../pages/club-owner-maintanance/club-owner-maintanance'
+import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
+import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-academy'
+import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
+import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
 @NgModule({
   declarations: [
     MyApp,
@@ -35,7 +40,6 @@ import { PlayerProvider } from '../providers/player/player';
     ListPage,
     SignInPage,
     PlayerSignupPage,
-    ClubOwnerSignupPage,
     PlayerProfilePage,
     PlayerEventsPage,
     PlayerReservationsPage,
@@ -43,7 +47,13 @@ import { PlayerProvider } from '../providers/player/player';
     ReviewsPage,
     UpdatePlayerProfilePage,
     MyAcademyPage,
-    ClubownerPage
+    ClubownerPage,
+    ClubOwnerSignupPage,
+    ClubOwnerMaintanancePage,
+    ClubOwnerEventPage,
+    ClubOwnerAcademyPage,
+    ClubOwnerPitchPage,
+    ClubOwnerAddacademyPage
   ],
   imports: [
     BrowserModule,
@@ -58,6 +68,11 @@ import { PlayerProvider } from '../providers/player/player';
     SignInPage,
     PlayerSignupPage,
     ClubOwnerSignupPage,
+    ClubOwnerMaintanancePage,
+    ClubOwnerEventPage,
+    ClubOwnerAcademyPage,
+    ClubOwnerPitchPage,
+    ClubOwnerAddacademyPage,
     PlayerProfilePage,
     PlayerEventsPage,
     PlayerReservationsPage,
