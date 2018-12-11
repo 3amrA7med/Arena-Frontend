@@ -1,0 +1,89 @@
+<!--
+  Generated template for the ClubOwnerMaintanancePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>club-owner-maintanance</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <form novalidate (ngSubmit)="save()" [formGroup]="clubownermaintananceform">
+
+      
+      <ion-item (click)="GetPitchNo()">
+        <ion-label floating>Pitch number</ion-label>
+        <ion-input type="text" [(ngModel)]="data_pitch_no" formControlName="pitch_no" [class.error1]="!clubownermaintananceform.controls.pitch_no.valid && clubownermaintananceform.controls.pitch_no.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownermaintananceform.get('pitch_no').hasError('required') && clubownermaintananceform.get('pitch_no').touched">
+
+        <div class="error" *ngIf="clubownermaintananceform.get('pitch_no').hasError('required') &&  clubownermaintananceform.get('pitch_no').touched">
+          Please enter pitch number
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <!-- -->
+        <ion-label floating>Start time</ion-label>
+        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_maintanance_start_date" formControlName="maintanance_start_date" [class.error1]="!clubownermaintananceform.controls.maintanance_start_date.valid && clubownermaintananceform.controls.maintanance_start_date.dirty"> </ion-datetime>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_start_date').hasError('required')  && clubownermaintananceform.get('maintanance_start_date').touched">
+        <div class="error" *ngIf="clubownermaintananceform.get('maintanance_start_date').hasError('required') && clubownermaintananceform.get('maintanance_start_date').touched">
+          please enter maintanance start time
+        </div>
+      </ion-item>
+      <ion-item>
+        <!-- -->
+        <ion-label floating>end time</ion-label>
+        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_maintanance_end_date" formControlName="maintanance_end_date" [class.error1]="!clubownermaintananceform.controls.maintanance_end_date.valid && clubownermaintananceform.controls.maintanance_end_date.dirty"> </ion-datetime>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required')  && clubownermaintananceform.get('maintanance_end_date').touched">
+        <div class="error" *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required') && clubownermaintananceform.get('maintanance_end_date').touched">
+          please enter maintanance end time
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Description </ion-label>
+        <ion-input type="text" [(ngModel)]="data_description" formControlName="description" [class.error1]="!clubownermaintananceform.controls.description.valid && clubownermaintananceform.controls.description.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( clubownermaintananceform.get('description').hasError('minlength') || clubownermaintananceform.get('description').hasError('maxlength') ||clubownermaintananceform.get('description').hasError('pattern') ||clubownermaintananceform.get('description').hasError('required') ) && clubownermaintananceform.get('description').touched">
+        <div class="error" *ngIf="clubownermaintananceform.get('description').hasError('required') && clubownermaintananceform.get('description').touched">
+          please enter a description
+        </div>
+        <div class="error" *ngIf="clubownermaintananceform.get('description').hasError('minlength') && clubownermaintananceform.get('description').touched">
+          Minimum 3 characters
+        </div>
+        <div class="error" *ngIf="clubownermaintananceform.get('description').hasError('maxlength') && clubownermaintananceform.get('description').touched">
+          Maximum 25 characters
+        </div>
+        <div class="error" *ngIf="clubownermaintananceform.get('description').hasError('pattern') && clubownermaintananceform.get('description').touched">
+          Just use alphabet(Arabic Or English) character
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Cost</ion-label>
+        <ion-input type="text" [(ngModel)]="data_cost" formControlName="cost" [class.error1]="!clubownermaintananceform.controls.cost.valid && clubownermaintananceform.controls.cost.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownermaintananceform.get('cost').hasError('pattern') && clubownermaintananceform.get('cost').touched">
+        <div class="error" *ngIf="clubownermaintananceform.get('cost').hasError('pattern') &&  clubownermaintananceform.get('cost').touched">
+          Only numbers
+        </div>
+      </ion-item>
+
+      <button ion-button type="submit" ion-button block color="primary" >Submit</button>
+
+
+    </form>
+  </ion-list>
+</ion-content>
