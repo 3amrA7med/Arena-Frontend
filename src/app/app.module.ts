@@ -27,6 +27,8 @@ import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { UpdatePlayerProfilePage } from '../pages/update-player-profile/update-player-profile';
 import { MyAcademyPage } from '../pages/my-academy/my-academy'
 import { PlayerProvider } from '../providers/player/player';
+import { HistoryPage } from '../pages/history/history';
+import { UpcomingPage } from '../pages/upcoming/upcoming';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { PlayerProvider } from '../providers/player/player';
     ReviewsPage,
     UpdatePlayerProfilePage,
     MyAcademyPage,
+    HistoryPage,
+    UpcomingPage,
     ClubownerPage
   ],
   imports: [
@@ -65,6 +69,8 @@ import { PlayerProvider } from '../providers/player/player';
     ReviewsPage,
     UpdatePlayerProfilePage,
     MyAcademyPage,
+    UpcomingPage,
+    HistoryPage,
     ClubownerPage
   ],
   providers: [

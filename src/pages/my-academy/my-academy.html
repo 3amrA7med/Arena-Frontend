@@ -15,4 +15,37 @@
 
 <ion-content padding>
 
+  <div *ngIf="subscribed">
+      <ion-card>
+          <ion-card-header>
+            {{academy.A.name}}
+          </ion-card-header>
+          <ion-card-content>
+            Club Name : {{academy.club_name}}
+            Address : {{academy.city}} , {{academy.street}}
+            Monthly Subscribtion : {{academy.monthlySubscribtion}}
+          </ion-card-content>
+        </ion-card>
+
+
+    <button ion-button block (click)="unsubscribe()">Unsubscribe</button>
+  </div>
+
+  <div *ngIf="!subscribed">
+      <ion-card>
+
+          <ion-card-header>
+         
+          </ion-card-header>
+        
+          <ion-card-content>
+            You are not subscribed to any academy
+          </ion-card-content>
+        
+        </ion-card>
+
+
+    <button ion-button block>Subscribe</button>
+  </div>
+
 </ion-content>
