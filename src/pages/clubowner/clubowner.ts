@@ -42,7 +42,6 @@ export class ClubownerPage {
     this.ownerProvider.getEvents(this.dataProvider.get_user().userName, this.date).subscribe(data => {
       if (data) {
         this.events_items = data;
-
       }
     })
   }

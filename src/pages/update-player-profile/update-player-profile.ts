@@ -6,8 +6,9 @@ import { ActiveProvider } from "../../providers/active/active";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { PlayerProfilePage } from '../player-profile/player-profile';
 /**
- * Generated class for the PlayerSignupPage page.
+ * Generated class for the UpdatePlayerProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,10 +16,10 @@ import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
-  selector: 'page-player-signup',
-  templateUrl: 'player-signup.html',
+  selector: 'page-update-player-profile',
+  templateUrl: 'update-player-profile.html',
 })
-export class PlayerSignupPage {
+export class UpdatePlayerProfilePage {
 
   data_username: string;
   data_password: string;
@@ -29,20 +30,32 @@ export class PlayerSignupPage {
   data_phone: number;
   data_visa: number;
   signupform: FormGroup;
-  
+
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public accountProvider:AccountProvider,
-     public alertCtrl:AlertController,
-     public dataProvider:DataProvider,
-     public activeProvider: ActiveProvider) {
+   public navParams: NavParams,
+   public accountProvider:AccountProvider,
+   public alertCtrl:AlertController,
+   public dataProvider:DataProvider,
+   public activeProvider: ActiveProvider) {
   }
 
   ionViewDidLoad() {
-    this.activeProvider.set_component('signup');
+    
+
+ 
+    let user =this.dataProvider.get_user();
+          user['visa_number'] = user['visa#'];
+  
+
+    this.data_username=user.userName;
+    this.data_phone=user.phone;
+    this.data_visa=user.visa_number;
+    this.data_fname=user.firstName;
+    this.data_lname=user.lastName;
+    this.data_email=user.email;
+    this.data_password=user.password;
+    this.data_bdate=user.birthdate;
   }
-
-
   ngOnInit() {
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.signupform = new FormGroup({
@@ -60,24 +73,33 @@ export class PlayerSignupPage {
 
   save(){
     
-    this.accountProvider.player_signup(this.data_username,this.data_password
+    this.accountProvider.player_update(this.data_username,this.data_password
       ,this.data_fname,this.data_lname,this.data_email,this.data_phone,this.data_visa,
     this.data_bdate).subscribe(data =>{
       if(data){
+        this.showAlert('Profile Updated Successfully');
         //TODO sent an confirmation email
         this.dataProvider.set_user(data[0]); 
         //Saving user info in provider so we can access it in any time in any ther component 
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(PlayerProfilePage);
       }
       else{
-        this.showAlert('Username is taken or already existing E-mail');
+        this.showAlert2('Already existing E-mail');
       }
 
     })
   }
   showAlert(msg:any) {
     const alert = this.alertCtrl.create({
-      title: 'Error !',
+      title: 'Update Succeeded !',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  showAlert2(msg:any) {
+    const alert = this.alertCtrl.create({
+      title: 'Update Failed !',
       subTitle: msg,
       buttons: ['OK']
     });

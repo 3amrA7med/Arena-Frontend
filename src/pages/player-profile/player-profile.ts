@@ -9,6 +9,8 @@ import { PlayerReservationsPage } from '../../pages/player-reservations/player-r
 import { PlayerAcademiesPage} from '../../pages/player-academies/player-academies';
 import { ReviewsPage } from '../../pages/reviews/reviews';
 import { ActiveProvider } from "../../providers/active/active";
+import { UpdatePlayerProfilePage } from '../../pages/update-player-profile/update-player-profile';
+import { MyAcademyPage } from '../../pages/my-academy/my-academy';
 /**
  * Generated class for the PlayerProfilePage page.
  *
@@ -35,16 +37,16 @@ export class PlayerProfilePage {
   ionViewDidLoad(){
     let user =this.dataProvider.get_user() 
     this.name=user.firstName;
-    this.type=this.dataProvider.get_user().type; 
+   // this.type=this.dataProvider.get_user().type; 
    // this.myApp.enableMenu1();
    this.activeProvider.set_component('playerprofile');
   }
   openPage(x:any)
   {
     if(x==0)
-    this.navCtrl.push(PlayerProfilePage);
+    this.navCtrl.push(UpdatePlayerProfilePage);
     if(x==1)
-    this.navCtrl.push(PlayerReservationsPage);
+    this.navCtrl.push(MyAcademyPage);
     if(x==2)
     this.navCtrl.push(PlayerEventsPage);
     if(x==3)
