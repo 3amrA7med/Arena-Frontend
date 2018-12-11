@@ -49,4 +49,18 @@ export class AccountProvider {
     'phone':phone,'officeHours':officehours,'clubName':clubName,'clubCity':clubCity
     ,'clubStreet':clubStreet}),{headers:header});
   }
+  //===================================================================
+  player_update(username,password,fname,lname,email,phone,visa,bdate)
+  {
+
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.post(this.localhostProvider.localhost+"api/DB/UpdatePlayer",JSON.stringify({'username':username,
+    'password':password,'fname':fname,'lname':lname,'email':email,
+    'phone':phone,'visa':visa,'bdate':bdate}),{headers:header});
+
+
+  }
 }

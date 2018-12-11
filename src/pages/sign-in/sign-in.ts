@@ -46,6 +46,7 @@ export class SignInPage {
       this.accountProvider.signin(this.username, this.password).subscribe(data => {
         // Data returned in an array form so we must index the data
         // (in our case only one row are returned as a player or owner)
+        console.log(data)
         if (data) {
           if(data[0].type=='player')
           {
