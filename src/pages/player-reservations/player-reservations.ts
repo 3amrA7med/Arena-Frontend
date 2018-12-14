@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActiveProvider } from "../../providers/active/active";
-import { BookProvider } from "../../providers/book/book";
+import { PlayerProvider } from "../../providers/player/player";
 import { DataProvider } from "../../providers/data/data";
 import { AlertController } from 'ionic-angular';
 import { PlayerProfilePage } from "../../pages/player-profile/player-profile"
@@ -40,7 +40,7 @@ export class PlayerReservationsPage {
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public activeProvider: ActiveProvider,
-    public bookProvider: BookProvider,
+    public playerProvider: PlayerProvider,
     public dataProvider: DataProvider,
     public alertCtrl: AlertController
   ) {
@@ -51,7 +51,7 @@ export class PlayerReservationsPage {
     console.log('ionViewDidLoad PlayerReservationsPage');
     this.activeProvider.set_component('playerreservations');
     this.user = this.dataProvider.get_user().userName;
-    this.bookProvider.getCities().subscribe(data => {
+    this.playerProvider.getCities().subscribe(data => {
       if(data)
         for (let d of data) {
         this.clubs.push({ name: d['name'], id: d['id'] });
@@ -69,7 +69,7 @@ export class PlayerReservationsPage {
   {
     console.log(c)
     this.pitches = [];
-    this.bookProvider.getPitches(c).subscribe(data => {
+    this.playerProvider.getPitches(c).subscribe(data => {
       for (let d of data)
         this.pitches.push({ pitch: d["pitch#"], price: d["price"] });
     })
@@ -86,7 +86,7 @@ export class PlayerReservationsPage {
     let hour = this.date2.split(":")[0];
     console.log(this.price);
     if (this.selcity && this.selclub && this.selpitch && this.date && this.date2) {
-      this.bookProvider.book(this.user, this.selclub, this.selpitchno, this.date, hour, this.Pay, this.unpaid).subscribe(data => {
+      this.playerProvider.book(this.user, this.selclub, this.selpitchno, this.date, hour, this.Pay, this.unpaid).subscribe(data => {
         if (data)
           this.showAlert("Your reservation is done!", "Operation Successful");
         else this.showAlert("An error has occured, please retry later.", "Error!");
@@ -118,7 +118,7 @@ export class PlayerReservationsPage {
     this.selcity = c;
     this.clubs = [];
     //console.log(c);
-    this.bookProvider.getClubs(c).subscribe(data => {
+    this.playerProvider.getClubs(c).subscribe(data => {
       for (let d of data)
         this.clubs.push({ name: d['name'], id: d['id'] });
       console.log(data);
@@ -135,7 +135,7 @@ export class PlayerReservationsPage {
     this.price = parseInt(this.selpitch.split("Y")[1], 10);
     this.selpitchno = parseInt(this.selpitch.split("Y")[0], 10);
     this.pricemin = this.price / 4;
-    this.bookProvider.getbooked(this.date, this.selclub, this.selpitchno).subscribe(data =>
+    this.playerProvider.getbooked(this.date, this.selclub, this.selpitchno).subscribe(data =>
     {
       this.hours = [];
       if (data)
