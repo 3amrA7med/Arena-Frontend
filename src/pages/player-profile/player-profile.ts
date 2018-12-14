@@ -11,6 +11,8 @@ import { ReviewsPage } from '../../pages/reviews/reviews';
 import { ActiveProvider } from "../../providers/active/active";
 import { UpdatePlayerProfilePage } from '../../pages/update-player-profile/update-player-profile';
 import { MyAcademyPage } from '../../pages/my-academy/my-academy';
+import { HistoryPage } from '../../pages/history/history';
+import { UpcomingPage } from '../../pages/upcoming/upcoming';
 /**
  * Generated class for the PlayerProfilePage page.
  *
@@ -48,11 +50,10 @@ export class PlayerProfilePage {
     if(x==1)
     this.navCtrl.push(MyAcademyPage);
     if(x==2)
-    this.navCtrl.push(PlayerEventsPage);
+    this.navCtrl.push(HistoryPage);
     if(x==3)
-    this.navCtrl.push(PlayerAcademiesPage);
-    if(x==4)
-    this.navCtrl.push(ReviewsPage);
+    this.navCtrl.push(UpcomingPage);
+
   }
 
   LogOut()
