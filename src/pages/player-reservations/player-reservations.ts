@@ -60,6 +60,11 @@ export class PlayerReservationsPage {
     })
   ;
   }
+  pitchChanged() {
+    this.date = null;
+    this.date2 = null;
+    console.log("sh8ala");
+  }
   clubChanged(c)
   {
     console.log(c)
@@ -68,7 +73,12 @@ export class PlayerReservationsPage {
       for (let d of data)
         this.pitches.push({ pitch: d["pitch#"], price: d["price"] });
     })
-    console.log(this.pitches)
+    console.log(this.pitches);
+    this.selpitchno = null;
+    this.selpitch = null;
+    this.date = null;
+    this.date2 = null;
+   
   }
   book() {
     this.unpaid = this.price - this.Pay;
@@ -112,6 +122,11 @@ export class PlayerReservationsPage {
       for (let d of data)
         this.clubs.push({ name: d['name'], id: d['id'] });
       console.log(data);
+      this.selclub = null;
+      this.selpitchno = null;
+      this.selpitch = null;
+      this.date = null;
+      this.date2 = null;
     })
   }
   getReservations()

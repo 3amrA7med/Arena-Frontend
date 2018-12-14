@@ -18,8 +18,11 @@ export class BookProvider {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
-    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Book/insertBooking/" + user + "/" + selclub + "/" + selpitchno + "/" + date + "/" + date2 + "/" + paid + "/" + unpaid,
-      { headers: header });
+    return this.http.post(this.localhostProvider.localhost + "api/DB/Book/insertBooking", JSON.stringify({
+      'user': user, 'selclub': selclub
+     , 'selpitchno': selpitchno, 'date': date, 'date2': date2,
+      'paid': paid, 'unpaid': unpaid
+    }), { headers: header });
   }
   getbooked(date,cid,pid) {
     let header = new HttpHeaders();
