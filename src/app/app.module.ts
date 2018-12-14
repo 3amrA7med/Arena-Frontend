@@ -99,7 +99,7 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     DataProvider,
     ActiveProvider,
     OwnerProvider,
-    BookProvider 
+    BookProvider,
     PlayerProvider 
   ]
 })
