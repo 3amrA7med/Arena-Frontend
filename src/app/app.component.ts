@@ -21,6 +21,7 @@ import { PlayerEventsPage } from '../pages/player-events/player-events';
 import { PlayerAcademiesPage } from '../pages/player-academies/player-academies';
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
+import { DataProvider } from '../providers/data/data';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,15 +40,14 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
-    public activeProvider: ActiveProvider) {
+    public activeProvider: ActiveProvider,
+    public dataProvider: DataProvider) {
     this.initializeApp();
     this.active_component = this.activeProvider.get_component();
     this.component_pages = {
       'signup': [
-        { title: 'Home-signup', component: HomePage },
-        { title: 'List-signup', component: ListPage }],
-      'signin': [
-        { title: 'List-signin', component: ListPage }],
+        { title: 'Sign in', component: SignInPage }],
+      'signin': [],
       'owner': [
         { title: 'Home', component: ClubownerPage},
         { title: 'Maintanance', component: ClubOwnerMaintanancePage  },
@@ -120,7 +120,14 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     if(page.title=='Log Out')
-    this.nav.popToRoot();
+   { 
+     this.dataProvider.set_user([]);
+     this.nav.popToRoot();
+   }
+    else if(page.title=='owner')
+     this.nav.setRoot(page.component); 
+     else if(page.title=='playerprofile')
+     this.nav.setRoot(page.component); 
     else
     this.nav.push(page.component);
   }

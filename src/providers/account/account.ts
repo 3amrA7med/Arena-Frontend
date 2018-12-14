@@ -65,6 +65,12 @@ export class AccountProvider {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
+    console.log(clubid)
+    console.log(pitch_no)
+    console.log(creation_date)
+    console.log(price)
+    console.log(capacity)
+    console.log(type)
     return this.http.post(this.localhostProvider.localhost + "api/DB/PostOwnerPitch", JSON.stringify({
       'clubid': clubid,
       'pitch_no': pitch_no, 'creation_date': creation_date, 'price': price, 'capacity': capacity,

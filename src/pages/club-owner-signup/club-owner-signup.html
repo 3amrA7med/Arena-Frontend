@@ -182,8 +182,50 @@
                               <div class="error" *ngIf="signupform.get('officeHours').hasError('maxlength') && signupform.get('officeHours').touched">
                                 Maximum 100 characters
                               </div>
+                            </ion-item>
+                              <ion-item>
+                                <!-- -->
+                                <ion-label floating>Creation date</ion-label>
+                                <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="2010" max="{{currentDate}}" [(ngModel)]="data_creation_date" formControlName="creation_date" [class.error1]="!signupform.controls.creation_date.valid && signupform.controls.creation_date.dirty"> </ion-datetime>
+                              </ion-item>
+                              <ion-item no-lines *ngIf="signupform.get('creation_date').hasError('required')  && signupform.get('creation_date').touched">
+                                <div class="error" *ngIf="signupform.get('creation_date').hasError('required') && signupform.get('creation_date').touched">
+                                  please enter pitch creation date
+                                </div>
+                              </ion-item>
+                        
+                              <ion-item>
+                                <ion-label floating>Price</ion-label>
+                                <ion-input type="text" [(ngModel)]="data_price" formControlName="price" [class.error1]="!signupform.controls.price.valid && signupform.controls.price.dirty"></ion-input>
+                              </ion-item>
+                              <ion-item no-lines *ngIf="signupform.get('price').hasError('pattern') && signupform.get('price').touched">
+                                <div class="error" *ngIf="signupform.get('price').hasError('pattern') &&  signupform.get('price').touched">
+                                  Only numbers
+                                </div>
+                              </ion-item>
+                        
+                              <ion-item (click)="SelectCapacity()">
+                                <ion-label floating>Capacity</ion-label>
+                                <ion-input type="text" [(ngModel)]="data_capacity2" formControlName="capacity" [class.error1]="!signupform.controls.capacity.valid && signupform.controls.capacity.dirty"></ion-input>
+                              </ion-item>
+                              <ion-item no-lines *ngIf="signupform.get('capacity').hasError('required') && signupform.get('capacity').touched">
+                                <div class="error" *ngIf="signupform.get('capacity').hasError('required') &&  signupform.get('capacity').touched">
+                                  Please enter pitch capacity
+                                </div>
+                              </ion-item>
+                        
+                              <ion-item (click)="SelectType()">
+                                <ion-label floating>Type</ion-label>
+                                <ion-input type="text" [(ngModel)]="data_type2" formControlName="type" [class.error1]="!signupform.controls.type.valid && signupform.controls.type.dirty"></ion-input>
+                              </ion-item>
+                              <ion-item no-lines *ngIf="signupform.get('type').hasError('required') && signupform.get('type').touched">
+                                <div class="error" *ngIf="signupform.get('type').hasError('required') &&  signupform.get('type').touched">
+                                  Please enter pitch type
+                                </div>
+                              </ion-item>
+                        
                             
-                          </ion-item>
+                         
 
           <button ion-button type="submit" ion-button block color="primary" [disabled]="signupform.invalid">Sign up</button>
         </form>
