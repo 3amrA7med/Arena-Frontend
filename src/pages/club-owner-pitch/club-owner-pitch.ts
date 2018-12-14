@@ -257,9 +257,6 @@ export class ClubOwnerPitchPage {
       if (data) {
         //TODO sent an confirmation email
         this.data_clubid = data[0].id;
-        console.log('booooogiiiiiii');
-        console.log(this.data_clubid);
-
         //Saving user info in provider so we can access it in any time in any ther component 
 
       }
