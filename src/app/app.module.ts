@@ -24,6 +24,7 @@ import { ReviewsPage } from '../pages/reviews/reviews';
 import { PlayerProfilePage } from '../pages/player-profile/player-profile'
 import { OwnerProvider } from '../providers/owner/owner';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
+import { BookProvider } from '../providers/book/book';
 import { UpdatePlayerProfilePage } from '../pages/update-player-profile/update-player-profile';
 import { MyAcademyPage } from '../pages/my-academy/my-academy'
 import { PlayerProvider } from '../providers/player/player';
@@ -98,7 +99,7 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     DataProvider,
     ActiveProvider,
     OwnerProvider,
-    OwnerProvider,
+    BookProvider,
     PlayerProvider 
   ]
 })
