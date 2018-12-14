@@ -1,0 +1,59 @@
+<!--
+  Generated template for the ClubOwnerAddacademyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>club-owner-addacademy</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <form novalidate (ngSubmit)="save()" [formGroup]="clubowneraddacademyform">
+
+
+      <ion-item>
+        <ion-label floating>Academy name </ion-label>
+        <ion-input type="text" [(ngModel)]="data_name" formControlName="name" [class.error1]="!clubowneraddacademyform.controls.name.valid && clubowneraddacademyform.controls.name.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( clubowneraddacademyform.get('name').hasError('minlength') || clubowneraddacademyform.get('name').hasError('maxlength') ||clubowneraddacademyform.get('name').hasError('pattern') ||clubowneraddacademyform.get('name').hasError('required') ) && clubowneraddacademyform.get('name').touched">
+        <div class="error" *ngIf="clubowneraddacademyform.get('name').hasError('required') && clubowneraddacademyform.get('name').touched">
+          please enter name for your academy
+        </div>
+        <div class="error" *ngIf="clubowneraddacademyform.get('name').hasError('minlength') && clubowneraddacademyform.get('name').touched">
+          Minimum 3 characters
+        </div>
+        <div class="error" *ngIf="clubowneraddacademyform.get('name').hasError('maxlength') && clubowneraddacademyform.get('name').touched">
+          Maximum 25 characters
+        </div>
+        <div class="error" *ngIf="clubowneraddacademyform.get('name').hasError('pattern') && clubowneraddacademyform.get('name').touched">
+          Just use alphabet(Arabic Or English) character
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Monthly subscription</ion-label>
+        <ion-input type="text" [(ngModel)]="data_subscription" formControlName="subscription" [class.error1]="!clubowneraddacademyform.controls.subscription.valid && clubowneraddacademyform.controls.subscription.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="(clubowneraddacademyform.get('subscription').hasError('required') || clubowneraddacademyform.get('subscription').hasError('pattern')) && clubowneraddacademyform.get('subscription').touched">
+        <div class="error" *ngIf="clubowneraddacademyform.get('subscription').hasError('pattern') &&  clubowneraddacademyform.get('subscription').touched">
+          Only numbers
+        </div>
+        <div class="error" *ngIf="clubowneraddacademyform.get('subscription').hasError('required') && clubowneraddacademyform.get('subscription').touched">
+          please enter subscription for your academy 
+        </div>
+      </ion-item>
+
+      <button ion-button type="submit" ion-button block color="primary" >Submit</button>
+
+
+    </form>
+  </ion-list>
+</ion-content>

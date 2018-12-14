@@ -25,7 +25,17 @@ import { PlayerProfilePage } from '../pages/player-profile/player-profile'
 import { OwnerProvider } from '../providers/owner/owner';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { BookProvider } from '../providers/book/book';
+import { UpdatePlayerProfilePage } from '../pages/update-player-profile/update-player-profile';
+import { MyAcademyPage } from '../pages/my-academy/my-academy'
+import { PlayerProvider } from '../providers/player/player';
+import { HistoryPage } from '../pages/history/history';
+import { UpcomingPage } from '../pages/upcoming/upcoming';
 
+import { ClubOwnerMaintanancePage } from '../pages/club-owner-maintanance/club-owner-maintanance'
+import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
+import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-academy'
+import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
+import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
 @NgModule({
   declarations: [
     MyApp,
@@ -33,13 +43,22 @@ import { BookProvider } from '../providers/book/book';
     ListPage,
     SignInPage,
     PlayerSignupPage,
-    ClubOwnerSignupPage,
     PlayerProfilePage,
     PlayerEventsPage,
     PlayerReservationsPage,
     PlayerAcademiesPage,
     ReviewsPage,
-    ClubownerPage
+    UpdatePlayerProfilePage,
+    MyAcademyPage,
+    HistoryPage,
+    UpcomingPage,
+    ClubownerPage,
+    ClubOwnerSignupPage,
+    ClubOwnerMaintanancePage,
+    ClubOwnerEventPage,
+    ClubOwnerAcademyPage,
+    ClubOwnerPitchPage,
+    ClubOwnerAddacademyPage
   ],
   imports: [
     BrowserModule,
@@ -54,11 +73,20 @@ import { BookProvider } from '../providers/book/book';
     SignInPage,
     PlayerSignupPage,
     ClubOwnerSignupPage,
+    ClubOwnerMaintanancePage,
+    ClubOwnerEventPage,
+    ClubOwnerAcademyPage,
+    ClubOwnerPitchPage,
+    ClubOwnerAddacademyPage,
     PlayerProfilePage,
     PlayerEventsPage,
     PlayerReservationsPage,
     PlayerAcademiesPage,
     ReviewsPage,
+    UpdatePlayerProfilePage,
+    MyAcademyPage,
+    UpcomingPage,
+    HistoryPage,
     ClubownerPage
   ],
   providers: [
@@ -71,8 +99,8 @@ import { BookProvider } from '../providers/book/book';
     DataProvider,
     ActiveProvider,
     OwnerProvider,
-    OwnerProvider,
     BookProvider 
+    PlayerProvider 
   ]
 })
 export class AppModule {}

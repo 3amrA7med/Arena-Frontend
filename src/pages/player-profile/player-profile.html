@@ -23,7 +23,7 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
+ <ion-content>
     <ion-list>
       <button ion-item (click)="openPage(0)">
         Home
@@ -51,22 +51,22 @@
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
 
 <ion-content padding class="a">
-  <img src="../../assets/imgs/upcoming.png" alt="upcoming" width="80" height="80">
+  <img src="../../assets/imgs/upcoming.png" alt="upcoming" width="80" height="80" (click)="openPage(3)">
 <p class="f">Upcoming</p>
 </ion-content>
 
 <ion-content padding class="b">
-  <img src="../../assets/imgs/Activity.jpg" alt="upcoming" width="120" height="80">
+  <img src="../../assets/imgs/Activity.jpg" alt="upcoming" width="120" height="80" (click)="openPage(2)">
 <p class="e">My Activity</p>
 </ion-content>
 
 <ion-content padding class="c">
-  <img src="../../assets/imgs/Academy.png" alt="upcoming" width="80" height="80">
+  <img src="../../assets/imgs/Academy.png" alt="upcoming" width="80" height="80" (click)="openPage(1)">
 <p>My Academy</p>
 </ion-content>
 
 <ion-content padding class="d">
-  <img src="../../assets/imgs/profile.png" alt="upcoming" width="80" height="80">
+  <img src="../../assets/imgs/profile.png" alt="upcoming" width="80" height="80" (click)="openPage(0)">
 <p>Update Profile</p>
 </ion-content>
 

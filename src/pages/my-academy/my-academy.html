@@ -1,0 +1,51 @@
+<!--
+  Generated template for the MyAcademyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Academy</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div *ngIf="subscribed">
+      <ion-card>
+          <ion-card-header>
+            {{academy.academyName}}
+          </ion-card-header>
+          <ion-card-content>
+            <li>Club Name : {{academy.club_name}}</li>
+            <li>Address : {{academy.city}} , {{academy.street}}</li>
+            <li>Monthly Subscribtion : {{academy.monthlySubscription}}</li>      
+          </ion-card-content>
+        </ion-card>
+
+
+    <button ion-button block (click)="unsubscribe()">Unsubscribe</button>
+  </div>
+
+  <div *ngIf="!subscribed">
+      <ion-card>
+
+          <ion-card-header>
+         
+          </ion-card-header>
+        
+          <ion-card-content>
+            You have not subscribed to any academy
+          </ion-card-content>
+        
+        </ion-card>
+
+
+    <button ion-button block (click)="open()">Subscribe</button>
+  </div>
+
+</ion-content>

@@ -1,0 +1,116 @@
+<!--
+  Generated template for the ClubOwnerEventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>club-owner-event</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <form novalidate (ngSubmit)="save()" [formGroup]="clubownereventform">
+
+      <ion-item>
+        <ion-label floating>Event name </ion-label>
+        <ion-input type="text" [(ngModel)]="data_name" formControlName="name" [class.error1]="!clubownereventform.controls.name.valid && clubownereventform.controls.name.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( clubownereventform.get('name').hasError('minlength') || clubownereventform.get('name').hasError('maxlength') ||clubownereventform.get('name').hasError('pattern') ||clubownereventform.get('name').hasError('required') ) && clubownereventform.get('name').touched">
+        <div class="error" *ngIf="clubownereventform.get('name').hasError('required') && clubownereventform.get('name').touched">
+          Please enter event name
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('name').hasError('minlength') && clubownereventform.get('name').touched">
+          Minimum 3 characters
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('name').hasError('maxlength') && clubownereventform.get('name').touched">
+          Maximum 25 characters
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('name').hasError('pattern') && clubownereventform.get('name').touched">
+          Just use alphabet(Arabic Or English) character
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <!-- -->
+        <ion-label floating>Start time</ion-label>
+        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_event_start_time" formControlName="event_start_time" [class.error1]="!clubownereventform.controls.event_start_time.valid && clubownereventform.controls.event_start_time.dirty"> </ion-datetime>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownereventform.get('event_start_time').hasError('required')  && clubownereventform.get('event_start_time').touched">
+        <div class="error" *ngIf="clubownereventform.get('event_start_time').hasError('required') && clubownereventform.get('event_start_time').touched">
+          please enter event start time
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <!-- -->
+        <ion-label floating>end time</ion-label>
+        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_event_end_time" formControlName="event_end_time" [class.error1]="!clubownereventform.controls.event_end_time.valid && clubownereventform.controls.event_end_time.dirty"> </ion-datetime>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownereventform.get('event_end_time').hasError('required')  && clubownereventform.get('event_end_time').touched">
+        <div class="error" *ngIf="clubownereventform.get('event_end_time').hasError('required') && clubownereventform.get('event_end_time').touched">
+          please enter event end time
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Number of participating teams </ion-label>
+        <ion-input type="text" [(ngModel)]="data_noofteams" formControlName="noofteams" [class.error1]="!clubownereventform.controls.noofteams.valid && clubownereventform.controls.noofteams.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="(clubownereventform.get('noofteams').hasError('required') || clubownereventform.get('noofteams').hasError('pattern')) && clubownereventform.get('noofteams').touched">
+        <div class="error" *ngIf="clubownereventform.get('noofteams').hasError('pattern') &&  clubownereventform.get('noofteams').touched">
+          Only numbers
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('noofteams').hasError('required') &&  clubownereventform.get('noofteams').touched">
+          Please enter number of teams
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Number of members for each team </ion-label>
+        <ion-input type="text" [(ngModel)]="data_noofteammembers" formControlName="noofteammembers" [class.error1]="!clubownereventform.controls.noofteammembers.valid && clubownereventform.controls.noofteammembers.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="(clubownereventform.get('noofteammembers').hasError('required') || clubownereventform.get('noofteammembers').hasError('pattern')) && clubownereventform.get('noofteammembers').touched">
+        <div class="error" *ngIf="clubownereventform.get('noofteammembers').hasError('pattern') &&  clubownereventform.get('noofteammembers').touched">
+          Only numbers
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('noofteammembers').hasError('required') &&  clubownereventform.get('noofteammembers').touched">
+          Please enter number of members
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Winning prize </ion-label>
+        <ion-input type="text" [(ngModel)]="data_prize" formControlName="prize" [class.error1]="!clubownereventform.controls.prize.valid && clubownereventform.controls.prize.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="(clubownereventform.get('prize').hasError('required') || clubownereventform.get('prize').hasError('pattern')) && clubownereventform.get('prize').touched">
+        <div class="error" *ngIf="clubownereventform.get('prize').hasError('pattern') &&  clubownereventform.get('prize').touched">
+          Only numbers
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('prize').hasError('required') &&  clubownereventform.get('prize').touched">
+          Please enter event winning prize
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Participating price for each team </ion-label>
+        <ion-input type="text" [(ngModel)]="data_priceperteam" formControlName="priceperteam" [class.error1]="!clubownereventform.controls.priceperteam.valid && clubownereventform.controls.priceperteam.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="(clubownereventform.get('priceperteam').hasError('required') || clubownereventform.get('priceperteam').hasError('pattern')) && clubownereventform.get('priceperteam').touched">
+        <div class="error" *ngIf="clubownereventform.get('priceperteam').hasError('pattern') &&  clubownereventform.get('priceperteam').touched">
+          Only numbers
+        </div>
+        <div class="error" *ngIf="clubownereventform.get('priceperteam').hasError('required') &&  clubownereventform.get('priceperteam').touched">
+          Please enter event participating price
+        </div>
+      </ion-item>
+
+      <button ion-button type="submit" ion-button block color="primary">ADD EVENT</button>
+    </form>
+  </ion-list>
+</ion-content>

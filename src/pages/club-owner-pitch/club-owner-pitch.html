@@ -1,0 +1,84 @@
+<!--
+  Generated template for the ClubOwnerPitchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>club-owner-pitch</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click)="GetPitchNo()" color="dark">Pitch numbers</button>
+  <ion-list>
+
+    <form novalidate (ngSubmit)="save()" [formGroup]="clubownerpitchform">
+
+
+      <ion-item>
+        <ion-label floating>Pitch number</ion-label>
+        <ion-input type="text" [(ngModel)]="data_pitch_no" formControlName="pitch_no" [class.error1]="!clubownerpitchform.controls.pitch_no.valid && clubownerpitchform.controls.pitch_no.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownerpitchform.get('pitch_no').hasError('required') && clubownerpitchform.get('pitch_no').touched">
+
+        <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('required') &&  clubownerpitchform.get('pitch_no').touched">
+          Please select pitch number
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <!-- -->
+        <ion-label floating>Creation date</ion-label>
+        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="2018" max="3000" [(ngModel)]="data_creation_date" formControlName="creation_date" [class.error1]="!clubownerpitchform.controls.creation_date.valid && clubownerpitchform.controls.creation_date.dirty"> </ion-datetime>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownerpitchform.get('creation_date').hasError('required')  && clubownerpitchform.get('creation_date').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('creation_date').hasError('required') && clubownerpitchform.get('creation_date').touched">
+          please enter pitch creation date
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Price</ion-label>
+        <ion-input type="text" [(ngModel)]="data_price" formControlName="price" [class.error1]="!clubownerpitchform.controls.price.valid && clubownerpitchform.controls.price.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownerpitchform.get('price').hasError('pattern') && clubownerpitchform.get('price').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('price').hasError('pattern') &&  clubownerpitchform.get('price').touched">
+          Only numbers
+        </div>
+      </ion-item>
+
+      <ion-item (click)="SelectCapacity()">
+        <ion-label floating>Capacity</ion-label>
+        <ion-input type="text" [(ngModel)]="data_capacity2" formControlName="capacity" [class.error1]="!clubownerpitchform.controls.capacity.valid && clubownerpitchform.controls.capacity.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownerpitchform.get('capacity').hasError('required') && clubownerpitchform.get('capacity').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('capacity').hasError('required') &&  clubownerpitchform.get('capacity').touched">
+          Please enter pitch capacity
+        </div>
+      </ion-item>
+
+      <ion-item (click)="SelectType()">
+        <ion-label floating>Type</ion-label>
+        <ion-input type="text" [(ngModel)]="data_type2" formControlName="type" [class.error1]="!clubownerpitchform.controls.type.valid && clubownerpitchform.controls.type.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="clubownerpitchform.get('type').hasError('required') && clubownerpitchform.get('type').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('type').hasError('required') &&  clubownerpitchform.get('type').touched">
+          Please enter pitch type
+        </div>
+      </ion-item>
+
+
+
+      <button ion-button type="submit" ion-button block color="primary">Submit</button>
+
+
+    </form>
+  </ion-list>
+
+
+</ion-content>

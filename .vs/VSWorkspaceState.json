@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\pages",
+    "\\src\\pages\\club-owner-academy",
+    "\\src\\pages\\club-owner-addacademy",
+    "\\src\\pages\\club-owner-maintanance",
+    "\\src\\pages\\sign-in",
+    "\\src\\providers",
+    "\\src\\providers\\account"
+  ],
+  "SelectedNode": "\\src\\pages\\club-owner-addacademy\\club-owner-addacademy.ts",
+  "PreviewInSolutionExplorer": false
+}
