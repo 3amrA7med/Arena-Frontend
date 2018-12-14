@@ -24,6 +24,7 @@ import { ReviewsPage } from '../pages/reviews/reviews';
 import { PlayerProfilePage } from '../pages/player-profile/player-profile'
 import { OwnerProvider } from '../providers/owner/owner';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
+import { BookProvider } from '../providers/book/book';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ClubownerPage } from '../pages/clubowner/clubowner';
     DataProvider,
     ActiveProvider,
     OwnerProvider,
-    OwnerProvider 
+    OwnerProvider,
+    BookProvider 
   ]
 })
 export class AppModule {}

@@ -16,15 +16,50 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label>City</ion-label>
-    <ion-select [(ngModel)]="city">
-      <ion-option value="f">Female</ion-option>
-      <ion-option value="m">Male</ion-option>
+    <ion-label>Select the city</ion-label>
+    <ion-select [(ngModel)]="selcity">
+      <ion-option *ngFor=" let c of city " (ionSelect)="cityChanged(c.city)" value="{{c.city}}">{{c.city}}</ion-option>
+
+
+    </ion-select>
+
+  </ion-item>
+  <ion-item *ngIf="selcity">
+    <ion-label>Select the club</ion-label>
+    <ion-select [(ngModel)]="selclub">
+      <ion-option *ngFor=" let c of clubs " (ionSelect)="clubChanged(c.id)" value="{{c.id}}">{{c.name}}</ion-option>
+
+
     </ion-select>
   </ion-item>
-  <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="DDD DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="date" (ionChange)="dateChanged()"></ion-datetime>
+  <ion-item *ngIf="selclub">
+    <ion-label>Select the picth</ion-label>
+    <ion-select [(ngModel)]="selpitch">
+      <ion-option *ngFor=" let c of pitches " value="{{c.pitch}}Y{{c.price}}">pitch:{{c.pitch}}, price:{{c.price}}</ion-option>
+
+    </ion-select>
   </ion-item>
+  <ion-item *ngIf="selpitch">
+    <ion-label>Select a day</ion-label>
+    <ion-datetime displayFormat="DDD DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="date" (ionChange)="dateChanged()" min="{{current_date}}" max="2020-10-31"></ion-datetime>
+  </ion-item>
+  <div *ngIf="date">
+    <ion-item>
+      <ion-label>Select an hour</ion-label>
+      <ion-datetime displayFormat="HH" pickerFormat="HH" [(ngModel)]="date2" (ionChange)="dateChanged2()" hourValues="{{hours}}"></ion-datetime>
+    </ion-item>
+  </div>
+  <p style="text-align: center;"><span style="color: #808080;"><strong>{{test}}</strong></span></p><wbr>
+
+  <div *ngIf="date2">
+    <p style="text-align: center;"><span style="color: #00ff00;"><strong><span style="color: #000000;">Pay now:</span>&nbsp; {{Pay}}</strong></span></p>
+    <ion-item>
+      <ion-range min="{{pricemin}}" max="{{price}}" [(ngModel)]="Pay" color="secondary">
+        <ion-label range-left>{{pricemin}}</ion-label>
+        <ion-label range-right>{{price}}</ion-label>
+      </ion-range>
+    </ion-item>
+    <button ion-button block (click)="book()">Book now!</button>
+  </div>
 
 </ion-content>
