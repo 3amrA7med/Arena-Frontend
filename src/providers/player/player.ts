@@ -29,15 +29,13 @@ export class PlayerProvider {
 
 
   }
-  academyUnsubscribe(username)
+  academyUnsubscribe(username,password)
   {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
-    let params = new HttpParams();
-    params.set('username', username)
 
-    return this.http.post(this.localhostProvider.localhost+"api/DB/UnsubscribeAcademy",JSON.stringify({'username':username,
+    return this.http.post(this.localhostProvider.localhost+"api/DB/UnsubscribeAcademy",JSON.stringify({'username':username,'password':password
     }),{headers:header});
   }
   getPlayerPastReservations(username)
@@ -45,22 +43,36 @@ export class PlayerProvider {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
-    let params = new HttpParams();
-    params.set('username', username)
 
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetPastReservations/"+username,
-      { headers: header, params: params });
+      { headers: header});
   }
   getPlayerPastEvents(username)
   {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
-    let params = new HttpParams();
-    params.set('username', username)
 
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetPastEvents/"+username,
-      { headers: header, params: params });
+      { headers: header});
+  }
+  getPlayerUpcomingReservations(username)
+  {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetUpcomingReservations/"+username,
+      { headers: header});
+  }
+  getPlayerUpcomingEvents(username)
+  {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetUpcomingEvents/"+username,
+      { headers: header});
   }
 
 

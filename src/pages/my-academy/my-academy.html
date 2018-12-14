@@ -18,12 +18,12 @@
   <div *ngIf="subscribed">
       <ion-card>
           <ion-card-header>
-            {{academy.A.name}}
+            {{academy.academyName}}
           </ion-card-header>
           <ion-card-content>
-            Club Name : {{academy.club_name}}
-            Address : {{academy.city}} , {{academy.street}}
-            Monthly Subscribtion : {{academy.monthlySubscribtion}}
+            <li>Club Name : {{academy.club_name}}</li>
+            <li>Address : {{academy.city}} , {{academy.street}}</li>
+            <li>Monthly Subscribtion : {{academy.monthlySubscription}}</li>      
           </ion-card-content>
         </ion-card>
 
@@ -39,13 +39,13 @@
           </ion-card-header>
         
           <ion-card-content>
-            You are not subscribed to any academy
+            You have not subscribed to any academy
           </ion-card-content>
         
         </ion-card>
 
 
-    <button ion-button block>Subscribe</button>
+    <button ion-button block (click)="open()">Subscribe</button>
   </div>
 
 </ion-content>
