@@ -11,9 +11,33 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
+  <div *ngIf="(currSubs) && (academy)">
+    <ion-card>
+      <ion-card-header>
+        {{academy.academyName}}
+      </ion-card-header>
+      <ion-card-content>
+        <li>Club Name : {{academy.club_name}}</li>
+        <li>Address : {{academy.city}} , {{academy.street}}</li>
+        <li>Monthly Subscribtion : {{academy.monthlySubscription}}</li>
+      </ion-card-content>
+    </ion-card>
 
 
+    <button ion-button block (click)="unsubscribe()">Unsubscribe</button>
+  </div>
+  <div *ngIf="currUnsubs">
+
+    <ion-item>
+      <ion-label>Select the academy</ion-label>
+      <ion-select [(ngModel)]="selclub">
+        <ion-option *ngFor=" let c of clubs " (ionSelect)="clubChanged()" value="{{c.aname}}\\{{c.cid}}">{{c.cname}} {{c.aname}} Price: {{c.price}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+    <div *ngIf="selclub">
+      <button ion-button block (click)="subscribe()">Subscribe</button>
+     </div>
+   </div>
 </ion-content>
