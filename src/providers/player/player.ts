@@ -15,7 +15,15 @@ export class PlayerProvider {
     public localhostProvider: LocalhostProvider) {
     console.log('Hello PlayerProvider Provider');
   }
+  academySubscribe(username, cid, aname) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
 
+    return this.http.post(this.localhostProvider.localhost + "api/DB/SubscribeAcademy", JSON.stringify({
+      'username': username, 'cid': cid, 'aname': aname
+    }), { headers: header });
+  }
   getPlayerAcademy(username)
   {
     let header = new HttpHeaders();
@@ -109,6 +117,14 @@ export class PlayerProvider {
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Book/getClubs/" + city,
       { headers: header });
   }
+  getAcadAllClubs() {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Book/getAcadAllClubs",
+      { headers: header });
+  }
+
   getCities() {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
