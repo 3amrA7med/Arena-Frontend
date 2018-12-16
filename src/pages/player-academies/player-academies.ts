@@ -86,7 +86,7 @@ export class PlayerAcademiesPage {
         this.currUnsubs = false;
         this.selclub = null;
         this.getAcademy();
-      }
+      } else this.showAlert('An error has occured.', "Error!");
     })
   }
   showAlert(msg: any,label:any) {
