@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AccountProvider } from "../../providers/account/account";
+import { OwnerProvider } from "../../providers/owner/owner"
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -32,6 +33,7 @@ export class ClubOwnerAddacademyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public accountProvider: AccountProvider,
+    public ownerProvider: OwnerProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider) {
   }
@@ -41,6 +43,7 @@ export class ClubOwnerAddacademyPage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
+    console.log(this.data_username);
     this.GetOwnwerClubId();
   }
 
@@ -49,19 +52,21 @@ export class ClubOwnerAddacademyPage {
 
     this.clubowneraddacademyform = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
-      club_id: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       subscription: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
     });
   }
 
   save() {
-    this.accountProvider.owner_addacademy(this.data_clubid, this.data_name
+    console.log(this.clubowneraddacademyform.invalid);
+    console.log(this.clubowneraddacademyform.valid);
+
+    this.ownerProvider.owner_addacademy(this.data_clubid, this.data_name
       , this.data_subscription).subscribe(data => {
           if (data) {
             this.Inserted('Academy is added successfully');
           }
           else {
-            this.showAlert('Failed to add your academy');
+            this.showAlert('Failed to add your academy,you already have an academy');
           }
 
         })
@@ -88,7 +93,7 @@ export class ClubOwnerAddacademyPage {
 
   GetOwnwerClubId() {
 
-    this.accountProvider.owner_clubid(this.data_username).subscribe(data => {
+    this.ownerProvider.owner_clubid(this.data_username).subscribe(data => {
       if (data) {
         //TODO sent an confirmation email
         this.data_clubid = data[0].id;

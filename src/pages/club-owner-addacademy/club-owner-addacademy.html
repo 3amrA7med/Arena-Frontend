@@ -18,14 +18,13 @@
 
     <form novalidate (ngSubmit)="save()" [formGroup]="clubowneraddacademyform">
 
-
       <ion-item>
         <ion-label floating>Academy name </ion-label>
         <ion-input type="text" [(ngModel)]="data_name" formControlName="name" [class.error1]="!clubowneraddacademyform.controls.name.valid && clubowneraddacademyform.controls.name.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines *ngIf="( clubowneraddacademyform.get('name').hasError('minlength') || clubowneraddacademyform.get('name').hasError('maxlength') ||clubowneraddacademyform.get('name').hasError('pattern') ||clubowneraddacademyform.get('name').hasError('required') ) && clubowneraddacademyform.get('name').touched">
         <div class="error" *ngIf="clubowneraddacademyform.get('name').hasError('required') && clubowneraddacademyform.get('name').touched">
-          please enter name for your academy
+          Please enter academy name
         </div>
         <div class="error" *ngIf="clubowneraddacademyform.get('name').hasError('minlength') && clubowneraddacademyform.get('name').touched">
           Minimum 3 characters
@@ -47,13 +46,13 @@
           Only numbers
         </div>
         <div class="error" *ngIf="clubowneraddacademyform.get('subscription').hasError('required') && clubowneraddacademyform.get('subscription').touched">
-          please enter subscription for your academy 
+          please enter subscription for your academy
         </div>
       </ion-item>
 
-      <button ion-button type="submit" ion-button block color="primary" >Submit</button>
 
 
+      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubowneraddacademyform.invalid">CREATE ACADEMY</button>
     </form>
   </ion-list>
 </ion-content>
