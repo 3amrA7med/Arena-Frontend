@@ -24,7 +24,10 @@
         <ion-label floating>Pitch number</ion-label>
         <ion-input type="text" [(ngModel)]="data_pitch_no" formControlName="pitch_no" [class.error1]="!clubownerpitchform.controls.pitch_no.valid && clubownerpitchform.controls.pitch_no.dirty"></ion-input>
       </ion-item>
-      <ion-item no-lines *ngIf="clubownerpitchform.get('pitch_no').hasError('required') && clubownerpitchform.get('pitch_no').touched">
+      <ion-item no-lines *ngIf="(clubownerpitchform.get('pitch_no').hasError('required')||clubownerpitchform.get('pitch_no').hasError('pattern')) && clubownerpitchform.get('pitch_no').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('pattern') &&  clubownerpitchform.get('pitch_no').touched">
+          Only numbers
+        </div>
 
         <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('required') &&  clubownerpitchform.get('pitch_no').touched">
           Please select pitch number
@@ -34,7 +37,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>Creation date</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="2018" max="3000" [(ngModel)]="data_creation_date" formControlName="creation_date" [class.error1]="!clubownerpitchform.controls.creation_date.valid && clubownerpitchform.controls.creation_date.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="1970" max="3000" [(ngModel)]="data_creation_date" formControlName="creation_date" [class.error1]="!clubownerpitchform.controls.creation_date.valid && clubownerpitchform.controls.creation_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownerpitchform.get('creation_date').hasError('required')  && clubownerpitchform.get('creation_date').touched">
         <div class="error" *ngIf="clubownerpitchform.get('creation_date').hasError('required') && clubownerpitchform.get('creation_date').touched">
@@ -47,6 +50,9 @@
         <ion-input type="text" [(ngModel)]="data_price" formControlName="price" [class.error1]="!clubownerpitchform.controls.price.valid && clubownerpitchform.controls.price.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines *ngIf="clubownerpitchform.get('price').hasError('pattern') && clubownerpitchform.get('price').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('required') &&  clubownerpitchform.get('pitch_no').touched">
+          Please enter pitch price
+        </div>
         <div class="error" *ngIf="clubownerpitchform.get('price').hasError('pattern') &&  clubownerpitchform.get('price').touched">
           Only numbers
         </div>
@@ -74,7 +80,7 @@
 
 
 
-      <button ion-button type="submit" ion-button block color="primary">Submit</button>
+      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownerpitchform.invalid">Submit</button>
 
 
     </form>

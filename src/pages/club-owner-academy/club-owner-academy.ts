@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AccountProvider } from "../../providers/account/account";
+import { OwnerProvider } from "../../providers/owner/owner";
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,7 @@ export class ClubOwnerAcademyPage {
   data_academyname: string;
   data_noofplayers: number;
   data_subscription: Float32Array;
+  data_subscription2: Float32Array;
   data_clubid: number;
   clubowneracademy: FormGroup;
   data_username: string;
@@ -28,6 +30,7 @@ export class ClubOwnerAcademyPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public accountProvider: AccountProvider,
+    public ownerProvider: OwnerProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider) {
   }
@@ -37,6 +40,7 @@ export class ClubOwnerAcademyPage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
+    console.log(this.data_username);
     this.GetOwnwerClubId();
     
   }
@@ -44,16 +48,15 @@ export class ClubOwnerAcademyPage {
   ngOnInit() {
 
     this.clubowneracademy = new FormGroup({
-      academyname: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
       subscription: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
-      club_id: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
-      noofplayers: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
     });
   }
 
   viewacademy() {
     console.log(this.data_clubid);
-    this.accountProvider.owner_viewacademy(this.data_clubid).subscribe(data => {
+    console.log(this.clubowneracademy.invalid);
+    console.log(this.clubowneracademy.valid);
+    this.ownerProvider.owner_viewacademy(this.data_clubid).subscribe(data => {
         if (data) {
           //TODO sent an confirmation email
           this.data_academyname = data[0].name;
@@ -78,9 +81,9 @@ export class ClubOwnerAcademyPage {
 
 
   UpdateMonthlySubscription() {
-    this.accountProvider.owner_updateacademy(this.data_clubid, this.data_subscription).subscribe(data => {
+    console.log(this.clubowneracademy.invalid);
+    this.ownerProvider.owner_updateacademy(this.data_clubid, this.data_subscription).subscribe(data => {
       if (data) {
-
 
         this.Inserted('Updated succefully');
 
@@ -95,7 +98,7 @@ export class ClubOwnerAcademyPage {
 
   showAlert(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion failed !',
+      title: 'failed !',
       subTitle: msg,
       buttons: ['OK']
     });
@@ -134,7 +137,7 @@ export class ClubOwnerAcademyPage {
 
   GetOwnwerClubId() {
 
-    this.accountProvider.owner_clubid(this.data_username).subscribe(data => {
+    this.ownerProvider.owner_clubid(this.data_username).subscribe(data => {
       if (data) {
         //TODO sent an confirmation email
         console.log(data[0]);

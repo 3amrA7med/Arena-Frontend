@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { AccountProvider } from "../../providers/account/account";
+import { OwnerProvider } from "../../providers/owner/owner"
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -33,6 +34,7 @@ export class ClubOwnerEventPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public accountProvider: AccountProvider,
+    public ownerProvider: OwnerProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider
   ) {
@@ -43,8 +45,9 @@ export class ClubOwnerEventPage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
+    console.log(this.data_username);
     this.GetOwnwerClubId();
-
+    console.log(this.clubownereventform.invalid);
   }
 
 
@@ -52,12 +55,10 @@ export class ClubOwnerEventPage {
 
     this.clubownereventform = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
-      club_id: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       noofteams: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(3)]),
       event_start_time: new FormControl('', [Validators.required]),
       event_end_time: new FormControl('', [Validators.required]),
       noofteammembers: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(2)]),
-      availableplaces: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(2)]),
       priceperteam: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(10)]),
       prize: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(10)]),
 
@@ -65,8 +66,9 @@ export class ClubOwnerEventPage {
   }
 
   save() {
+    console.log(this.clubownereventform.invalid);
     if (this.CheckDate()) {
-      this.accountProvider.owner_event(this.data_clubid, this.data_name
+      this.ownerProvider.owner_event(this.data_clubid, this.data_name
         , this.data_event_start_time, this.data_event_end_time, this.data_noofteams, this.data_noofteammembers, this.data_noofteams
         , this.data_prize, this.data_priceperteam).subscribe(data => {
           if (data) {
@@ -124,7 +126,7 @@ export class ClubOwnerEventPage {
 
   GetOwnwerClubId() {
 
-    this.accountProvider.owner_clubid(this.data_username).subscribe(data => {
+    this.ownerProvider.owner_clubid(this.data_username).subscribe(data => {
       if (data) {
         //TODO sent an confirmation email
         console.log(data[0]);
