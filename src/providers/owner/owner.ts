@@ -47,6 +47,32 @@ export class OwnerProvider {
 
   }
 
+  deleteEvent(id,username){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.delete(this.localhostProvider.localhost + "api/DB/DeleteEvent/"+id+"/"+username);
+  }
+
+  deleteReservation(date, time,pitch,username){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.delete(this.localhostProvider.localhost + "api/DB/DeleteReservation/"+pitch+
+    "/"+username+ '/'+ date+ "/"+ time);
+  }
+
+  deleteMaint(date,time,pitch,username,minutes){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.delete(this.localhostProvider.localhost + "api/DB/DeleteMaint/"+pitch+
+    "/"+username+ '/'+ date+ "/"+ time+"/"+minutes);
+  }
+
 
   owner_maintanance(clubid, pitch_no, cost, description, maintanance_start_date, maintanance_end_date) {
     let header = new HttpHeaders();

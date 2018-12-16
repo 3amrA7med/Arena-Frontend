@@ -27,6 +27,8 @@ import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { UpdatePlayerProfilePage } from '../pages/update-player-profile/update-player-profile';
 import { MyAcademyPage } from '../pages/my-academy/my-academy'
 import { PlayerProvider } from '../providers/player/player';
+import { HistoryPage } from '../pages/history/history';
+import { UpcomingPage } from '../pages/upcoming/upcoming';
 
 import { ClubOwnerMaintanancePage } from '../pages/club-owner-maintanance/club-owner-maintanance'
 import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
@@ -47,6 +49,8 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     ReviewsPage,
     UpdatePlayerProfilePage,
     MyAcademyPage,
+    HistoryPage,
+    UpcomingPage,
     ClubownerPage,
     ClubOwnerSignupPage,
     ClubOwnerMaintanancePage,
@@ -80,6 +84,8 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     ReviewsPage,
     UpdatePlayerProfilePage,
     MyAcademyPage,
+    UpcomingPage,
+    HistoryPage,
     ClubownerPage
   ],
   providers: [
@@ -91,7 +97,6 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     MenuProvider,
     DataProvider,
     ActiveProvider,
-    OwnerProvider,
     OwnerProvider,
     PlayerProvider 
   ]
