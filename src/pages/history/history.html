@@ -34,7 +34,7 @@
           <ion-list-header>
             Reservations
           </ion-list-header>
-          <button ion-item *ngFor="let item of reservations" (click)="view(item,'Reservation')">
+          <button ion-item *ngFor="let item of reservations" (click)="view(item,'Reservation')" class="rev">
             <ion-icon [name]="'arrow-forward'" item-end></ion-icon>
             {{item.startTime.split('T')[0] }}
               </button>
@@ -48,7 +48,7 @@
       <ion-list-header>
         Events
       </ion-list-header>
-      <button ion-item *ngFor="let item of events" (click)="view(item,'Event')">
+      <button ion-item *ngFor="let item of events" (click)="view(item,'Event')" class="rev">
         <ion-icon [name]="'arrow-forward'" item-end></ion-icon>
         {{item.name}} 
           </button>
