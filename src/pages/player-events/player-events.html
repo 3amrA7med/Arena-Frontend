@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Events</ion-title>
+    <ion-title>Enroll in Events!</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,11 +16,41 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label>City</ion-label>
-    <ion-select [(ngModel)]="city">
-      <ion-option value="f">Female</ion-option>
-      <ion-option value="m">Male</ion-option>
+    <ion-label>Select the City</ion-label>
+    <ion-select [(ngModel)]="selcity">
+      <ion-option *ngFor=" let c of city" (ionSelect)="cityChanged(c.city)" value="{{c.city}}">{{c.city}}</ion-option>
     </ion-select>
-  </ion-item>
 
+  </ion-item>
+  <div *ngIf="selcity">
+    
+    <ion-item >
+      <ion-label>Select the event</ion-label>
+      <ion-select [(ngModel)]="selevent">
+        <ion-option *ngFor=" let e of events" (ionSelect)="eventChanged(e)" value="{{e.eid}}//{{e.cid}}">{{e.ename}} from {{e.cname}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+    <div *ngIf="seleventobj">
+      <ion-card>
+        <ion-card-header>
+          {{seleventobj.ename}}
+        </ion-card-header>
+        <ion-card-content>
+          <li>Club Name : {{seleventobj.cname}}</li>
+          <li>Available Places : {{seleventobj.ap}}</li>
+          <li>Starting{{seleventobj.st}}</li>
+          <li>Participation fees{{seleventobj.ppt}}</li>
+          <li>No. of Team members{{seleventobj.nootm}}</li>
+          <li>No. of Teams{{seleventobj.noot}}</li>
+          <li>Ending{{seleventobj.et}}</li>
+          <li>Prize{{seleventobj.pz}}</li>
+        </ion-card-content>
+        <button ion-button block (click)="Enroll()">Enroll!</button>
+      </ion-card>
+
+      </div>
+
+
+  </div>
 </ion-content>

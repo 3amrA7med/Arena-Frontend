@@ -40,6 +40,7 @@ export class ClubownerPage {
   }
   getEvents() {
     this.ownerProvider.getEvents(this.dataProvider.get_user().userName, this.date).subscribe(data => {
+      this.events_items=[];
       if (data) {
         this.events_items = data;
       }
@@ -47,6 +48,7 @@ export class ClubownerPage {
   }
   getReservations() {
     this.ownerProvider.getReservations(this.dataProvider.get_user().userName, this.date).subscribe(data => {
+     this.reservations_items=[];
       if (data) {
         for(let d of data){
           d['pitch_number'] = d['pitch#'];
@@ -57,6 +59,7 @@ export class ClubownerPage {
   }
   getMaint() {
     this.ownerProvider.getMaint(this.dataProvider.get_user().userName, this.date).subscribe(data => {
+     this.maint_items=[];
       if (data) {
         this.maint_items =[];
         for(let d of data){
@@ -71,6 +74,8 @@ export class ClubownerPage {
     this.getReservations();
     this.getMaint();
   }
+
+
 
 
   view(item, type) {
@@ -116,6 +121,15 @@ export class ClubownerPage {
 
   }
 
+  showAlert(msg) {
+    const alert = this.alertCtrl.create({
+      title: 'Delete Operation',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   showConfirm(item, type, msg) {
     const confirm = this.alertCtrl.create({
       title: item.name + ' ' + type,
@@ -124,6 +138,47 @@ export class ClubownerPage {
         {
           text: 'Delete',
           handler: () => {
+            console.log("InsideDelete")
+            switch(type)
+            {
+              case 'Event':
+                this.ownerProvider.deleteEvent(item.eventId,this.dataProvider.get_user().userName).subscribe(
+                  data =>{
+                      this.showAlert("successed");
+
+                      this.dateChanged();
+                  }
+                );
+                
+                break;
+              case 'Reservation':
+                this.ownerProvider.deleteReservation(item.startTime.split('T')[0],
+                item.startTime.split('T')[1].split(":")[0],item.pitch_number,
+                  this.dataProvider.get_user().userName).subscribe(
+                    data =>{
+                        this.showAlert("successed");
+                        this.dateChanged();
+                    }
+                  );
+                break;
+              case 'Maintenance':
+              console.log(item.startTime.split('T')[0])
+              console.log(item.startTime.split('T')[1].split(":")[0])
+              console.log(item.pitch_number)
+              console.log(this.dataProvider.get_user().userName)
+              console.log(item.startTime.split('T')[1].split(":")[1])
+                this.ownerProvider.deleteMaint(item.startTime.split('T')[0],
+                item.startTime.split('T')[1].split(":")[0],item.pitch_number,
+                  this.dataProvider.get_user().userName,item.startTime.split('T')[1].split(":")[1]
+                  ).subscribe(
+                    data =>{
+                      console.log(data)
+                        this.showAlert("successed");
+                      
+                        this.dateChanged();
+                    }
+                  );
+              }
             console.log('Delete clicked');
           }
         },

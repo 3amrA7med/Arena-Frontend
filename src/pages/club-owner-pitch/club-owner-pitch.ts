@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { AccountProvider } from "../../providers/account/account";
+import { OwnerProvider } from "../../providers/owner/owner";
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -38,6 +39,7 @@ export class ClubOwnerPitchPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public accountProvider: AccountProvider,
+    public ownerProvider: OwnerProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider) {
   }
@@ -47,14 +49,15 @@ export class ClubOwnerPitchPage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
+    console.log(this.data_username);
     this.GetOwnwerClubId();
+    console.log(this.clubownerpitchform.invalid);
   }
 
   ngOnInit() {
 
     this.clubownerpitchform = new FormGroup({
       price: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
-      club_id: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       pitch_no: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       creation_date: new FormControl('', [Validators.required]),
       capacity: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
@@ -64,7 +67,8 @@ export class ClubOwnerPitchPage {
   }
 
   save() {
-    this.accountProvider.owner_pitch(this.data_clubid, this.data_pitch_no
+    console.log(this.clubownerpitchform.invalid);
+    this.ownerProvider.owner_pitch(this.data_clubid, this.data_pitch_no
       , this.data_creation_date, this.data_price, this.data_capacity, this.data_type).subscribe(data => {
         if (data) {
           //TODO sent an confirmation email
@@ -78,7 +82,7 @@ export class ClubOwnerPitchPage {
 
         }
         else {
-          this.showAlert('Failed to add Pitch , please try again');
+          this.showAlert('Failed to add Pitch ,Pitch number already exist.');
 
         }
 
@@ -88,7 +92,7 @@ export class ClubOwnerPitchPage {
 
   GetPitchNo() {
 
-    this.accountProvider.owner_pitchno(this.data_clubid).subscribe(data => {
+    this.ownerProvider.owner_pitchno(this.data_clubid).subscribe(data => {
       if (data) {
         //Saving user info in provider so we can access it in any time in any ther component
         this.index = 0;
@@ -104,7 +108,7 @@ export class ClubOwnerPitchPage {
         this.presentConfirm("Pitch Numbers", msg);
       }
       else {
-          this.showAlert('Failed to add show pitch number');
+          this.showAlert('Failed to show pitch number');
            }
      
     })
@@ -161,6 +165,7 @@ export class ClubOwnerPitchPage {
   }
   //=====================================
   SelectCapacity() {
+    this.data_capacity2 = 'khomasy'
     let alert = this.alertCtrl.create();
     alert.setTitle('Select pitch capacity');
 
@@ -206,15 +211,16 @@ export class ClubOwnerPitchPage {
     }
     if (this.testRadioResult == 'negela tabe3e') {
       this.data_type = 1;
-      this.data_type2 = 'negela tabe3e';
+      this.data_type2 = 'negelatabee';
     }
     if (this.testRadioResult == 'negela sena3i') {
       this.data_type = 2;
-      this.data_type2 = 'negela sena3i';
+      this.data_type2 = 'negelasenai';
     }
   }
   //=====================================
   SelectType() {
+    this.data_type2='asphalt'
     let alert = this.alertCtrl.create();
     alert.setTitle('Select pitch type');
 
@@ -253,13 +259,10 @@ export class ClubOwnerPitchPage {
 
   GetOwnwerClubId() {
 
-    this.accountProvider.owner_clubid(this.data_username).subscribe(data => {
+    this.ownerProvider.owner_clubid(this.data_username).subscribe(data => {
       if (data) {
         //TODO sent an confirmation email
         this.data_clubid = data[0].id;
-        console.log('booooogiiiiiii');
-        console.log(this.data_clubid);
-
         //Saving user info in provider so we can access it in any time in any ther component 
 
       }

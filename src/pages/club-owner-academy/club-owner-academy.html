@@ -23,18 +23,23 @@
 
   <form novalidate (ngSubmit)="UpdateMonthlySubscription()" [formGroup]="clubowneracademy">
 
-
     <ion-item>
       <ion-label floating>Monthly subscription</ion-label>
       <ion-input type="text" [(ngModel)]="data_subscription" formControlName="subscription" [class.error1]="!clubowneracademy.controls.subscription.valid && clubowneracademy.controls.subscription.dirty"></ion-input>
     </ion-item>
-    <ion-item no-lines *ngIf="clubowneracademy.get('subscription').hasError('pattern') && clubowneracademy.get('subscription').touched">
+    <ion-item no-lines *ngIf="(clubowneracademy.get('subscription').hasError('required') || clubowneracademy.get('subscription').hasError('pattern')) && clubowneracademy.get('subscription').touched">
       <div class="error" *ngIf="clubowneracademy.get('subscription').hasError('pattern') &&  clubowneracademy.get('subscription').touched">
         Only numbers
       </div>
+      <div class="error" *ngIf="clubowneracademy.get('subscription').hasError('required') && clubowneracademy.get('subscription').touched">
+        please enter subscription for your academy
+      </div>
     </ion-item>
 
-    <button ion-button type="submit" ion-button block color="primary">Submit</button>
+
+
+    <button ion-button type="submit" ion-button block color="primary" [disabled]="clubowneracademy.invalid">UPDATE</button>
   </form>
+
 
 </ion-content>

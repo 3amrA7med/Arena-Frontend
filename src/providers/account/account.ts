@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalhostProvider } from "../localhost/localhost";
 /*
@@ -50,21 +50,17 @@ export class AccountProvider {
     ,'clubStreet':clubStreet}),{headers:header});
   }
 
-  owner_maintanance(clubid, pitch_no, cost, description, maintanance_start_date, maintanance_end_date) {
-    let header = new HttpHeaders();
-    header.set('Access-Control-Allow-Origin', '*');
-    header.set('withcredentials', 'true');
-    return this.http.post(this.localhostProvider.localhost + "api/DB/PostOwnerMaintanance", JSON.stringify({
-      'clubid': clubid,
-      'pitch_no': pitch_no, 'cost': cost, 'description': description, 'maintanance_start_date': maintanance_start_date,
-      'maintanance_end_date': maintanance_end_date
-    }), { headers: header });
-  }
 
   owner_pitch(clubid, pitch_no, creation_date, price, capacity,type) {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
+    console.log(clubid)
+    console.log(pitch_no)
+    console.log(creation_date)
+    console.log(price)
+    console.log(capacity)
+    console.log(type)
     return this.http.post(this.localhostProvider.localhost + "api/DB/PostOwnerPitch", JSON.stringify({
       'clubid': clubid,
       'pitch_no': pitch_no, 'creation_date': creation_date, 'price': price, 'capacity': capacity,

@@ -43,7 +43,13 @@ export class SignInPage {
     public activeProvider: ActiveProvider) {
   }
 
+  ngOnInit(){
+    this.username='';
+    this.password='';
+  }
   ionViewDidLoad() {
+    this.username='';
+    this.password='';
     this.activeProvider.set_component('signin');
   }
   signIn() {

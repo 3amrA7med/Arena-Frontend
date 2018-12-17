@@ -110,7 +110,7 @@
         </div>
       </ion-item>
 
-      <button ion-button type="submit" ion-button block color="primary">ADD EVENT</button>
+      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownereventform.invalid">ADD EVENT</button>
     </form>
   </ion-list>
 </ion-content>

@@ -15,7 +15,15 @@ export class PlayerProvider {
     public localhostProvider: LocalhostProvider) {
     console.log('Hello PlayerProvider Provider');
   }
+  academySubscribe(username, cid, aname) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
 
+    return this.http.post(this.localhostProvider.localhost + "api/DB/SubscribeAcademy", JSON.stringify({
+      'username': username, 'cid': cid, 'aname': aname
+    }), { headers: header });
+  }
   getPlayerAcademy(username)
   {
     let header = new HttpHeaders();
@@ -29,14 +37,27 @@ export class PlayerProvider {
 
 
   }
+  getAvailableEvents(username,city) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    
+   
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetAvailableEvents/" + username + "/" + city,
+      { headers: header });
+
+
+  }
   academyUnsubscribe(username,password)
   {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
 
-    return this.http.post(this.localhostProvider.localhost+"api/DB/UnsubscribeAcademy",JSON.stringify({'username':username,'password':password
-    }),{headers:header});
+    return this.http.post(this.localhostProvider.localhost + "api/DB/UnsubscribeAcademy", JSON.stringify({
+      'username': username, 'password': password
+    }), { headers: header });
   }
   getPlayerPastReservations(username)
   {
@@ -85,6 +106,16 @@ export class PlayerProvider {
       'paid': paid, 'unpaid': unpaid
     }), { headers: header });
   }
+  enroll(cid, eid, username) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.post(this.localhostProvider.localhost + "api/DB/Enroll", JSON.stringify({
+      'username': username,
+      'eid': eid, 'cid': cid
+    }), { headers: header });
+
+  }
   getbooked(date, cid, pid) {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
@@ -109,6 +140,14 @@ export class PlayerProvider {
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Book/getClubs/" + city,
       { headers: header });
   }
+  getAcadAllClubs() {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Book/getAcadAllClubs",
+      { headers: header });
+  }
+
   getCities() {
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');

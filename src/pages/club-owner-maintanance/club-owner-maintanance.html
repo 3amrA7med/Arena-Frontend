@@ -43,7 +43,7 @@
       </ion-item>
       <ion-item>
         <!-- -->
-        <ion-label floating>end time</ion-label>
+        <ion-label floating>End time</ion-label>
         <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_maintanance_end_date" formControlName="maintanance_end_date" [class.error1]="!clubownermaintananceform.controls.maintanance_end_date.valid && clubownermaintananceform.controls.maintanance_end_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required')  && clubownermaintananceform.get('maintanance_end_date').touched">
@@ -81,7 +81,7 @@
         </div>
       </ion-item>
 
-      <button ion-button type="submit" ion-button block color="primary" >Submit</button>
+      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownermaintananceform.invalid">SUBMIT</button>
 
 
     </form>

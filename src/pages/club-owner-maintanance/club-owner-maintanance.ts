@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { AccountProvider } from "../../providers/account/account";
+import { OwnerProvider } from "../../providers/owner/owner"
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +21,7 @@ export class ClubOwnerMaintanancePage {
 
   data_maintanance_start_date: DateTime;
   data_maintanance_end_date: DateTime;
-  data_pitch_no: Float32Array;
+  data_pitch_no: number;
   clubownermaintananceform: FormGroup;
   data_cost: Float32Array;
   data_description: string;
@@ -29,11 +30,13 @@ export class ClubOwnerMaintanancePage {
   testRadioResult: any;
   testRadioOpen: boolean;
   index: number;
+  check: boolean
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public accountProvider: AccountProvider,
+    public ownerProvider: OwnerProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider) {
   }
@@ -43,7 +46,9 @@ export class ClubOwnerMaintanancePage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
+    console.log(this.data_username);
     this.GetOwnwerClubId();
+    console.log(this.clubownermaintananceform.invalid);
   }
 
   ngOnInit() {
@@ -51,18 +56,17 @@ export class ClubOwnerMaintanancePage {
     this.clubownermaintananceform = new FormGroup({
       description: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
       cost: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
-      club_id: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       pitch_no: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       maintanance_start_date: new FormControl('', [Validators.required]),
       maintanance_end_date: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required, Validators.pattern('^[A-Za-z0-9_]+$'), Validators.minLength(3), Validators.maxLength(25)]),
     });
   }
 
 
   save() {
+    console.log(this.clubownermaintananceform.invalid);
     if (this.CheckDate()) {
-      this.accountProvider.owner_maintanance(this.data_clubid, this.data_pitch_no
+      this.ownerProvider.owner_maintanance(this.data_clubid, this.data_pitch_no
         , this.data_cost, this.data_description, this.data_maintanance_start_date, this.data_maintanance_end_date).subscribe(data => {
           if (data) {
             //TODO sent an confirmation email
@@ -84,14 +88,15 @@ export class ClubOwnerMaintanancePage {
 
 
   GetPitchNo() {
+    console.log('1111111111');
 
-    this.accountProvider.owner_pitchno(this.data_clubid).subscribe(data => {
+    this.ownerProvider.owner_pitchno(this.data_clubid).subscribe(data => {
       if (data) {
         //Saving user info in provider so we can access it in any time in any ther component
         let alert = this.alertCtrl.create();
         alert.setTitle('Select pitch number');
-
-
+        this.data_pitch_no = data[0].pitchno;
+        this.check = true;
 
         this.index = 0;
         console.log('2aaaablll');
@@ -101,30 +106,32 @@ export class ClubOwnerMaintanancePage {
             type: 'radio',
             label: data[this.index].pitchno,
             value: data[this.index].pitchno,
-            checked: false
+            checked: this.check
+
           });
+          console.log(this.check);
           this.index = this.index + 1;
+          this.check = false;
         }
         alert.addButton('Cancel');
         alert.addButton({
           text: 'OK',
           handler: data => {
             this.testRadioOpen = false;
-            this.testRadioResult = data;
-            this.data_pitch_no = this.testRadioResult;
+            this.data_pitch_no = data;
+            
+            console.log('222222222');
           }
         });
         alert.present();
-        console.log(this.testRadioResult);
-        this.data_pitch_no = this.testRadioResult;
-
-        console.log(this.data_pitch_no);
+        console.log('33333333');
       }
       else {
         this.showAlert('Failed to add show pitch number');
       }
 
     })
+    console.log('4444444');
   }
 
   showAlert(msg: any) {
@@ -164,7 +171,7 @@ export class ClubOwnerMaintanancePage {
 
   GetOwnwerClubId() {
 
-    this.accountProvider.owner_clubid(this.data_username).subscribe(data => {
+    this.ownerProvider.owner_clubid(this.data_username).subscribe(data => {
         if (data) {
           //TODO sent an confirmation email
           this.data_clubid = data[0].id;
@@ -180,6 +187,5 @@ export class ClubOwnerMaintanancePage {
         }
 
     })
-    console.log(this.data_clubid);
   }
 }
