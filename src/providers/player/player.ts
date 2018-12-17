@@ -156,4 +156,53 @@ export class PlayerProvider {
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Book/getCity",
       { headers: header });
   }
+  getRevClubs(username) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Rev/getClubs/"+ username,
+      { headers: header });
+  }
+  getRevSum(id)
+  {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Rev/getSum/"+ id,
+      { headers: header });
+  }
+  addrev(x,username,clubid)
+  {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.post(this.localhostProvider.localhost+"api/DB/Rev/addRev",JSON.stringify({'rate':x,'username':username,'id':clubid,
+    }),{headers:header});
+  }
+  getRevCount(id)
+  {
+    //console.log('get count called');
+   // console.log(id);
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/Rev/getCount/"+ id,
+      { headers: header });
+  }
+  updateRate(a,b,clubid)
+  {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    console.log(a);
+    return this.http.post(this.localhostProvider.localhost+"api/DB/Rev/updateRev",JSON.stringify({'count':b,'rating':a,'id':clubid,
+    }),{headers:header});
+  }
+
+
+
 }

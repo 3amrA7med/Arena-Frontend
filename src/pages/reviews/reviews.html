@@ -15,4 +15,33 @@
 
 <ion-content padding>
 
+    <div *ngIf="!clubs">
+        <ion-card>
+  
+            <ion-card-header>
+              
+            </ion-card-header>
+          
+            <ion-card-content>
+              You do not have any past reservations
+            </ion-card-content>
+          
+          </ion-card>
+    </div>
+    
+
+    <div *ngIf="clubs">
+        <ion-list>
+            <ion-list-header class="rev">
+              Clubs
+            </ion-list-header>
+            <button ion-item *ngFor="let item of clubs" (click)="showAlert(item)" class="rev">
+              <ion-icon [name]="'arrow-forward'" item-end></ion-icon>
+              {{item.name }}
+                </button>
+          </ion-list>
+  
+    </div>
+
+
 </ion-content>
