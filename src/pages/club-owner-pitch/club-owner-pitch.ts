@@ -34,7 +34,7 @@ export class ClubOwnerPitchPage {
   testRadioOpen: boolean;
   data_username: string;
   index: number;
-
+  currentDate;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -49,8 +49,11 @@ export class ClubOwnerPitchPage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
-    console.log(this.data_username);
-    this.GetOwnwerClubId();
+    let id = this.dataProvider.get_id();
+    this.data_clubid = id.id;
+    console.log(this.data_clubid);
+    console.log(this.data_clubid);
+    this.currentDate = new Date().toISOString();
     console.log(this.clubownerpitchform.invalid);
   }
 
@@ -60,8 +63,8 @@ export class ClubOwnerPitchPage {
       price: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
       pitch_no: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       creation_date: new FormControl('', [Validators.required]),
-      capacity: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
-      type: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
+      capacity: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
+      type: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
 
     });
   }
@@ -149,44 +152,44 @@ export class ClubOwnerPitchPage {
 
   capacityvalues() {
     console.log('gowaaaa');
-    if (this.testRadioResult == 'khomasy') {
+    if (this.testRadioResult == '5v5 playground') {
       this.data_capacity = 5;
-      this.data_capacity2 = 'khomasy'
+      this.data_capacity2 = '5v5 playground'
     }
 
-      if (this.testRadioResult == 'sobaey') {
+    if (this.testRadioResult == '7v7 playground') {
         this.data_capacity = 7;
-        this.data_capacity2 ='sobaey'
+      this.data_capacity2 ='7v7 playground'
     }
-    if (this.testRadioResult == 'hedashar') {
+    if (this.testRadioResult == '11v11 playground') {
       this.data_capacity = 11;
-      this.data_capacity2 = 'hedashar';
+      this.data_capacity2 = '11v11 playground';
     }
   }
   //=====================================
   SelectCapacity() {
-    this.data_capacity2 = 'khomasy'
+    this.data_capacity2 = '5v5 playground'
     let alert = this.alertCtrl.create();
     alert.setTitle('Select pitch capacity');
 
     alert.addInput({
       type: 'radio',
-      label: 'khomasy',
-      value: 'khomasy',
+      label: '5v5 playground',
+      value: '5v5 playground',
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'sobaey',
-      value: 'sobaey',
+      label: '7v7 playground',
+      value: '7v7 playground',
       checked: false
     });
 
       alert.addInput({
       type: 'radio',
-      label: 'hedashar',
-      value: 'hedashar',
+        label: '11v11 playground',
+        value: '11v11 playground',
       checked: false
     });
 
@@ -205,43 +208,43 @@ export class ClubOwnerPitchPage {
 
 
   typevalues() {
-    if (this.testRadioResult == 'asphalt') {
+    if (this.testRadioResult == 'Indoors') {
       this.data_type = 0;
-      this.data_type2 = 'asphalt';
+      this.data_type2 = 'Indoors';
     }
-    if (this.testRadioResult == 'negela tabe3e') {
+    if (this.testRadioResult == 'Natural turf') {
       this.data_type = 1;
-      this.data_type2 = 'negelatabee';
+      this.data_type2 = 'Natural turf';
     }
-    if (this.testRadioResult == 'negela sena3i') {
+    if (this.testRadioResult == 'Artificial turf') {
       this.data_type = 2;
-      this.data_type2 = 'negelasenai';
+      this.data_type2 = 'Artificial turf';
     }
   }
   //=====================================
   SelectType() {
-    this.data_type2='asphalt'
+    this.data_type2 ='Indoors'
     let alert = this.alertCtrl.create();
     alert.setTitle('Select pitch type');
 
     alert.addInput({
       type: 'radio',
-      label: 'asphalt',
-      value: 'asphalt',
+      label: 'Indoors',
+      value: 'Indoors',
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'negela sena3i',
-      value: 'negela sena3i',
+      label: 'Natural turf',
+      value: 'Natural turf',
       checked: false
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'negela tabe3e',
-      value: 'negela tabe3e',
+      label: 'Artificial turf',
+      value: 'Artificial turf',
       checked: false
     });
 
