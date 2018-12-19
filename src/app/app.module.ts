@@ -35,6 +35,8 @@ import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
 import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-academy'
 import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
 import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
+import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -57,7 +59,8 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     ClubOwnerEventPage,
     ClubOwnerAcademyPage,
     ClubOwnerPitchPage,
-    ClubOwnerAddacademyPage
+    ClubOwnerAddacademyPage,
+    ClubownerReservationPage
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-own
     MyAcademyPage,
     UpcomingPage,
     HistoryPage,
-    ClubownerPage
+    ClubownerPage,
+    ClubownerReservationPage
   ],
   providers: [
     StatusBar,

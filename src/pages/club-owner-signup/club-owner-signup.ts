@@ -7,6 +7,7 @@ import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { ClubownerPage } from '../clubowner/clubowner';
+import { OwnerProvider } from '../../providers/owner/owner';
 
 
 /**
@@ -49,7 +50,8 @@ export class ClubOwnerSignupPage {
     public accountProvider: AccountProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider,
-    public activeProvider: ActiveProvider) {
+    public activeProvider: ActiveProvider,
+    public ownerProvider:OwnerProvider) {
   }
 
   ionViewDidLoad() {
@@ -92,7 +94,7 @@ export class ClubOwnerSignupPage {
           this.dataProvider.set_user(data[0]);
             console.log(data[0])
           let clubid ;
-           this.accountProvider.owner_clubid(this.dataProvider.get_user().userName).subscribe(
+           this.ownerProvider.owner_clubid(this.dataProvider.get_user().userName).subscribe(
              IDD=>{
                clubid=IDD[0].id;
                console.log("*********************************************00")
@@ -102,7 +104,7 @@ export class ClubOwnerSignupPage {
                console.log(this.data_creation_date)
                console.log(this.data_price)
                console.log(this.data_capacity)
-               this.accountProvider.owner_pitch(clubid, 1,
+               this.ownerProvider.owner_pitch(clubid, 1,
                  this.data_creation_date, this.data_price, this.data_capacity, this.data_type).subscribe(
                  data => {
                    console.log(data);

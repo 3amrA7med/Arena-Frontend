@@ -13,7 +13,7 @@ import { ClubOwnerEventPage } from '../pages/club-owner-event/club-owner-event'
 import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-academy'
 import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
 import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
-import { PlayerProfilePage} from '../pages/player-profile/player-profile';
+import { PlayerProfilePage } from '../pages/player-profile/player-profile';
 import { ActiveProvider } from '../providers/active/active';
 import { Title } from '@angular/platform-browser';
 import { PlayerReservationsPage } from '../pages/player-reservations/player-reservations';
@@ -22,6 +22,7 @@ import { PlayerAcademiesPage } from '../pages/player-academies/player-academies'
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { DataProvider } from '../providers/data/data';
+import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
 
 @Component({
   templateUrl: 'app.html'
@@ -49,54 +50,55 @@ export class MyApp {
         { title: 'Sign in', component: SignInPage }],
       'signin': [],
       'owner': [
-        { title: 'Home', component: ClubownerPage},
-        { title: 'Maintanance', component: ClubOwnerMaintanancePage  },
+        { title: 'Home', component: ClubownerPage },
+        { title: 'Maintanance', component: ClubOwnerMaintanancePage },
         { title: 'Create Academy', component: ClubOwnerAddacademyPage },
         { title: 'View Academy', component: ClubOwnerAcademyPage },
         { title: 'Insert Event', component: ClubOwnerEventPage },
         { title: 'Add Pitch', component: ClubOwnerPitchPage },
+        { title: 'Add Reservation', component: ClubownerReservationPage},
         { title: 'Log Out', component: SignInPage }
       ],
-      'playerprofile':[
-        {title: 'Home',component: PlayerProfilePage},
-        {title: 'Reservations',component: PlayerReservationsPage},
-        {title: 'Events',component: PlayerEventsPage},
-        {title: 'Academies',component: PlayerAcademiesPage},
-        {title: 'Reviews',component: ReviewsPage},
-        {title: 'Log Out',component:SignInPage }
-        ],
-      'playerreservations':[
-        {title: 'Home',component: PlayerProfilePage},
-        {title: 'Reservations',component: PlayerReservationsPage},
-        {title: 'Events',component: PlayerEventsPage},
-        {title: 'Academies',component: PlayerAcademiesPage},
-        {title: 'Reviews',component: ReviewsPage},
-        {title: 'Log Out',component:SignInPage }
-        ],
-      'playerevents':[
-        {title: 'Home',component: PlayerProfilePage},
-        {title: 'Reservations',component: PlayerReservationsPage},
-        {title: 'Events',component: PlayerEventsPage},
-        {title: 'Academies',component: PlayerAcademiesPage},
-        {title: 'Reviews',component: ReviewsPage},
-        {title: 'Log Out',component:SignInPage }
-        ],
-      'playeracademies':[
-        {title: 'Home',component: PlayerProfilePage},
-        {title: 'Reservations',component: PlayerReservationsPage},
-        {title: 'Events',component: PlayerEventsPage},
-        {title: 'Academies',component: PlayerAcademiesPage},
-        {title: 'Reviews',component: ReviewsPage},
-        {title: 'Log Out',component:SignInPage }
-        ],
-      'reviews':[
-        {title: 'Home',component: PlayerProfilePage},
-        {title: 'Reservations',component: PlayerReservationsPage},
-        {title: 'Events',component: PlayerEventsPage},
-        {title: 'Academies',component: PlayerAcademiesPage},
-        {title: 'Reviews',component: ReviewsPage},
-        {title: 'Log Out',component:SignInPage }
-        ],
+      'playerprofile': [
+        { title: 'Home', component: PlayerProfilePage },
+        { title: 'Reservations', component: PlayerReservationsPage },
+        { title: 'Events', component: PlayerEventsPage },
+        { title: 'Academies', component: PlayerAcademiesPage },
+        { title: 'Reviews', component: ReviewsPage },
+        { title: 'Log Out', component: SignInPage }
+      ],
+      'playerreservations': [
+        { title: 'Home', component: PlayerProfilePage },
+        { title: 'Reservations', component: PlayerReservationsPage },
+        { title: 'Events', component: PlayerEventsPage },
+        { title: 'Academies', component: PlayerAcademiesPage },
+        { title: 'Reviews', component: ReviewsPage },
+        { title: 'Log Out', component: SignInPage }
+      ],
+      'playerevents': [
+        { title: 'Home', component: PlayerProfilePage },
+        { title: 'Reservations', component: PlayerReservationsPage },
+        { title: 'Events', component: PlayerEventsPage },
+        { title: 'Academies', component: PlayerAcademiesPage },
+        { title: 'Reviews', component: ReviewsPage },
+        { title: 'Log Out', component: SignInPage }
+      ],
+      'playeracademies': [
+        { title: 'Home', component: PlayerProfilePage },
+        { title: 'Reservations', component: PlayerReservationsPage },
+        { title: 'Events', component: PlayerEventsPage },
+        { title: 'Academies', component: PlayerAcademiesPage },
+        { title: 'Reviews', component: ReviewsPage },
+        { title: 'Log Out', component: SignInPage }
+      ],
+      'reviews': [
+        { title: 'Home', component: PlayerProfilePage },
+        { title: 'Reservations', component: PlayerReservationsPage },
+        { title: 'Events', component: PlayerEventsPage },
+        { title: 'Academies', component: PlayerAcademiesPage },
+        { title: 'Reviews', component: ReviewsPage },
+        { title: 'Log Out', component: SignInPage }
+      ],
     };
 
 
@@ -119,17 +121,16 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    if(page.title=='Log Out')
-   { 
-     this.dataProvider.set_user([]);
-     this.nav.popToRoot();
-   }
-    else if(page.title=='owner')
-     this.nav.setRoot(page.component); 
-     else if(page.title=='playerprofile')
-     this.nav.setRoot(page.component); 
+    if (page.title == 'Log Out') {
+      this.dataProvider.set_user([]);
+      this.nav.popToRoot();
+    }
+    else if (page.title == 'owner')
+      this.nav.setRoot(page.component);
+    else if (page.title == 'playerprofile')
+      this.nav.setRoot(page.component);
     else
-    this.nav.push(page.component);
+      this.nav.push(page.component);
   }
 
 
