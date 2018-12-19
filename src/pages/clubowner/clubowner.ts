@@ -26,6 +26,8 @@ export class ClubownerPage {
   reservations_items: Array<any>=[];
 
   maint_items: Array<any>=[];
+  clubName:any='';
+  clubRating:any=0;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,6 +39,17 @@ export class ClubownerPage {
 
   ionViewDidLoad() {
     this.activeProvider.set_component('owner');
+    
+  }
+  ngOnInit(){
+    this.ownerProvider.GetClub(this.dataProvider.get_user().userName).subscribe(
+      data=>{
+        console.log("****************esht8aaaaaaaaaaaaaaaaaaaaaaaaaal********************")
+        console.log(data[0])
+        this.clubName=data[0].name;
+        this.clubRating=data[0].rating;
+      }
+    )
   }
   getEvents() {
     this.ownerProvider.getEvents(this.dataProvider.get_user().userName, this.date).subscribe(data => {

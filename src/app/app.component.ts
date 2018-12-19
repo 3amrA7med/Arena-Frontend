@@ -23,6 +23,8 @@ import { ReviewsPage } from '../pages/reviews/reviews';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { DataProvider } from '../providers/data/data';
 import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
+import { DailyReportPage } from '../pages/daily-report/daily-report';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -57,6 +59,7 @@ export class MyApp {
         { title: 'Insert Event', component: ClubOwnerEventPage },
         { title: 'Add Pitch', component: ClubOwnerPitchPage },
         { title: 'Add Reservation', component: ClubownerReservationPage},
+        { title: 'Daily Report', component: DailyReportPage},
         { title: 'Log Out', component: SignInPage }
       ],
       'playerprofile': [
