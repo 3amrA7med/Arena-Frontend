@@ -70,8 +70,10 @@ export class PlayerReservationsPage {
     console.log(c)
     this.pitches = [];
     this.playerProvider.getPitches(c).subscribe(data => {
+      console.log(data)
       for (let d of data)
-        this.pitches.push({ pitch: d["pitch#"], price: d["price"] });
+        this.pitches.push({ pitch: d["pitch#"], price: d["price"], type: d["type"] });
+      console.log(this.pitches);
     })
     console.log(this.pitches);
     this.selpitchno = null;

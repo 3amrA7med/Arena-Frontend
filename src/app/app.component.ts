@@ -22,6 +22,7 @@ import { PlayerAcademiesPage } from '../pages/player-academies/player-academies'
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { DataProvider } from '../providers/data/data';
+import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-owner-statistics';
 
 @Component({
   templateUrl: 'app.html'
@@ -49,7 +50,8 @@ export class MyApp {
         { title: 'Sign in', component: SignInPage }],
       'signin': [],
       'owner': [
-        { title: 'Home', component: ClubownerPage},
+        { title: 'Home', component: ClubownerPage },
+        { title: 'Statistics', component: ClubOwnerStatisticsPage },
         { title: 'Maintanance', component: ClubOwnerMaintanancePage  },
         { title: 'Create Academy', component: ClubOwnerAddacademyPage },
         { title: 'View Academy', component: ClubOwnerAcademyPage },

@@ -36,7 +36,14 @@ export class OwnerProvider {
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetReservations/"+username+"/"+date,
     { headers: header});
   }
+  getHourStats(cid) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
 
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/getHourStats/" + cid ,
+      { headers: header });
+  }
   getMaint(username,date){
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
