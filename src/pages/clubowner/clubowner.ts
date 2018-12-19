@@ -101,7 +101,6 @@ export class ClubownerPage {
       case 'Reservation':
         msg = `<ul>
     <li>Player Username: ${item.playerUserName}</li>
-    <li>Duration: ${item.duration}</li>
     <li>Paid: ${item.paid}</li>
     <li>Unpaid: ${item.unpaid}</li>
     </ul>`
@@ -131,8 +130,21 @@ export class ClubownerPage {
   }
 
   showConfirm(item, type, msg) {
+    let name;
+    switch (type){
+      case 'Event':
+      name=item.name;
+      break;
+      case 'Reservation':
+      name='';
+      break;
+      case 'Maintenance':
+      name='';
+      break;
+    }
     const confirm = this.alertCtrl.create({
-      title: item.name + ' ' + type,
+
+      title: name + ' ' + type,
       message: msg,
       buttons: [
         {

@@ -36,6 +36,7 @@ import { ClubOwnerAcademyPage } from '../pages/club-owner-academy/club-owner-aca
 import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
 import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
 import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-owner-statistics'
+import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
 @NgModule({
   declarations: [
     MyApp,
@@ -59,7 +60,9 @@ import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-own
     ClubOwnerAcademyPage,
     ClubOwnerPitchPage,
     ClubOwnerAddacademyPage,
+    ClubOwnerAddacademyPage,
     ClubOwnerStatisticsPage
+    ClubownerReservationPage
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-own
     HistoryPage,
     ClubownerPage,
     ClubOwnerStatisticsPage
+    ClubownerReservationPage
   ],
   providers: [
     StatusBar,
