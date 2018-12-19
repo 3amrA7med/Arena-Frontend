@@ -14,7 +14,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataProvider {
 public user:any;
-
+  public id: any;
   constructor(public http: HttpClient) {
  
   }
@@ -25,4 +25,12 @@ public user:any;
   public get_user(){
     return this.user;
   }
+
+  public set_id(id) {
+    this.id = id;
+  }
+  public get_id() {
+    return this.id;
+  }
+
 }
