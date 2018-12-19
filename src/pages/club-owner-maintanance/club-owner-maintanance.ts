@@ -46,15 +46,18 @@ export class ClubOwnerMaintanancePage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
-    console.log(this.data_username);
-    this.GetOwnwerClubId();
+    let id = this.dataProvider.get_id();
+    this.data_clubid = id.id;
+    console.log(this.data_clubid);
+    console.log(this.data_clubid);
+
     console.log(this.clubownermaintananceform.invalid);
   }
 
   ngOnInit() {
 
     this.clubownermaintananceform = new FormGroup({
-      description: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
+      description: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
       cost: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
       pitch_no: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       maintanance_start_date: new FormControl('', [Validators.required]),

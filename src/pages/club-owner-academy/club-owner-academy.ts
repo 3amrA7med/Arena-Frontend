@@ -41,8 +41,12 @@ export class ClubOwnerAcademyPage {
     this.data_username = user.userName;
     console.log('getting owner club id');
     console.log(this.data_username);
-    this.GetOwnwerClubId();
-    
+    //this.GetOwnwerClubId();
+    let id = this.dataProvider.get_id();
+    this.data_clubid = id.id;
+    console.log(this.data_clubid);
+    console.log(this.data_clubid);
+    this.viewacademy();
   }
 
   ngOnInit() {

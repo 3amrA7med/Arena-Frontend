@@ -11,7 +11,7 @@ import { ClubOwnerEventPage } from '../club-owner-event/club-owner-event';
 import { ClubOwnerPitchPage } from '../club-owner-pitch/club-owner-pitch';
 import { ClubOwnerAddacademyPage } from '../club-owner-addacademy/club-owner-addacademy';
 
-
+import { OwnerProvider } from '../../providers/owner/owner';
 import { DataProvider } from '../../providers/data/data';
 import { PlayerProfilePage } from '../player-profile/player-profile';
 import { ActiveProvider } from "../../providers/active/active";
@@ -40,6 +40,7 @@ export class SignInPage {
     public accountProvider: AccountProvider,
     public alertCtrl: AlertController,
     public dataProvider: DataProvider,
+    public ownerProvider: OwnerProvider,
     public activeProvider: ActiveProvider) {
   }
 
@@ -66,15 +67,33 @@ export class SignInPage {
             this.navCtrl.push(PlayerProfilePage); //to be added player main screen
           }
           if (data[0].type == 'owner') {
+            this.ownerProvider.owner_clubid(this.username).subscribe(data => {
+              // Data returned in an array form so we must index the data
+              // (in our case only one row are returned as a player or owner)
+              
+              if (data) {
+
+                this.dataProvider.set_id(data[0]);
+                console.log(this.dataProvider.get_id());
+                //Saving user info in provider so we can access it in any time in any ther component 
+              }
+              else {
+                this.showAlert('Clubid not found.');
+              }
+            });
             this.navCtrl.push(ClubownerPage);//to be added ClubOwner main screen
           }
           this.dataProvider.set_user(data[0]);
+
           //Saving user info in provider so we can access it in any time in any ther component 
         }
         else {
           this.showAlert('Account not found ,Please retry.');
         }
       });
+
+
+
     }
     else {
       this.showAlert('Fill in username and password.');

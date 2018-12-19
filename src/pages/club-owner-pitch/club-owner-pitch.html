@@ -37,7 +37,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>Creation date</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="1970" max="3000" [(ngModel)]="data_creation_date" formControlName="creation_date" [class.error1]="!clubownerpitchform.controls.creation_date.valid && clubownerpitchform.controls.creation_date.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="2010" max="{{currentDate}}" [(ngModel)]="data_creation_date" formControlName="creation_date" [class.error1]="!clubownerpitchform.controls.creation_date.valid && clubownerpitchform.controls.creation_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownerpitchform.get('creation_date').hasError('required')  && clubownerpitchform.get('creation_date').touched">
         <div class="error" *ngIf="clubownerpitchform.get('creation_date').hasError('required') && clubownerpitchform.get('creation_date').touched">

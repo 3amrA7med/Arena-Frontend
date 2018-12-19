@@ -45,8 +45,10 @@ export class ClubOwnerEventPage {
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
-    console.log(this.data_username);
-    this.GetOwnwerClubId();
+    let id = this.dataProvider.get_id();
+    this.data_clubid = id.id;
+    console.log(this.data_clubid);
+    console.log(this.data_clubid);
     console.log(this.clubownereventform.invalid);
   }
 
@@ -54,7 +56,7 @@ export class ClubOwnerEventPage {
   ngOnInit() {
 
     this.clubownereventform = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
+      name: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
       noofteams: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(3)]),
       event_start_time: new FormControl('', [Validators.required]),
       event_end_time: new FormControl('', [Validators.required]),
