@@ -22,10 +22,25 @@
       </tr>
     </thead>
     <tbody>
-      
-      <tr *ngFor="let c of clubs">
-        <td>cell1_1</td>
-        <td>cell2_1</td>
+
+      <tr *ngFor="let r of table1">
+        <td>{{r.hour}}</td>
+        <td>{{r.num}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="darkTable2">
+    <thead>
+      <tr>
+        <th>Pitch</th>
+        <th>Times Booked</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let d of table2">
+        <td>{{d.pitchno}}</td>
+        <td>{{d.num}}</td>
       </tr>
     </tbody>
   </table>

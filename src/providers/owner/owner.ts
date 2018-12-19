@@ -44,6 +44,14 @@ export class OwnerProvider {
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/getHourStats/" + cid ,
       { headers: header });
   }
+  getPitchStats(cid) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/getPitchStats/" + cid,
+      { headers: header });
+  }
   getMaint(username,date){
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');

@@ -61,7 +61,7 @@ import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubown
     ClubOwnerPitchPage,
     ClubOwnerAddacademyPage,
     ClubOwnerAddacademyPage,
-    ClubOwnerStatisticsPage
+    ClubOwnerStatisticsPage,
     ClubownerReservationPage
   ],
   imports: [
@@ -92,7 +92,7 @@ import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubown
     UpcomingPage,
     HistoryPage,
     ClubownerPage,
-    ClubOwnerStatisticsPage
+    ClubOwnerStatisticsPage,
     ClubownerReservationPage
   ],
   providers: [
