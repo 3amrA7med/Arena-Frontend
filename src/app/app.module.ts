@@ -63,7 +63,7 @@ import { ChartsModule } from 'ng2-charts';
     ClubOwnerAcademyPage,
     ClubOwnerPitchPage,
     ClubOwnerAddacademyPage,
-    DailyReportPage
+    DailyReportPage,
     ClubOwnerAddacademyPage,
     ClubOwnerStatisticsPage,
     ClubownerReservationPage
@@ -97,7 +97,7 @@ import { ChartsModule } from 'ng2-charts';
     UpcomingPage,
     HistoryPage,
     ClubownerPage,
-    DailyReportPage
+    DailyReportPage,
     ClubOwnerStatisticsPage,
     ClubownerReservationPage
   ],
