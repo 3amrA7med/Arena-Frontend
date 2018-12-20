@@ -37,6 +37,9 @@ import { ClubOwnerPitchPage } from '../pages/club-owner-pitch/club-owner-pitch'
 import { ClubOwnerAddacademyPage } from '../pages/club-owner-addacademy/club-owner-addacademy'
 import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-owner-statistics'
 import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
+import { DailyReportPage } from '../pages/daily-report/daily-report';
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -60,6 +63,7 @@ import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubown
     ClubOwnerAcademyPage,
     ClubOwnerPitchPage,
     ClubOwnerAddacademyPage,
+    DailyReportPage
     ClubOwnerAddacademyPage,
     ClubOwnerStatisticsPage,
     ClubownerReservationPage
@@ -68,6 +72,7 @@ import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubown
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,6 +97,7 @@ import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubown
     UpcomingPage,
     HistoryPage,
     ClubownerPage,
+    DailyReportPage
     ClubOwnerStatisticsPage,
     ClubownerReservationPage
   ],
