@@ -77,8 +77,8 @@ export class ClubOwnerSignupPage {
       officeHours: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
       price: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
       creation_date: new FormControl('', [Validators.required]),
-      capacity: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
-      type: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
+      capacity: new FormControl('', [Validators.required,  Validators.minLength(3), Validators.maxLength(25)]),
+      type: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]),
     });
   }
 
@@ -126,33 +126,57 @@ export class ClubOwnerSignupPage {
     alert.present();
   }
 
+  capacityvalues() {
+    console.log('gowaaaa');
+    if (this.testRadioResult == '5v5 playground') {
+      this.data_capacity = 5;
+      this.data_capacity2 = '5v5 playground'
+    }
+
+    if (this.testRadioResult == '7v7 playground') {
+        this.data_capacity = 7;
+      this.data_capacity2 ='7v7 playground'
+    }
+    if (this.testRadioResult == '11v11 playground') {
+      this.data_capacity = 11;
+      this.data_capacity2 = '11v11 playground';
+    }
+  }
+  //=====================================
   SelectCapacity() {
-    this.data_capacity2 = 'khomasy';
+    this.data_capacity2 = '5v5 playground'
     let alert = this.alertCtrl.create();
     alert.setTitle('Select pitch capacity');
 
     alert.addInput({
       type: 'radio',
-      label: 'khomasy',
-      value: 'khomasy',
+      label: '5v5 playground',
+      value: '5v5 playground',
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'sobaey',
-      value: 'sobaey',
+      label: '7v7 playground',
+      value: '7v7 playground',
       checked: false
     });
 
-    alert.addInput({
+      alert.addInput({
       type: 'radio',
-      label: 'hedashar',
-      value: 'hedashar',
+        label: '11v11 playground',
+        value: '11v11 playground',
       checked: false
     });
 
-    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Cancel',
+      handler: data => {
+        this.testRadioResult='';
+        this.data_capacity2='';
+      }
+    });
+
     alert.addButton({
       text: 'OK',
       handler: data => {
@@ -164,66 +188,54 @@ export class ClubOwnerSignupPage {
     alert.present();
   }
 
-  capacityvalues() {
-    console.log('gowaaaa');
-    if (this.testRadioResult == 'khomasy') {
-      this.data_capacity = 5;
-      this.data_capacity2 = 'khomasy'
-    }
-
-    if (this.testRadioResult == 'sobaey') {
-      this.data_capacity = 7;
-      this.data_capacity2 = 'sobaey'
-    }
-    if (this.testRadioResult == 'hedashar') {
-      this.data_capacity = 11;
-      this.data_capacity2 = 'hedashar';
-    }
-  }
-
-
   typevalues() {
-    if (this.testRadioResult == 'asphalt') {
+    if (this.testRadioResult == 'Indoors') {
       this.data_type = 0;
-      this.data_type2 = 'asphalt';
+      this.data_type2 = 'Indoors';
     }
-    if (this.testRadioResult == 'negela tabe3e') {
+    if (this.testRadioResult == 'Natural turf') {
       this.data_type = 1;
-      this.data_type2 = 'negela tabe3e';
+      this.data_type2 = 'Natural turf';
     }
-    if (this.testRadioResult == 'negela sena3i') {
+    if (this.testRadioResult == 'Artificial turf') {
       this.data_type = 2;
-      this.data_type2 = 'negela sena3i';
+      this.data_type2 = 'Artificial turf';
     }
   }
   //=====================================
   SelectType() {
-    this.data_type2 = 'asphalt';
+    this.data_type2 ='Indoors'
     let alert = this.alertCtrl.create();
     alert.setTitle('Select pitch type');
 
     alert.addInput({
       type: 'radio',
-      label: 'asphalt',
-      value: 'asphalt',
+      label: 'Indoors',
+      value: 'Indoors',
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'negela sena3i',
-      value: 'negela sena3i',
+      label: 'Natural turf',
+      value: 'Natural turf',
       checked: false
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'negela tabe3e',
-      value: 'negela tabe3e',
+      label: 'Artificial turf',
+      value: 'Artificial turf',
       checked: false
     });
 
-    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Cancel',
+      handler: data => {
+        this.testRadioResult='';
+        this.data_type2 ='';
+      }
+    });
     alert.addButton({
       text: 'OK',
       handler: data => {
@@ -234,6 +246,80 @@ export class ClubOwnerSignupPage {
     });
     alert.present();
   }
+  SelectCity() {
+    this.data_clubCity='Giza'
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Select club city');
 
+    alert.addInput({
+      type: 'radio',
+      label: 'Giza',
+      value: 'Giza',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Cairo',
+      value: 'Cairo',
+      checked: false
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Alexandria',
+      value: 'Alexandria',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Hurghada',
+      value: 'Hurghada',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Faiyum',
+      value: 'Faiyum',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Luxor',
+      value: 'Luxor',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Aswan',
+      value: 'Aswan',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Port Said',
+      value: 'Port Said',
+      checked: false
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'Ismailia',
+      value: 'Ismailia',
+      checked: false
+    });
+    alert.addButton({
+      text: 'Cancel',
+      handler: data => {
+        this.data_clubCity='';
+      }
+    });
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.data_clubCity = data;
+      }
+    });
+    alert.present();
+  }
 
 }

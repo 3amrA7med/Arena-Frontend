@@ -60,8 +60,8 @@ export class MyApp {
         { title: 'View Academy', component: ClubOwnerAcademyPage },
         { title: 'Insert Event', component: ClubOwnerEventPage },
         { title: 'Add Pitch', component: ClubOwnerPitchPage },
-        { title: 'Add Reservation', component: ClubownerReservationPage},
-        { title: 'Daily Report', component: DailyReportPage},
+        { title: 'Add Reservation', component: ClubownerReservationPage },
+        { title: 'Daily Report', component: DailyReportPage },
         { title: 'Log Out', component: SignInPage }
       ],
       'playerprofile': [
@@ -135,6 +135,10 @@ export class MyApp {
       this.nav.setRoot(page.component);
     else if (page.title == 'playerprofile')
       this.nav.setRoot(page.component);
+    else if (page.title == 'Sign in') {
+      this.activeProvider.set_component('signin')
+      this.nav.popToRoot();
+    }
     else
       this.nav.push(page.component);
   }

@@ -139,7 +139,7 @@
 
       </ion-item>
 
-      <ion-item>
+      <ion-item (click)="SelectCity()">
         <ion-label floating>Club Address:City</ion-label>
         <ion-input type="text" [(ngModel)]="data_clubCity" formControlName="clubCity" [class.error1]="!signupform.controls.clubCity.valid && signupform.controls.clubCity.dirty"></ion-input>
       </ion-item>
