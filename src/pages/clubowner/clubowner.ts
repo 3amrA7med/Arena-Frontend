@@ -21,11 +21,13 @@ import { AlertController } from 'ionic-angular';
 export class ClubownerPage {
 
   date: string;
-  events_items: Array<any>=[];
+  events_items: Array<any> = [];
 
-  reservations_items: Array<any>=[];
+  reservations_items: Array<any> = [];
 
-  maint_items: Array<any>=[];
+  maint_items: Array<any> = [];
+  clubName: any = '';
+  clubRating: any = 0;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,10 +39,21 @@ export class ClubownerPage {
 
   ionViewDidLoad() {
     this.activeProvider.set_component('owner');
+
+  }
+  ngOnInit() {
+    this.ownerProvider.GetClub(this.dataProvider.get_user().userName).subscribe(
+      data => {
+        console.log("****************esht8aaaaaaaaaaaaaaaaaaaaaaaaaal********************")
+        console.log(data[0])
+        this.clubName = data[0].name;
+        this.clubRating = data[0].rating;
+      }
+    )
   }
   getEvents() {
     this.ownerProvider.getEvents(this.dataProvider.get_user().userName, this.date).subscribe(data => {
-      this.events_items=[];
+      this.events_items = [];
       if (data) {
         this.events_items = data;
       }
@@ -48,9 +61,9 @@ export class ClubownerPage {
   }
   getReservations() {
     this.ownerProvider.getReservations(this.dataProvider.get_user().userName, this.date).subscribe(data => {
-     this.reservations_items=[];
+      this.reservations_items = [];
       if (data) {
-        for(let d of data){
+        for (let d of data) {
           d['pitch_number'] = d['pitch#'];
         }
         this.reservations_items = data;
@@ -59,12 +72,12 @@ export class ClubownerPage {
   }
   getMaint() {
     this.ownerProvider.getMaint(this.dataProvider.get_user().userName, this.date).subscribe(data => {
-     this.maint_items=[];
+      this.maint_items = [];
       if (data) {
-        this.maint_items =[];
-        for(let d of data){
+        this.maint_items = [];
+        for (let d of data) {
           d['pitch_number'] = d['pitch#'];
-        }  
+        }
         this.maint_items = data;
       }
     })
@@ -91,7 +104,6 @@ export class ClubownerPage {
     <li>Number Of Teams: ${item.noOfTeams}</li>
     <li>Number Of Team Members: ${item.noOfTeamMembers}</li>
     <li>Available Places: ${item.availablePlaces}</li>
-    <li>Number Of Teams: ${item.noOfTeams}</li>
     <li>Prize: ${item.prize}</li>
     <li>Price Per Team: ${item.pricePerTeam}</li> 
     </ul>`
@@ -131,16 +143,16 @@ export class ClubownerPage {
 
   showConfirm(item, type, msg) {
     let name;
-    switch (type){
+    switch (type) {
       case 'Event':
-      name=item.name;
-      break;
+        name = item.name;
+        break;
       case 'Reservation':
-      name='';
-      break;
+        name = '';
+        break;
       case 'Maintenance':
-      name='';
-      break;
+        name = '';
+        break;
     }
     const confirm = this.alertCtrl.create({
 
@@ -151,46 +163,45 @@ export class ClubownerPage {
           text: 'Delete',
           handler: () => {
             console.log("InsideDelete")
-            switch(type)
-            {
+            switch (type) {
               case 'Event':
-                this.ownerProvider.deleteEvent(item.eventId,this.dataProvider.get_user().userName).subscribe(
-                  data =>{
-                      this.showAlert("successed");
+                this.ownerProvider.deleteEvent(item.eventId, this.dataProvider.get_user().userName).subscribe(
+                  data => {
+                    this.showAlert("successed");
 
-                      this.dateChanged();
+                    this.dateChanged();
                   }
                 );
-                
+
                 break;
               case 'Reservation':
                 this.ownerProvider.deleteReservation(item.startTime.split('T')[0],
-                item.startTime.split('T')[1].split(":")[0],item.pitch_number,
+                  item.startTime.split('T')[1].split(":")[0], item.pitch_number,
                   this.dataProvider.get_user().userName).subscribe(
-                    data =>{
-                        this.showAlert("successed");
-                        this.dateChanged();
-                    }
+                  data => {
+                    this.showAlert("successed");
+                    this.dateChanged();
+                  }
                   );
                 break;
               case 'Maintenance':
-              console.log(item.startTime.split('T')[0])
-              console.log(item.startTime.split('T')[1].split(":")[0])
-              console.log(item.pitch_number)
-              console.log(this.dataProvider.get_user().userName)
-              console.log(item.startTime.split('T')[1].split(":")[1])
+                console.log(item.startTime.split('T')[0])
+                console.log(item.startTime.split('T')[1].split(":")[0])
+                console.log(item.pitch_number)
+                console.log(this.dataProvider.get_user().userName)
+                console.log(item.startTime.split('T')[1].split(":")[1])
                 this.ownerProvider.deleteMaint(item.startTime.split('T')[0],
-                item.startTime.split('T')[1].split(":")[0],item.pitch_number,
-                  this.dataProvider.get_user().userName,item.startTime.split('T')[1].split(":")[1]
-                  ).subscribe(
-                    data =>{
-                      console.log(data)
-                        this.showAlert("successed");
-                      
-                        this.dateChanged();
-                    }
+                  item.startTime.split('T')[1].split(":")[0], item.pitch_number,
+                  this.dataProvider.get_user().userName, item.startTime.split('T')[1].split(":")[1]
+                ).subscribe(
+                  data => {
+                    console.log(data)
+                    this.showAlert("successed");
+
+                    this.dateChanged();
+                  }
                   );
-              }
+            }
             console.log('Delete clicked');
           }
         },

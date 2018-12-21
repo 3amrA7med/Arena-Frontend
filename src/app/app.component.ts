@@ -24,6 +24,8 @@ import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { DataProvider } from '../providers/data/data';
 import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-owner-statistics';
 import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
+import { DailyReportPage } from '../pages/daily-report/daily-report';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -59,6 +61,7 @@ export class MyApp {
         { title: 'Insert Event', component: ClubOwnerEventPage },
         { title: 'Add Pitch', component: ClubOwnerPitchPage },
         { title: 'Add Reservation', component: ClubownerReservationPage},
+        { title: 'Daily Report', component: DailyReportPage},
         { title: 'Log Out', component: SignInPage }
       ],
       'playerprofile': [
@@ -125,6 +128,7 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if (page.title == 'Log Out') {
       this.dataProvider.set_user([]);
+      this.activeProvider.set_component('signin')
       this.nav.popToRoot();
     }
     else if (page.title == 'owner')

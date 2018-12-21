@@ -32,7 +32,8 @@ export class ClubOwnerStatisticsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClubOwnerStatisticsPage');
     let id = this.dataProvider.get_id();
-    this.cid = id.id;
+    this.cid = id;
+    console.log(this.cid)
     this.ownerProvider.getHourStats(this.cid).subscribe(data => {
       for (let d of data) this.table1.push({ hour: d['hour'], num: d['num'] })
     });

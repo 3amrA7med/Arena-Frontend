@@ -35,7 +35,7 @@ export class ClubOwnerSignupPage {
   data_clubCity: string;
   data_clubStreet: string;
   currentDate;
-
+  data_clubid:any;
   data_creation_date: Date;
   data_price: Float32Array;
   data_capacity: number;
@@ -93,18 +93,11 @@ export class ClubOwnerSignupPage {
           //TODO sent an confirmation email
           this.dataProvider.set_user(data[0]);
             console.log(data[0])
-          let clubid ;
            this.ownerProvider.owner_clubid(this.dataProvider.get_user().userName).subscribe(
              IDD=>{
-               clubid=IDD[0].id;
-               console.log("*********************************************00")
-               console.log(clubid)
-               console.log("*********************************************00")
-               
-               console.log(this.data_creation_date)
-               console.log(this.data_price)
-               console.log(this.data_capacity)
-               this.ownerProvider.owner_pitch(clubid, 1,
+              this.dataProvider.set_id(data[0].id);
+              this.data_clubid=this.dataProvider.get_id();
+               this.ownerProvider.owner_pitch(this.data_clubid, 1,
                  this.data_creation_date, this.data_price, this.data_capacity, this.data_type).subscribe(
                  data => {
                    console.log(data);

@@ -44,13 +44,13 @@ export class SignInPage {
     public activeProvider: ActiveProvider) {
   }
 
-  ngOnInit(){
-    this.username='';
-    this.password='';
+  ngOnInit() {
+    this.username = '';
+    this.password = '';
   }
   ionViewDidLoad() {
-    this.username='';
-    this.password='';
+    this.username = '';
+    this.password = '';
     this.activeProvider.set_component('signin');
   }
   signIn() {
@@ -62,19 +62,17 @@ export class SignInPage {
         // (in our case only one row are returned as a player or owner)
         console.log(data)
         if (data) {
-          if(data[0].type=='player')
-          {
+          if (data[0].type == 'player') {
             this.navCtrl.push(PlayerProfilePage); //to be added player main screen
           }
           if (data[0].type == 'owner') {
             this.ownerProvider.owner_clubid(this.username).subscribe(data => {
               // Data returned in an array form so we must index the data
               // (in our case only one row are returned as a player or owner)
-              
+
               if (data) {
 
-                this.dataProvider.set_id(data[0]);
-                console.log(this.dataProvider.get_id());
+                this.dataProvider.set_id(data[0].id);
                 //Saving user info in provider so we can access it in any time in any ther component 
               }
               else {
@@ -84,7 +82,6 @@ export class SignInPage {
             this.navCtrl.push(ClubownerPage);//to be added ClubOwner main screen
           }
           this.dataProvider.set_user(data[0]);
-
           //Saving user info in provider so we can access it in any time in any ther component 
         }
         else {

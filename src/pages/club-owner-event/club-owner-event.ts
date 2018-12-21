@@ -46,7 +46,7 @@ export class ClubOwnerEventPage {
     this.data_username = user.userName;
     console.log('getting owner club id');
     let id = this.dataProvider.get_id();
-    this.data_clubid = id.id;
+    this.data_clubid = id;
     console.log(this.data_clubid);
     console.log(this.data_clubid);
     console.log(this.clubownereventform.invalid);
