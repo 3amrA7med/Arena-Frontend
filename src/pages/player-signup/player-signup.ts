@@ -6,6 +6,7 @@ import { ActiveProvider } from "../../providers/active/active";
 import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { PlayerProfilePage } from '../player-profile/player-profile';
 /**
  * Generated class for the PlayerSignupPage page.
  *

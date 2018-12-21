@@ -193,7 +193,13 @@ export class ClubOwnerPitchPage {
       checked: false
     });
 
-    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Cancel',
+      handler: data => {
+        this.testRadioResult='';
+        this.data_capacity2 ='';
+      }
+    });
     alert.addButton({
       text: 'OK',
       handler: data => {
@@ -248,7 +254,13 @@ export class ClubOwnerPitchPage {
       checked: false
     });
 
-    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Cancel',
+      handler: data => {
+        this.testRadioResult='';
+        this.data_type2 ='';
+      }
+    });
     alert.addButton({
       text: 'OK',
       handler: data => {
