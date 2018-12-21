@@ -128,6 +128,7 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if (page.title == 'Log Out') {
       this.dataProvider.set_user([]);
+      this.activeProvider.set_component('signin')
       this.nav.popToRoot();
     }
     else if (page.title == 'owner')
