@@ -34,66 +34,62 @@ export class DailyReportPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DailyReportPage');
-    this.ownerProvider.owner_clubid(this.dataProvider.get_user().userName).subscribe(
-      IDD => {
-        this.clubid = IDD[0].id;
-        console.log("*********************************************00")
-        console.log(this.clubid)
-        console.log("*********************************************00")
+    this.clubid = this.dataProvider.get_id();
+    console.log("*********************************************00")
+    console.log(this.clubid)
+    console.log("*********************************************00")
 
-        this.ownerProvider.GetMaxCost(this.clubid).subscribe(
-          data => {
-            console.log("**************************************")
-            console.log(data);
-            if (data)
-              this.maxData = data[0];
+    this.ownerProvider.GetMaxCost(this.clubid).subscribe(
+      data => {
+        console.log("**************************************")
+        console.log(data);
+        if (data)
+          this.maxData = data[0];
 
-            else {
-              this.maxData = '';
-              // this.maxData['maxCost'] = 'No Maintenance today';
-              //  this.maxData['pitchNum'] = 'No Maintenance today';
-            }
-          })
-        this.ownerProvider.GetMinCost(this.clubid).subscribe(
-          data => {
-            console.log("**************************************")
-            console.log(data);
-            if (data)
-              this.minData = data[0];
-            else {
-              this.minData = '';
-              //this.minData['maxCost'] = 'No Maintenance today';
-              //this.minData['pitchNum'] = 'No Maintenance today';
-            }
-          })
-        this.ownerProvider.GetAvgCost(this.clubid).subscribe(
-          data => {
-            console.log("**************************************")
-            console.log(data);
-            if (data)
-              this.avgData = data[0];
-            else
-              this.avgData = '';
-            //this.minData['maxCost'] = 'No Maintenance today';            
-          })
-          this.ownerProvider.GetProfit(this.clubid).subscribe(
-            data=>{
-              if (data)
-              {
-                this.income = data[0].income;
-                this.doughnutChartData=[];
-                this.doughnutChartData.push(this.income);
-                this.outcome= data[0].outcome;
-                this.doughnutChartData.push(this.outcome);
-                console.log(this.doughnutChartData)
-              }
-            else{
-              this.income=0;
-              this.outcome=0;
-            }
-            }
-          )
+        else {
+          this.maxData = '';
+          // this.maxData['maxCost'] = 'No Maintenance today';
+          //  this.maxData['pitchNum'] = 'No Maintenance today';
+        }
       })
+    this.ownerProvider.GetMinCost(this.clubid).subscribe(
+      data => {
+        console.log("**************************************")
+        console.log(data);
+        if (data)
+          this.minData = data[0];
+        else {
+          this.minData = '';
+          //this.minData['maxCost'] = 'No Maintenance today';
+          //this.minData['pitchNum'] = 'No Maintenance today';
+        }
+      })
+    this.ownerProvider.GetAvgCost(this.clubid).subscribe(
+      data => {
+        console.log("**************************************")
+        console.log(data);
+        if (data)
+          this.avgData = data[0];
+        else
+          this.avgData = '';
+        //this.minData['maxCost'] = 'No Maintenance today';            
+      })
+    this.ownerProvider.GetProfit(this.clubid).subscribe(
+      data => {
+        if (data) {
+          this.income = data[0].income;
+          this.doughnutChartData = [];
+          this.doughnutChartData.push(this.income);
+          this.outcome = data[0].outcome;
+          this.doughnutChartData.push(this.outcome);
+          console.log(this.doughnutChartData)
+        }
+        else {
+          this.income = 0;
+          this.outcome = 0;
+        }
+      }
+    )
   }
   // events
   public chartClicked(e: any): void {
