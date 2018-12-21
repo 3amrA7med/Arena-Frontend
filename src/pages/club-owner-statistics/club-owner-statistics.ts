@@ -35,11 +35,11 @@ export class ClubOwnerStatisticsPage {
     this.cid = id.id;
     this.ownerProvider.getHourStats(this.cid).subscribe(data => {
       for (let d of data) this.table1.push({ hour: d['hour'], num: d['num'] })
-    })
+    });
     this.ownerProvider.getPitchStats(this.cid).subscribe(data => {
       console.log(data);
       for (let d of data) this.table2.push({ pitchno: d['pitchno'], num: d['num'] })
-    })
+    });
   }
 
 }

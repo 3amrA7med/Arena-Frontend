@@ -52,7 +52,7 @@ export class UpcomingPage {
   }
   view(item, type) {
     let msg: string;
-
+    console.log(item);
     console.log('type is ', type)
 
     switch (type) {
