@@ -30,6 +30,7 @@ export class ClubOwnerEventPage {
   data_priceperteam: Float32Array;
   data_clubid: number;
   data_username: string;
+  currentDate:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -54,7 +55,7 @@ export class ClubOwnerEventPage {
 
 
   ngOnInit() {
-
+    
     this.clubownereventform = new FormGroup({
       name: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
       noofteams: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(3)]),
@@ -74,11 +75,7 @@ export class ClubOwnerEventPage {
         , this.data_event_start_time, this.data_event_end_time, this.data_noofteams, this.data_noofteammembers, this.data_noofteams
         , this.data_prize, this.data_priceperteam).subscribe(data => {
           if (data) {
-            //TODO sent an confirmation email
-            this.dataProvider.set_user(data[0]);
-
             //Saving user info in provider so we can access it in any time in any ther component 
-
             this.Inserted('Event is added successfully');
 
           }

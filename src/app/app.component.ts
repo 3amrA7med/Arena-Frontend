@@ -134,9 +134,9 @@ export class MyApp {
       this.nav.popToRoot();
     }
     else if (page.title == 'owner')
-      this.nav.setRoot(page.component);
+      this.nav.push(page.component);
     else if (page.title == 'playerprofile')
-      this.nav.setRoot(page.component);
+      this.nav.push(page.component);
     else if (page.title == 'Sign in') {
       this.activeProvider.set_component('signin')
       this.nav.popToRoot();

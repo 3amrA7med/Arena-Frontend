@@ -48,9 +48,11 @@ export class ClubOwnerMaintanancePage {
     console.log('getting owner club id');
     let id = this.dataProvider.get_id();
     this.data_clubid = id;
+    console.log('***************************************************************************************')
     console.log(this.data_clubid);
     console.log(this.data_clubid);
-
+    console.log('***************************************************************************************')
+    
     console.log(this.clubownermaintananceform.invalid);
   }
 
@@ -72,9 +74,6 @@ export class ClubOwnerMaintanancePage {
       this.ownerProvider.owner_maintanance(this.data_clubid, this.data_pitch_no
         , this.data_cost, this.data_description, this.data_maintanance_start_date, this.data_maintanance_end_date).subscribe(data => {
           if (data) {
-            //TODO sent an confirmation email
-            this.dataProvider.set_user(data[0]);
-
             //Saving user info in provider so we can access it in any time in any ther component 
 
             this.Inserted('Pitch maintanance is added successfully');
