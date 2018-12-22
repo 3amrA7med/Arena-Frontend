@@ -90,18 +90,27 @@ export class ClubOwnerSignupPage {
       , this.data_fname, this.data_lname, this.data_email, this.data_phone, this.data_officeHours,
       this.data_clubName, this.data_clubCity, this.data_clubStreet).subscribe(data => {
         if (data) {
-          //TODO sent an confirmation email
           this.dataProvider.set_user(data[0]);
            this.ownerProvider.owner_clubid(this.dataProvider.get_user().userName).subscribe(
              IDD=>{
+               console.log("*********IDD***************")
+               console.log(IDD)
+               console.log("************************")
+               
               this.dataProvider.set_id(IDD[0].id);
               this.data_clubid=this.dataProvider.get_id();
                this.ownerProvider.owner_pitch(this.data_clubid, 1,
                  this.data_creation_date, this.data_price, this.data_capacity, this.data_type).subscribe(
                  data => {
+                   if(data)
+                   {
                    console.log(data);
                    this.navCtrl.push(ClubownerPage); // Adding Owner main screen here
-                 })
+                   }
+                   else{
+                     this.showAlert('tryagain');
+                   }
+                  })
              
                 }
  
@@ -112,7 +121,7 @@ export class ClubOwnerSignupPage {
         }
         else {
           console.log(data[0])
-         // this.showAlert('Username is taken or already existing E-mail');
+          this.showAlert('Username is taken or already existing E-mail');
         }
 
       })
