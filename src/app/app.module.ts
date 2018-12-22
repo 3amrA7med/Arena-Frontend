@@ -39,6 +39,7 @@ import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-own
 import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
 import { DailyReportPage } from '../pages/daily-report/daily-report';
 import { ChartsModule } from 'ng2-charts';
+import { UpdateOwnerProfilePage } from '../pages/update-owner-profile/update-owner-profile';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ChartsModule } from 'ng2-charts';
     DailyReportPage,
     ClubOwnerAddacademyPage,
     ClubOwnerStatisticsPage,
-    ClubownerReservationPage
+    ClubownerReservationPage,
+    UpdateOwnerProfilePage
   ],
   imports: [
     BrowserModule,
@@ -99,7 +101,8 @@ import { ChartsModule } from 'ng2-charts';
     ClubownerPage,
     DailyReportPage,
     ClubOwnerStatisticsPage,
-    ClubownerReservationPage
+    ClubownerReservationPage,
+    UpdateOwnerProfilePage
   ],
   providers: [
     StatusBar,
