@@ -31,7 +31,7 @@
           Maximum 25 characters
         </div>
         <div class="error" *ngIf="signupform.get('name').hasError('pattern') && signupform.get('name').touched">
-          Just use alphabet(Arabic Or English) character
+          Just use alphabet(English) characters
         </div>
       </ion-item>
 
@@ -50,7 +50,7 @@
           Maximum 25 characters
         </div>
         <div class="error" *ngIf="signupform.get('lname').hasError('pattern') && signupform.get('lname').touched">
-          Just use alphabet(Arabic Or English) character
+          Just use alphabet(English) characters
         </div>
       </ion-item>
 
@@ -185,7 +185,7 @@
       </ion-item>
       <ion-item>
         <!-- -->
-        <ion-label floating>Creation date</ion-label>
+        <ion-label floating>Creation date (First Pitch)</ion-label>
         <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="2010" max="{{currentDate}}" [(ngModel)]="data_creation_date"
           formControlName="creation_date" [class.error1]="!signupform.controls.creation_date.valid && signupform.controls.creation_date.dirty">
         </ion-datetime>

@@ -68,7 +68,7 @@ export class PlayerSignupPage {
         //TODO sent an confirmation email
         this.dataProvider.set_user(data[0]); 
         //Saving user info in provider so we can access it in any time in any ther component 
-        this.navCtrl.setRoot(PlayerProfilePage);
+        this.navCtrl.push(PlayerProfilePage);
       }
       else{
         this.showAlert('Username is taken or already existing E-mail');
