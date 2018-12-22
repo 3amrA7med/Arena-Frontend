@@ -25,6 +25,7 @@ import { DataProvider } from '../providers/data/data';
 import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-owner-statistics';
 import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
 import { DailyReportPage } from '../pages/daily-report/daily-report';
+import { UpdateOwnerProfilePage } from '../pages/update-owner-profile/update-owner-profile';
 
 
 @Component({
@@ -62,6 +63,7 @@ export class MyApp {
         { title: 'Add Pitch', component: ClubOwnerPitchPage },
         { title: 'Add Reservation', component: ClubownerReservationPage },
         { title: 'Daily Report', component: DailyReportPage },
+        { title: 'Update Profile', component: UpdateOwnerProfilePage },
         { title: 'Log Out', component: SignInPage }
       ],
       'playerprofile': [

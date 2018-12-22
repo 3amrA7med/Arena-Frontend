@@ -63,4 +63,17 @@ export class AccountProvider {
 
 
   }
+  owner_update(username,password,fname,lname,email,phone)
+  {
+
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.post(this.localhostProvider.localhost+"api/DB/UpdateOwner",JSON.stringify({'username':username,
+    'password':password,'fname':fname,'lname':lname,'email':email,
+    'phone':phone}),{headers:header});
+
+
+  }
 }
