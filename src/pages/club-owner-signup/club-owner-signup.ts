@@ -108,7 +108,7 @@ export class ClubOwnerSignupPage {
             );
           // , this.data_creation_date, this.data_price, this.data_capacity, this.data_type
           //Saving user info in provider so we can access it in any time in any ther component 
-          this.navCtrl.push(ClubownerPage); // Adding Owner main screen here
+          this.navCtrl.setRoot(ClubownerPage); // Adding Owner main screen here
         }
         else {
           console.log(data[0])

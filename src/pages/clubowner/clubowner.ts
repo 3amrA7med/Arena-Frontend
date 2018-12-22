@@ -28,7 +28,7 @@ export class ClubownerPage {
   maint_items: Array<any> = [];
   clubName: any = '';
   clubRating: any = 0;
-
+  data_officehours:any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public activeProvider: ActiveProvider,
@@ -50,6 +50,7 @@ export class ClubownerPage {
         this.clubRating = data[0].rating;
       }
     )
+    this.data_officehours=this.dataProvider.get_user().officeHours
   }
   getEvents() {
     this.ownerProvider.getEvents(this.dataProvider.get_user().userName, this.date).subscribe(data => {
