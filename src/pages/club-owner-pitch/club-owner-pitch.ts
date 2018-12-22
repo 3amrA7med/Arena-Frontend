@@ -74,19 +74,11 @@ export class ClubOwnerPitchPage {
     this.ownerProvider.owner_pitch(this.data_clubid, this.data_pitch_no
       , this.data_creation_date, this.data_price, this.data_capacity, this.data_type).subscribe(data => {
         if (data) {
-          //TODO sent an confirmation email
-          this.dataProvider.set_user(data[0]);
-
-          //Saving user info in provider so we can access it in any time in any ther component
-
-
+                    //Saving user info in provider so we can access it in any time in any ther component
           this.Inserted('Pitch is added successfully');
-
-
         }
         else {
           this.showAlert('Failed to add Pitch ,Pitch number already exist.');
-
         }
 
       })
