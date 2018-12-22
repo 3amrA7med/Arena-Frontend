@@ -31,7 +31,7 @@ export class ClubOwnerMaintanancePage {
   testRadioOpen: boolean;
   index: number;
   check: boolean
-
+  currentDate:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -51,6 +51,7 @@ export class ClubOwnerMaintanancePage {
     console.log('***************************************************************************************')
     console.log(this.data_clubid);
     console.log(this.data_clubid);
+    this.currentDate = new Date().toISOString();
     console.log('***************************************************************************************')
     
     console.log(this.clubownermaintananceform.invalid);
