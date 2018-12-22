@@ -61,7 +61,7 @@ export class UpcomingPage {
     <li>Date: ${item.startTime.split('T')[0]}</li>
     <li>Start Time: ${item.startTime.split('T')[1]}</li>
     <li>Club Name: ${item.clubName}</li>
-    <li>Adress: ${item.city}</li>
+    <li>Adress: ${item.city}, ${item.street}</li>
     <li>Number Of Teams: ${item.noOfTeams}</li>
     <li>Number Of Team Members: ${item.noOfTeamMembers}</li>
     <li>Prize: ${item.prize}</li>
@@ -76,7 +76,7 @@ export class UpcomingPage {
         <li>Start Time: ${item.startTime.split('T')[1]}</li>
         <li>Club Name: ${item.name}</li>
         <li>Pitch Number: ${item.pitchNumber}</li>
-        <li>Adress: ${item.city , item.street}</li>
+        <li>Adress: ${item.city}, ${item.street}</li>
         <li>Rating: ${item.rating}</li>
         <li>Number of Reviews: ${item.reviewCount}</li>
         <li>Capacity: ${item.capacity}</li>
