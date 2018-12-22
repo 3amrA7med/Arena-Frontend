@@ -34,7 +34,7 @@ export class ClubOwnerPitchPage {
   testRadioOpen: boolean;
   data_username: string;
   index: number;
-  currentDate;
+  currentDate:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

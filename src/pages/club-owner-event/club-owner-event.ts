@@ -50,6 +50,7 @@ export class ClubOwnerEventPage {
     this.data_clubid = id;
     console.log(this.data_clubid);
     console.log(this.data_clubid);
+    this.currentDate = new Date().toISOString();
     console.log(this.clubownereventform.invalid);
   }
 
