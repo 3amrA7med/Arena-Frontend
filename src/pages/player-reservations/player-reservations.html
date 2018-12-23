@@ -27,7 +27,7 @@
   <ion-item *ngIf="selcity">
     <ion-label>Select the club</ion-label>
     <ion-select [(ngModel)]="selclub">
-      <ion-option *ngFor=" let c of clubs " (ionSelect)="clubChanged(c.id)" value="{{c.id}}">{{c.name}}</ion-option>
+      <ion-option *ngFor=" let c of clubs " (ionSelect)="clubChanged(c)" [value]="c">{{c.name}}</ion-option>
 
 
     </ion-select>
@@ -35,14 +35,32 @@
   <ion-item *ngIf="selclub">
     <ion-label>Select the pitch</ion-label>
     <ion-select [(ngModel)]="selpitch">
-      <ion-option *ngFor=" let c of pitches " (ionSelect)="pitchChanged()"value="{{c.pitch}}Y{{c.price}}">#:{{c.pitch}} Price:{{c.price}} Type:{{c.type}}</ion-option>
+      <ion-option *ngFor=" let c of pitches " (ionSelect)="pitchChanged(c)" value="{{c.pitch}}Y{{c.price}}">#:{{c.pitch}} Price:{{c.price}} Type:{{c.type}}</ion-option>
 
     </ion-select>
   </ion-item>
+  <div *ngIf="(selpitch) && (selclub)">
+    <ion-card>
+      <ion-card-header>
+        Pitch no:{{selpitch2.pitch}}
+      </ion-card-header>
+      <ion-card-content>
+        <li>Club Name : {{selclub2.name}}</li>
+        <li>Address : {{selclub2.city}} , {{selclub2.street}}</li>
+        <li>Price: {{selpitch2.price}}</li>
+        <li>Capacity: {{selpitch2.capacity}}</li>
+        <li>Type:{{selpitch2.type}}</li>
+        <li>Rating:{{selclub2.rating}}</li>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
   <ion-item *ngIf="selpitch">
     <ion-label>Select a day</ion-label>
     <ion-datetime displayFormat="DDD DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="date" (ionChange)="dateChanged()" min="{{current_date}}" max="2020-10-31"></ion-datetime>
   </ion-item>
+
+
   <div *ngIf="date">
     <ion-item>
       <ion-label>Select an hour</ion-label>

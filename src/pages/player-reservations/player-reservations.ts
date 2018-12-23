@@ -20,6 +20,8 @@ import { PlayerProfilePage } from "../../pages/player-profile/player-profile"
 export class PlayerReservationsPage {
   selcity: any;
   selclub: any;
+  selclub2: any;
+  selpitch2: any;
   date: any;
   date2: any;
   today: any;
@@ -54,25 +56,33 @@ export class PlayerReservationsPage {
     this.playerProvider.getCities().subscribe(data => {
       if(data)
         for (let d of data) {
-        this.clubs.push({ name: d['name'], id: d['id'] });
+        
           this.city.push({ city : d["city"] });
       }
     })
   ;
   }
-  pitchChanged() {
+  pitchChanged(c) {
+    this.selpitch2 = c;
     this.date = null;
     this.date2 = null;
     console.log("sh8ala");
   }
   clubChanged(c)
   {
+    this.selclub2 = c;
+    console.log(c)
+    let d = c.id;
     console.log(c)
     this.pitches = [];
-    this.playerProvider.getPitches(c).subscribe(data => {
+    this.playerProvider.getPitches(d).subscribe(data => {
       console.log(data)
-      for (let d of data)
-        this.pitches.push({ pitch: d["pitch#"], price: d["price"], type: d["type"] });
+      //for (let d of data)
+      //  this.pitches.push({ pitch: d["pitch#"], price: d["price"], type: d["type"] });
+      for (let d of data) {
+        d['pitch'] = d['pitch#'];
+      }
+      this.pitches = data;
       console.log(this.pitches);
     })
     console.log(this.pitches);
@@ -88,7 +98,7 @@ export class PlayerReservationsPage {
     let hour = this.date2.split(":")[0];
     console.log(this.price);
     if (this.selcity && this.selclub && this.selpitch && this.date && this.date2) {
-      this.playerProvider.book(this.user, this.selclub, this.selpitchno, this.date, hour, this.Pay, this.unpaid).subscribe(data => {
+      this.playerProvider.book(this.user, this.selclub.id, this.selpitchno, this.date, hour, this.Pay, this.unpaid).subscribe(data => {
         if (data)
           this.showAlert("Your reservation is done!", "Operation Successful");
         else this.showAlert("An error has occured, please retry later.", "Error!");
@@ -121,8 +131,9 @@ export class PlayerReservationsPage {
     this.clubs = [];
     //console.log(c);
     this.playerProvider.getClubs(c).subscribe(data => {
-      for (let d of data)
-        this.clubs.push({ name: d['name'], id: d['id'] });
+      //for (let d of data)
+       // this.clubs.push({ name: d['name'], id: d['id'],city: d['city'] });
+      this.clubs = data;  
       console.log(data);
       this.selclub = null;
       this.selpitchno = null;
@@ -137,7 +148,10 @@ export class PlayerReservationsPage {
     this.price = parseInt(this.selpitch.split("Y")[1], 10);
     this.selpitchno = parseInt(this.selpitch.split("Y")[0], 10);
     this.pricemin = this.price / 4;
-    this.playerProvider.getbooked(this.date, this.selclub, this.selpitchno).subscribe(data =>
+    console.log(this.clubs);
+    console.log(this.selclub.id);
+    console.log(this.selpitch);
+    this.playerProvider.getbooked(this.date, this.selclub2.id, this.selpitchno).subscribe(data =>
     {
       this.hours = [];
       if (data)
