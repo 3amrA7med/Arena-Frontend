@@ -148,7 +148,7 @@ export class ClubOwnerPitchPage {
   }
   showAlert(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion failed !',
+      title: 'Failed !',
       subTitle: msg,
       buttons: ['OK']
     });
@@ -157,7 +157,7 @@ export class ClubOwnerPitchPage {
 
   Inserted(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion succeded !',
+      title: 'Succeded !',
       subTitle: msg,
       buttons: ['OK']
     });
