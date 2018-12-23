@@ -63,7 +63,7 @@ export class ClubOwnerMaintanancePage {
     console.log(this.data_clubid);
     this.currentDate = new Date().toISOString();
     console.log('***************************************************************************************')
-    
+    this.data_pitch_no = null;
     console.log(this.clubownermaintananceform.invalid);
   }
 
