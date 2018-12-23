@@ -20,7 +20,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ClubOwnerPitchPage {
 
-
+  capacities: any[] = [{ capacity: "5v5 playground", no: "5" }, { capacity: "7v7 playground", no: "7" }, { capacity: "11v11 playground", no: "11" }];
+  types: any[] = [{ type: "Natrual turf", no: "1" }, { type: "Indoors", no: "0" }, { type: "Artificial turf", no: "2" }];
   data_creation_date: Date;
   data_pitch_no: number;
   clubownerpitchform: FormGroup;
@@ -28,6 +29,8 @@ export class ClubOwnerPitchPage {
   data_clubid: number;
   data_capacity: number;
   data_capacity2: string;
+  currcapacity;
+  currtype;
   data_type: number;
   data_type2: string;
   testRadioResult: any;
@@ -55,16 +58,17 @@ export class ClubOwnerPitchPage {
     console.log(this.data_clubid);
     this.currentDate = new Date().toISOString();
     console.log(this.clubownerpitchform.invalid);
+    this.data_capacity = null;
+    this.data_type = null;
+
   }
 
   ngOnInit() {
 
     this.clubownerpitchform = new FormGroup({
+      pitchno: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
       price: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
-      pitch_no: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       creation_date: new FormControl('', [Validators.required]),
-      capacity: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
-      type: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
 
     });
   }
@@ -108,6 +112,24 @@ export class ClubOwnerPitchPage {
      
     })
   }
+
+  selcapacity(c) {
+    console.log(this.clubownerpitchform.invalid);
+    console.log(this.clubownerpitchform.valid);
+    console.log(this.data_capacity);
+    console.log(this.data_type);
+    this.data_capacity = c;
+  }
+
+  seltype(c) {
+    console.log(this.clubownerpitchform.invalid);
+    console.log(this.clubownerpitchform.valid);
+    console.log(this.data_capacity);
+    console.log(this.data_type);
+    this.data_type = c;
+  }
+
+
   presentConfirm(Title,Msg) {
     let alert = this.alertCtrl.create({
       title: Title,
@@ -126,7 +148,7 @@ export class ClubOwnerPitchPage {
   }
   showAlert(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion failed !',
+      title: 'Failed !',
       subTitle: msg,
       buttons: ['OK']
     });
@@ -135,7 +157,7 @@ export class ClubOwnerPitchPage {
 
   Inserted(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion succeded !',
+      title: 'Succeded !',
       subTitle: msg,
       buttons: ['OK']
     });

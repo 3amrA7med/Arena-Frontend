@@ -22,17 +22,17 @@
 
       <ion-item>
         <ion-label floating>Pitch number</ion-label>
-        <ion-input type="text" [(ngModel)]="data_pitch_no" formControlName="pitch_no" [class.error1]="!clubownerpitchform.controls.pitch_no.valid && clubownerpitchform.controls.pitch_no.dirty"></ion-input>
+        <ion-input type="text" [(ngModel)]="data_pitch_no" formControlName="pitchno" [class.error1]="!clubownerpitchform.controls.pitchno.valid && clubownerpitchform.controls.pitchno.dirty"></ion-input>
       </ion-item>
-      <ion-item no-lines *ngIf="(clubownerpitchform.get('pitch_no').hasError('required')||clubownerpitchform.get('pitch_no').hasError('pattern')) && clubownerpitchform.get('pitch_no').touched">
-        <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('pattern') &&  clubownerpitchform.get('pitch_no').touched">
+      <ion-item no-lines *ngIf="clubownerpitchform.get('pitchno').hasError('pattern') && clubownerpitchform.get('pitchno').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('pitchno').hasError('required') &&  clubownerpitchform.get('pitchno').touched">
+          Please enter pitch price
+        </div>
+        <div class="error" *ngIf="clubownerpitchform.get('pitchno').hasError('pattern') &&  clubownerpitchform.get('pitchno').touched">
           Only numbers
         </div>
-
-        <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('required') &&  clubownerpitchform.get('pitch_no').touched">
-          Please select pitch number
-        </div>
       </ion-item>
+
 
       <ion-item>
         <!-- -->
@@ -50,7 +50,7 @@
         <ion-input type="text" [(ngModel)]="data_price" formControlName="price" [class.error1]="!clubownerpitchform.controls.price.valid && clubownerpitchform.controls.price.dirty"></ion-input>
       </ion-item>
       <ion-item no-lines *ngIf="clubownerpitchform.get('price').hasError('pattern') && clubownerpitchform.get('price').touched">
-        <div class="error" *ngIf="clubownerpitchform.get('pitch_no').hasError('required') &&  clubownerpitchform.get('pitch_no').touched">
+        <div class="error" *ngIf="clubownerpitchform.get('price').hasError('required') &&  clubownerpitchform.get('price').touched">
           Please enter pitch price
         </div>
         <div class="error" *ngIf="clubownerpitchform.get('price').hasError('pattern') &&  clubownerpitchform.get('price').touched">
@@ -58,29 +58,29 @@
         </div>
       </ion-item>
 
-      <ion-item (click)="SelectCapacity()">
-        <ion-label floating>Capacity</ion-label>
-        <ion-input type="text" [(ngModel)]="data_capacity2" formControlName="capacity" [class.error1]="!clubownerpitchform.controls.capacity.valid && clubownerpitchform.controls.capacity.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="clubownerpitchform.get('capacity').hasError('required') && clubownerpitchform.get('capacity').touched">
-        <div class="error" *ngIf="clubownerpitchform.get('capacity').hasError('required') &&  clubownerpitchform.get('capacity').touched">
-          Please enter pitch capacity
-        </div>
-      </ion-item>
 
-      <ion-item (click)="SelectType()">
-        <ion-label floating>Type</ion-label>
-        <ion-input type="text" [(ngModel)]="data_type2" formControlName="type" [class.error1]="!clubownerpitchform.controls.type.valid && clubownerpitchform.controls.type.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="clubownerpitchform.get('type').hasError('required') && clubownerpitchform.get('type').touched">
-        <div class="error" *ngIf="clubownerpitchform.get('type').hasError('required') &&  clubownerpitchform.get('type').touched">
-          Please enter pitch type
-        </div>
+      <ion-item>
+        <ion-label>Pitch capacity</ion-label>
+        <ion-select [(ngModel)]="data_capacity" [ngModelOptions]="{standalone: true}">
+          <ion-option *ngFor=" let c of capacities" (ionSelect)="selcapacity(c.no)" value="{{c.no}}">{{c.capacity}}</ion-option>
+
+        </ion-select>
       </ion-item>
 
 
 
-      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownerpitchform.invalid">Submit</button>
+
+      <ion-item>
+        <ion-label>Pitch type</ion-label>
+        <ion-select [(ngModel)]="data_type" [ngModelOptions]="{standalone: true}">
+          <ion-option *ngFor=" let t of types" (ionSelect)="seltype(t.no)" value="{{t.no}}">{{t.type}}</ion-option>
+
+        </ion-select>
+      </ion-item>
+
+
+
+      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownerpitchform.invalid || !data_type || !data_capacity">Submit</button>
 
 
     </form>
