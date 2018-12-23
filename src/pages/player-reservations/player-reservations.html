@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>Reservations</ion-title>
   </ion-navbar>
 
@@ -33,9 +33,9 @@
     </ion-select>
   </ion-item>
   <ion-item *ngIf="selclub">
-    <ion-label>Select the picth</ion-label>
+    <ion-label>Select the pitch</ion-label>
     <ion-select [(ngModel)]="selpitch">
-      <ion-option *ngFor=" let c of pitches " (ionSelect)="pitchChanged()"value="{{c.pitch}}Y{{c.price}}">pitch:{{c.pitch}}, price:{{c.price}}</ion-option>
+      <ion-option *ngFor=" let c of pitches " (ionSelect)="pitchChanged()"value="{{c.pitch}}Y{{c.price}}">#:{{c.pitch}} Price:{{c.price}} Type:{{c.type}}</ion-option>
 
     </ion-select>
   </ion-item>

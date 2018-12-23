@@ -36,7 +36,22 @@ export class OwnerProvider {
     return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetReservations/"+username+"/"+date,
     { headers: header});
   }
+  getHourStats(cid) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
 
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/getHourStats/" + cid ,
+      { headers: header });
+  }
+  getPitchStats(cid) {
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/getPitchStats/" + cid,
+      { headers: header });
+  }
   getMaint(username,date){
     let header = new HttpHeaders();
     header.set('Access-Control-Allow-Origin', '*');
@@ -147,8 +162,44 @@ export class OwnerProvider {
     header.set('Access-Control-Allow-Origin', '*');
     header.set('withcredentials', 'true');
     console.log(username);
-    return this.http.get(this.localhostProvider.localhost + "api/DB/GetOwnerClubId/" + username, { headers: header });
+    return this.http.get(this.localhostProvider.localhost + "api/DB/GetOwnerClubId/" + username,
+     { headers: header });
   }
 
+  GetMaxCost(id){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetMaxCost/" + id,
+    { headers: header });
+  }
 
+  GetMinCost(id){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetMinCost/" + id,
+    { headers: header });
+  }
+  GetAvgCost(id){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetAvgCost/" + id,
+    { headers: header });
+  }
+  GetProfit(id){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetProfit/" + id,
+    { headers: header });
+  }
+  GetClub(username){
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+    header.set('withcredentials', 'true');
+    return this.http.get<any>(this.localhostProvider.localhost + "api/DB/GetClub/" + username,
+    { headers: header });
+  }
 }

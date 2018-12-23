@@ -31,7 +31,8 @@ export class ClubOwnerMaintanancePage {
   testRadioOpen: boolean;
   index: number;
   check: boolean
-
+  currentDate: any;
+  pitches;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,15 +43,27 @@ export class ClubOwnerMaintanancePage {
   }
 
   ionViewDidLoad() {
+    this.ownerProvider.owner_pitchno(this.data_clubid).subscribe(result => {
+      this.pitches = result;
+      console.log(result);
+    })
     console.log('ionViewDidLoad ClubOwnerMaintanancePage');
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
     let id = this.dataProvider.get_id();
-    this.data_clubid = id.id;
+    this.data_clubid = id;
+    console.log(this.data_clubid);
+    this.ownerProvider.owner_pitchno(this.data_clubid).subscribe(result => {
+      this.pitches = result;
+      console.log(result);
+    })
+    console.log('***************************************************************************************')
     console.log(this.data_clubid);
     console.log(this.data_clubid);
-
+    this.currentDate = new Date().toISOString();
+    console.log('***************************************************************************************')
+    
     console.log(this.clubownermaintananceform.invalid);
   }
 
@@ -72,9 +85,6 @@ export class ClubOwnerMaintanancePage {
       this.ownerProvider.owner_maintanance(this.data_clubid, this.data_pitch_no
         , this.data_cost, this.data_description, this.data_maintanance_start_date, this.data_maintanance_end_date).subscribe(data => {
           if (data) {
-            //TODO sent an confirmation email
-            this.dataProvider.set_user(data[0]);
-
             //Saving user info in provider so we can access it in any time in any ther component 
 
             this.Inserted('Pitch maintanance is added successfully');

@@ -22,7 +22,11 @@ import { PlayerAcademiesPage } from '../pages/player-academies/player-academies'
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { ClubownerPage } from '../pages/clubowner/clubowner';
 import { DataProvider } from '../providers/data/data';
+import { ClubOwnerStatisticsPage } from '../pages/club-owner-statistics/club-owner-statistics';
 import { ClubownerReservationPage } from '../pages/clubowner-reservation/clubowner-reservation'
+import { DailyReportPage } from '../pages/daily-report/daily-report';
+import { UpdateOwnerProfilePage } from '../pages/update-owner-profile/update-owner-profile';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -52,11 +56,14 @@ export class MyApp {
       'owner': [
         { title: 'Home', component: ClubownerPage },
         { title: 'Maintanance', component: ClubOwnerMaintanancePage },
+        { title: 'Statistics', component: ClubOwnerStatisticsPage },
         { title: 'Create Academy', component: ClubOwnerAddacademyPage },
         { title: 'View Academy', component: ClubOwnerAcademyPage },
         { title: 'Insert Event', component: ClubOwnerEventPage },
         { title: 'Add Pitch', component: ClubOwnerPitchPage },
-        { title: 'Add Reservation', component: ClubownerReservationPage},
+        { title: 'Add Reservation', component: ClubownerReservationPage },
+        { title: 'Daily Report', component: DailyReportPage },
+        { title: 'Update Profile', component: UpdateOwnerProfilePage },
         { title: 'Log Out', component: SignInPage }
       ],
       'playerprofile': [
@@ -123,12 +130,17 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if (page.title == 'Log Out') {
       this.dataProvider.set_user([]);
+      this.activeProvider.set_component('signin')
       this.nav.popToRoot();
     }
     else if (page.title == 'owner')
-      this.nav.setRoot(page.component);
+      this.nav.push(page.component);
     else if (page.title == 'playerprofile')
-      this.nav.setRoot(page.component);
+      this.nav.push(page.component);
+    else if (page.title == 'Sign in') {
+      this.activeProvider.set_component('signin')
+      this.nav.popToRoot();
+    }
     else
       this.nav.push(page.component);
   }

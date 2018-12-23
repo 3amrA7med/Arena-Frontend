@@ -52,7 +52,7 @@ export class UpcomingPage {
   }
   view(item, type) {
     let msg: string;
-
+    console.log(item);
     console.log('type is ', type)
 
     switch (type) {
@@ -60,6 +60,8 @@ export class UpcomingPage {
         msg = `<ul>
     <li>Date: ${item.startTime.split('T')[0]}</li>
     <li>Start Time: ${item.startTime.split('T')[1]}</li>
+    <li>Club Name: ${item.clubName}</li>
+    <li>Adress: ${item.city}, ${item.street}</li>
     <li>Number Of Teams: ${item.noOfTeams}</li>
     <li>Number Of Team Members: ${item.noOfTeamMembers}</li>
     <li>Prize: ${item.prize}</li>
@@ -70,12 +72,19 @@ export class UpcomingPage {
 
       case 'Reservation':
         msg = `<ul>
-    <li>Date: ${item.startTime.split('T')[0]}</li>
-    <li>Start Time: ${item.startTime.split('T')[1]}</li>
-    <li>Paid: ${item.paid}</li>
-    <li>Unpaid: ${item.unpaid}</li>
+        <li>Date: ${item.startTime.split('T')[0]}</li>
+        <li>Start Time: ${item.startTime.split('T')[1]}</li>
+        <li>Club Name: ${item.name}</li>
+        <li>Pitch Number: ${item.pitchNumber}</li>
+        <li>Adress: ${item.city}, ${item.street}</li>
+        <li>Rating: ${item.rating}</li>
+        <li>Number of Reviews: ${item.reviewCount}</li>
+        <li>Capacity: ${item.capacity}</li>
+        <li>Type: ${item.type}</li>
+        <li>Paid: ${item.paid}</li>
+        <li>Unpaid: ${item.unpaid}</li>
     </ul>`
-        this.showConfirm(item, type, msg)
+        this.showConfirm1(item, type, msg)
         break;
     }
   }
@@ -94,6 +103,22 @@ showConfirm(item, type, msg) {
       ]
     });
     confirm.present();
+}
+showConfirm1(item, type, msg) {
+  const confirm = this.alertCtrl.create({
+    title: type,
+    message: msg,
+    buttons: [
+
+      {
+        text: 'Ok',
+        handler: () => {
+          console.log('Ok clicked');
+        }
+      }
+    ]
+  });
+  confirm.present();
 }
 
 }

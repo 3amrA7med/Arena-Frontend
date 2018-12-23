@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ClubOwnerStatisticsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Statistics</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <table class="darkTable">
+    <thead>
+      <tr>
+        <th>Hours</th>
+        <th>Times Booked</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let r of table1">
+        <td>{{r.hour}}</td>
+        <td>{{r.num}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="darkTable2">
+    <thead>
+      <tr>
+        <th>Pitch</th>
+        <th>Times Booked</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let d of table2">
+        <td>{{d.pitchno}}</td>
+        <td>{{d.num}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ion-content>

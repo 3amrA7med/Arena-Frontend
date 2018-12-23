@@ -43,7 +43,7 @@ export class ClubOwnerAcademyPage {
     console.log(this.data_username);
     //this.GetOwnwerClubId();
     let id = this.dataProvider.get_id();
-    this.data_clubid = id.id;
+    this.data_clubid = id;
     console.log(this.data_clubid);
     console.log(this.data_clubid);
     this.viewacademy();

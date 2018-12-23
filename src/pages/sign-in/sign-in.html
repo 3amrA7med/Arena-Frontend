@@ -5,20 +5,14 @@
   Ionic pages and navigation.
 -->
 
-<ion-header>
 
-  <ion-navbar color="secondary">.
-    <ion-title>Arena</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
 
 
 <ion-content padding>
   <ion-list >
-    
+      <img src="../../assets/imgs/home.png" alt="home">
       <ion-item class="rev">
         <ion-label floating>Username</ion-label>
         <ion-input type="text" [(ngModel)]="username"></ion-input>
@@ -31,10 +25,10 @@
     
     </ion-list>
   
-    <button ion-button (click)="signIn()" id="signin" ion-icon-end >
+    <button ion-button (click)="signIn()" id="signin" ion-icon-end ion-button block >
       Sign In  
      <!-- <ion-icon name="football"></ion-icon> -->
     </button>  
-    <button ion-button (click)="showRadio()" id="signup" color="dark" outline>Sign up</button>  
+    <button ion-button (click)="showRadio()" id="signup" color="dark" ion-button block>Sign up</button>  
    <!-- <a (click)="showRadio()" id="register_link" >Dont have an account?</a>-->
 </ion-content>

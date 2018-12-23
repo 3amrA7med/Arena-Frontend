@@ -72,20 +72,7 @@
       </ion-item>
 
 
-      <ion-item no-lines *ngIf="( signupform.get('username').hasError('minlength') || signupform.get('username').hasError('maxlength') ||signupform.get('username').hasError('pattern') ||signupform.get('username').hasError('required') ) && signupform.get('username').touched">
-        <div class="error" *ngIf="signupform.get('username').hasError('required') && signupform.get('username').touched">
-          please enter your username
-        </div>
-        <div class="error" *ngIf="signupform.get('username').hasError('minlength') && signupform.get('username').touched">
-          Minimum 4 characters
-        </div>
-        <div class="error" *ngIf="signupform.get('username').hasError('maxlength') && signupform.get('username').touched">
-          Maximum 25 characters
-        </div>
-        <div class="error" *ngIf="signupform.get('username').hasError('pattern') && signupform.get('username').touched">
-          Just use alphabet character
-        </div>
-      </ion-item>
+
       <ion-item>
         <ion-label floating>Password</ion-label>
         <ion-input type="password" [(ngModel)]="data_password" formControlName="password" [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
@@ -103,25 +90,8 @@
         </div>
       </ion-item>
 
-      <ion-item>
-          <ion-label floating>Visa card number</ion-label>
-          <ion-input type="text" [(ngModel)]="data_visa" formControlName="visa" [class.error1]="!signupform.controls.visa.valid && signupform.controls.visa.dirty"></ion-input>
-        </ion-item>
-  
-        <ion-item no-lines *ngIf="( signupform.get('visa').hasError('minlength') ||signupform.get('visa').hasError('pattern') || signupform.get('visa').hasError('maxlength') ||signupform.get('visa').hasError('required') ) && signupform.get('visa').touched">
-          <div class="error" *ngIf="signupform.get('visa').hasError('pattern') && signupform.get('visa').touched">
-            Only numbers
-          </div>
-          <div class="error" *ngIf="signupform.get('visa').hasError('required') && signupform.get('visa').touched">
-              please enter your visa number
-            </div>
-          <div class="error" *ngIf="signupform.get('visa').hasError('minlength') && signupform.get('visa').touched">
-            Minimum 16 number
-          </div>
-          <div class="error" *ngIf="signupform.get('visa').hasError('maxlength') && signupform.get('visa').touched">
-            Maximum 16 number
-          </div>
-        </ion-item>
+      
+
 
         <ion-item>
             <ion-label floating>Phone number for example(+20XXXXXXXXXX)</ion-label>
@@ -143,17 +113,6 @@
             </div>
           </ion-item>
 
-
-          <ion-item>
-            <!-- -->
-              <ion-label floating>Birthdate</ion-label>
-              <ion-datetime displayFormat="MMM/DD/YYYY " pickerFormat="MMMM/DD/YYYY " min="1950" max="2012"[(ngModel)]="data_bdate" formControlName="bdate" [class.error1]="!signupform.controls.bdate.valid && signupform.controls.bdate.dirty"> </ion-datetime>
-          </ion-item>
-          <ion-item no-lines *ngIf="signupform.get('bdate').hasError('required')  && signupform.get('bdate').touched">
-              <div class="error" *ngIf="signupform.get('bdate').hasError('required') && signupform.get('bdate').touched">
-                  please enter your Birthdate
-                </div>
-            </ion-item>
 
       <button ion-button type="submit" ion-button block color="primary" [disabled]="signupform.invalid">Update Profile</button>
     </form>

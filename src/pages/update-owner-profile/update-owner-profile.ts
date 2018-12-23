@@ -7,8 +7,9 @@ import { HomePage} from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { PlayerProfilePage } from '../player-profile/player-profile';
+import { ClubownerPage } from '../clubowner/clubowner';
 /**
- * Generated class for the PlayerSignupPage page.
+ * Generated class for the UpdatePlayerProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -16,10 +17,10 @@ import { PlayerProfilePage } from '../player-profile/player-profile';
 
 @IonicPage()
 @Component({
-  selector: 'page-player-signup',
-  templateUrl: 'player-signup.html',
+  selector: 'page-update-owner-profile',
+  templateUrl: 'update-owner-profile.html',
 })
-export class PlayerSignupPage {
+export class UpdateOwnerProfilePage {
 
   data_username: string;
   data_password: string;
@@ -30,20 +31,30 @@ export class PlayerSignupPage {
   data_phone: number;
   data_visa: number;
   signupform: FormGroup;
-  
+
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public accountProvider:AccountProvider,
-     public alertCtrl:AlertController,
-     public dataProvider:DataProvider,
-     public activeProvider: ActiveProvider) {
+   public navParams: NavParams,
+   public accountProvider:AccountProvider,
+   public alertCtrl:AlertController,
+   public dataProvider:DataProvider,
+   public activeProvider: ActiveProvider) {
   }
 
   ionViewDidLoad() {
-    this.activeProvider.set_component('signup');
+    
+
+ 
+    let user =this.dataProvider.get_user();
+
+  
+
+    this.data_username=user.userName;
+    this.data_phone=user.phone;
+    this.data_fname=user.firstName;
+    this.data_lname=user.lastName;
+    this.data_email=user.email;
+    this.data_password=user.password;
   }
-
-
   ngOnInit() {
     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.signupform = new FormGroup({
@@ -52,33 +63,41 @@ export class PlayerSignupPage {
       name: new FormControl('', [Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
       email: new FormControl('',[Validators.required, Validators.pattern(EMAILPATTERN)]),
       lname: new FormControl('',[Validators.required, Validators.pattern('^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$'), Validators.minLength(3), Validators.maxLength(25)]),
-      visa: new FormControl('',[Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(16), Validators.maxLength(16)]),
+      //visa: new FormControl('',[Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(16), Validators.maxLength(16)]),
       phone:new FormControl('',[Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(10), Validators.maxLength(10)]),
-      bdate:new FormControl('',[Validators.required]),
+      //bdate:new FormControl('',[Validators.required]),
     });
   }
 
 
   save(){
     
-    this.accountProvider.player_signup(this.data_username,this.data_password
-      ,this.data_fname,this.data_lname,this.data_email,this.data_phone,this.data_visa,
-    this.data_bdate).subscribe(data =>{
+    this.accountProvider.owner_update(this.data_username,this.data_password
+      ,this.data_fname,this.data_lname,this.data_email,this.data_phone).subscribe(data =>{
       if(data){
+        this.showAlert('Profile Updated Successfully');
         //TODO sent an confirmation email
         this.dataProvider.set_user(data[0]); 
         //Saving user info in provider so we can access it in any time in any ther component 
-        this.navCtrl.push(PlayerProfilePage);
+        this.navCtrl.push(ClubownerPage);
       }
       else{
-        this.showAlert('Username is taken or already existing E-mail');
+        this.showAlert2('Already existing E-mail');
       }
 
     })
   }
   showAlert(msg:any) {
     const alert = this.alertCtrl.create({
-      title: 'Error !',
+      title: 'Update Succeeded !',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  showAlert2(msg:any) {
+    const alert = this.alertCtrl.create({
+      title: 'Update Failed !',
       subTitle: msg,
       buttons: ['OK']
     });

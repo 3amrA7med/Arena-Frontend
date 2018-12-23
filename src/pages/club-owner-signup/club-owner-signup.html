@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>Sign up</ion-title>
   </ion-navbar>
 
@@ -31,7 +31,7 @@
           Maximum 25 characters
         </div>
         <div class="error" *ngIf="signupform.get('name').hasError('pattern') && signupform.get('name').touched">
-          Just use alphabet(Arabic Or English) character
+          Just use alphabet(English) characters
         </div>
       </ion-item>
 
@@ -50,7 +50,7 @@
           Maximum 25 characters
         </div>
         <div class="error" *ngIf="signupform.get('lname').hasError('pattern') && signupform.get('lname').touched">
-          Just use alphabet(Arabic Or English) character
+          Just use alphabet(English) characters
         </div>
       </ion-item>
 
@@ -138,23 +138,6 @@
         </div>
 
       </ion-item>
-
-      <ion-item>
-        <ion-label floating>Club Address:City</ion-label>
-        <ion-input type="text" [(ngModel)]="data_clubCity" formControlName="clubCity" [class.error1]="!signupform.controls.clubCity.valid && signupform.controls.clubCity.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="( signupform.get('clubCity').hasError('minlength')  || signupform.get('clubCity').hasError('maxlength') ||signupform.get('clubCity').hasError('required') ) && signupform.get('clubCity').touched">
-        <div class="error" *ngIf="signupform.get('clubCity').hasError('required') && signupform.get('clubCity').touched">
-          please enter your Club Address:City
-        </div>
-        <div class="error" *ngIf="signupform.get('clubCity').hasError('minlength') && signupform.get('clubCity').touched">
-          Minimum 3 characters
-        </div>
-        <div class="error" *ngIf="signupform.get('clubCity').hasError('maxlength') && signupform.get('clubCity').touched">
-          Maximum 15 characters
-        </div>
-
-      </ion-item>
       <ion-item>
         <ion-label floating>Club Address:Street</ion-label>
         <ion-input type="text" [(ngModel)]="data_clubStreet" formControlName="clubStreet" [class.error1]="!signupform.controls.clubStreet.valid && signupform.controls.clubStreet.dirty"></ion-input>
@@ -185,9 +168,9 @@
       </ion-item>
       <ion-item>
         <!-- -->
-        <ion-label floating>Creation date</ion-label>
+        <ion-label floating>Creation date (First Pitch)</ion-label>
         <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM/DD/YYYY" min="2010" max="{{currentDate}}" [(ngModel)]="data_creation_date"
-          formControlName="creation_date" [class.error1]="!signupform.controls.creation_date.valid && signupform.controls.creation_date.dirty">
+                      formControlName="creation_date" [class.error1]="!signupform.controls.creation_date.valid && signupform.controls.creation_date.dirty">
         </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="signupform.get('creation_date').hasError('required')  && signupform.get('creation_date').touched">
@@ -206,31 +189,43 @@
         </div>
       </ion-item>
 
-      <ion-item (click)="SelectCapacity()">
-        <ion-label floating>Capacity</ion-label>
-        <ion-input type="text" [(ngModel)]="data_capacity2" formControlName="capacity" [class.error1]="!signupform.controls.capacity.valid && signupform.controls.capacity.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="signupform.get('capacity').hasError('required') && signupform.get('capacity').touched">
-        <div class="error" *ngIf="signupform.get('capacity').hasError('required') &&  signupform.get('capacity').touched">
-          Please enter pitch capacity
-        </div>
-      </ion-item>
+      <div>
+        <ion-item>
+          <ion-label>City</ion-label>
+          <ion-select [(ngModel)]="data_clubCity" [ngModelOptions]="{standalone: true}">
+            <ion-option *ngFor=" let c of cityarray" value="{{c}}">
+              {{c}}
+            </ion-option>
 
-      <ion-item (click)="SelectType()">
-        <ion-label floating>Type</ion-label>
-        <ion-input type="text" [(ngModel)]="data_type2" formControlName="type" [class.error1]="!signupform.controls.type.valid && signupform.controls.type.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="signupform.get('type').hasError('required') && signupform.get('type').touched">
-        <div class="error" *ngIf="signupform.get('type').hasError('required') &&  signupform.get('type').touched">
-          Please enter pitch type
-        </div>
-      </ion-item>
+          </ion-select>
+        </ion-item> 
+        <ion-item>
+          <ion-label>capacity</ion-label>
+          <ion-select [(ngModel)]="currcapacity" [ngModelOptions]="{standalone: true}">
+            <ion-option *ngFor=" let c of capacityarray" (ionSelect)="pitchcapacity(c.no)" value="{{c.no}}">
+              {{c.capacity}}
+            </ion-option>
 
+          </ion-select>
+        </ion-item>
+      </div>
 
+      <div>
+        <ion-item>
+          <ion-label>type</ion-label>
+          <ion-select [(ngModel)]="currtype" [ngModelOptions]="{standalone: true}">
+            <ion-option *ngFor=" let t of typesarray" (ionSelect)="pitchtype(t.no)" value="{{t.no}}">
+              {{t.type}}
+            </ion-option>
 
+          </ion-select>
+        </ion-item>
+      </div>
 
       <button ion-button type="submit" ion-button block color="primary" [disabled]="signupform.invalid">Sign up</button>
     </form>
+    
+
   </ion-list>
 
 </ion-content>

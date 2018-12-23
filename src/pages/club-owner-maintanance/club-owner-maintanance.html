@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>club-owner-maintanance</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Maintenance</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,23 +18,24 @@
 
     <form novalidate (ngSubmit)="save()" [formGroup]="clubownermaintananceform">
 
-      
-      <ion-item (click)="GetPitchNo()">
-        <ion-label floating>Pitch number</ion-label>
-        <ion-input type="text" [(ngModel)]="data_pitch_no" formControlName="pitch_no" [class.error1]="!clubownermaintananceform.controls.pitch_no.valid && clubownermaintananceform.controls.pitch_no.dirty"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="clubownermaintananceform.get('pitch_no').hasError('required') && clubownermaintananceform.get('pitch_no').touched">
 
-        <div class="error" *ngIf="clubownermaintananceform.get('pitch_no').hasError('required') &&  clubownermaintananceform.get('pitch_no').touched">
-          Please enter pitch number
-        </div>
-      </ion-item>
+      <div>
+        <ion-item>
+          <ion-label>Pitch Number</ion-label>
+          <ion-select [(ngModel)]="data_pitch_no" [ngModelOptions]="{standalone: true}">
+            <ion-option *ngFor=" let p of pitches" value="{{p.pitchno}}">
+              {{p.pitchno}}
+            </ion-option>
+
+          </ion-select>
+        </ion-item>
+      </div>
 
 
       <ion-item>
         <!-- -->
         <ion-label floating>Start time</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_maintanance_start_date" formControlName="maintanance_start_date" [class.error1]="!clubownermaintananceform.controls.maintanance_start_date.valid && clubownermaintananceform.controls.maintanance_start_date.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY HH:mm" pickerFormat="MMM/DD/YYYY HH:mm" min="{{currentDate}}" max="3000" [(ngModel)]="data_maintanance_start_date" formControlName="maintanance_start_date" [class.error1]="!clubownermaintananceform.controls.maintanance_start_date.valid && clubownermaintananceform.controls.maintanance_start_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_start_date').hasError('required')  && clubownermaintananceform.get('maintanance_start_date').touched">
         <div class="error" *ngIf="clubownermaintananceform.get('maintanance_start_date').hasError('required') && clubownermaintananceform.get('maintanance_start_date').touched">
@@ -44,7 +45,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>End time</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_maintanance_end_date" formControlName="maintanance_end_date" [class.error1]="!clubownermaintananceform.controls.maintanance_end_date.valid && clubownermaintananceform.controls.maintanance_end_date.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY HH:mm" pickerFormat="MMM/DD/YYYY HH:mm" min="{{currentDate}}" max="3000" [(ngModel)]="data_maintanance_end_date" formControlName="maintanance_end_date" [class.error1]="!clubownermaintananceform.controls.maintanance_end_date.valid && clubownermaintananceform.controls.maintanance_end_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required')  && clubownermaintananceform.get('maintanance_end_date').touched">
         <div class="error" *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required') && clubownermaintananceform.get('maintanance_end_date').touched">
@@ -66,7 +67,7 @@
         <div class="error" *ngIf="clubownermaintananceform.get('description').hasError('maxlength') && clubownermaintananceform.get('description').touched">
           Maximum 25 characters
         </div>
-       
+
       </ion-item>
 
       <ion-item>

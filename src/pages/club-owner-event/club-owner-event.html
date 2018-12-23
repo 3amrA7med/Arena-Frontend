@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>club-owner-event</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Add Event</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -38,7 +38,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>Start time</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_event_start_time" formControlName="event_start_time" [class.error1]="!clubownereventform.controls.event_start_time.valid && clubownereventform.controls.event_start_time.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY HH:mm" pickerFormat="MMM/DD/YYYY HH:mm" min="{{currentDate}}" max="2025" [(ngModel)]="data_event_start_time" formControlName="event_start_time" [class.error1]="!clubownereventform.controls.event_start_time.valid && clubownereventform.controls.event_start_time.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownereventform.get('event_start_time').hasError('required')  && clubownereventform.get('event_start_time').touched">
         <div class="error" *ngIf="clubownereventform.get('event_start_time').hasError('required') && clubownereventform.get('event_start_time').touched">
@@ -49,7 +49,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>end time</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY h:mm" pickerFormat="MMM/DD/YYYY h:mm" min="2018" max="3000" [(ngModel)]="data_event_end_time" formControlName="event_end_time" [class.error1]="!clubownereventform.controls.event_end_time.valid && clubownereventform.controls.event_end_time.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY HH:mm" pickerFormat="MMM/DD/YYYY HH:mm" min="{{currentDate}}" max="3000" [(ngModel)]="data_event_end_time" formControlName="event_end_time" [class.error1]="!clubownereventform.controls.event_end_time.valid && clubownereventform.controls.event_end_time.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownereventform.get('event_end_time').hasError('required')  && clubownereventform.get('event_end_time').touched">
         <div class="error" *ngIf="clubownereventform.get('event_end_time').hasError('required') && clubownereventform.get('event_end_time').touched">
