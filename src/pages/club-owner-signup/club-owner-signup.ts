@@ -27,6 +27,12 @@ export class ClubOwnerSignupPage {
   data_username: string;
   data_password: string;
   data_fname: string;
+  currtype: any;
+  currcapacity: any;
+  capacityarray: any[] = [{ capacity: "5v5 playground", no: "5" }, { capacity: "7v7 playground", no: "7" }, { capacity: "11v11 playground", no: "11" }];;
+  cityarray: any[] = ["Giza", "Cairo", "Alexandria", "Faiyum", "Luxor", "Ismailia", "Aswan", "Port Said", "Sinai"];
+  selcity;
+  typesarray: any[]=[{ type: "Natural turf", no: "1" }, { type: "Artificial turf", no: "2" }, { type: "Indoors", no: "0" }];;
   data_lname: string;
   data_email: string;
   data_phone: number;
@@ -51,13 +57,16 @@ export class ClubOwnerSignupPage {
     public alertCtrl: AlertController,
     public dataProvider: DataProvider,
     public activeProvider: ActiveProvider,
-    public ownerProvider:OwnerProvider) {
+    public ownerProvider: OwnerProvider) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClubOwnerSignupPage');
     this.currentDate = new Date().toISOString();
-    this.activeProvider.set_component('signup')
+    this.activeProvider.set_component('signup');
+    console.log(this.typesarray);
+    //this.typesarray = [{ type: "Natural turf", no: "1" }, { type: "Artificial turf", no: "2" }, { type: "Indoors", no: "0" }];
   }
 
   ngOnInit() {
@@ -72,13 +81,10 @@ export class ClubOwnerSignupPage {
       Validators.minLength(3), Validators.maxLength(25)]),
       phone: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(10), Validators.maxLength(10)]),
       clubName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]),
-      clubCity: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
       clubStreet: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       officeHours: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
       price: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
       creation_date: new FormControl('', [Validators.required]),
-      capacity: new FormControl('', [Validators.required,  Validators.minLength(3), Validators.maxLength(25)]),
-      type: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]),
     });
   }
 
@@ -134,6 +140,15 @@ export class ClubOwnerSignupPage {
     });
     alert.present();
   }
+  pitchtype(c) {
+    this.data_type = c;
+  }
+
+  pitchcapacity(c) {
+    this.data_capacity = c;
+  }
+  
+
 
   capacityvalues() {
     console.log('gowaaaa');

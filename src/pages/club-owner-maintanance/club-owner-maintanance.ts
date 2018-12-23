@@ -31,7 +31,8 @@ export class ClubOwnerMaintanancePage {
   testRadioOpen: boolean;
   index: number;
   check: boolean
-  currentDate:any;
+  currentDate: any;
+  pitches;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,12 +43,21 @@ export class ClubOwnerMaintanancePage {
   }
 
   ionViewDidLoad() {
+    this.ownerProvider.owner_pitchno(this.data_clubid).subscribe(result => {
+      this.pitches = result;
+      console.log(result);
+    })
     console.log('ionViewDidLoad ClubOwnerMaintanancePage');
     let user = this.dataProvider.get_user()
     this.data_username = user.userName;
     console.log('getting owner club id');
     let id = this.dataProvider.get_id();
     this.data_clubid = id;
+    console.log(this.data_clubid);
+    this.ownerProvider.owner_pitchno(this.data_clubid).subscribe(result => {
+      this.pitches = result;
+      console.log(result);
+    })
     console.log('***************************************************************************************')
     console.log(this.data_clubid);
     console.log(this.data_clubid);

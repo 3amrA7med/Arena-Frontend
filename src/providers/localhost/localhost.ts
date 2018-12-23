@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class LocalhostProvider {
-  localhost:string="https://cb0442b6.ngrok.io/";
+  localhost: string ="http://localhost:8719/";
 
   constructor(public http: HttpClient) {
     console.log('Hello LocalhostProvider Provider');
