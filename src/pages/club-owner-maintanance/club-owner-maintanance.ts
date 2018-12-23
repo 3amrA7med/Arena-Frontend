@@ -72,7 +72,6 @@ export class ClubOwnerMaintanancePage {
     this.clubownermaintananceform = new FormGroup({
       description: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
       cost: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(20)]),
-      pitch_no: new FormControl('', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$'), Validators.minLength(1), Validators.maxLength(16)]),
       maintanance_start_date: new FormControl('', [Validators.required]),
       maintanance_end_date: new FormControl('', [Validators.required]),
     });

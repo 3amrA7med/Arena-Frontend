@@ -80,7 +80,7 @@
         </div>
       </ion-item>
 
-      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownermaintananceform.invalid">SUBMIT</button>
+      <button ion-button type="submit" ion-button block color="primary" [disabled]="clubownermaintananceform.invalid || !data_pitch_no">SUBMIT</button>
 
 
     </form>
