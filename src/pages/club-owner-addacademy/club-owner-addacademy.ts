@@ -78,7 +78,7 @@ export class ClubOwnerAddacademyPage {
 
   showAlert(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion failed !',
+      title: 'Failed !',
       subTitle: msg,
       buttons: ['OK']
     });
@@ -87,7 +87,7 @@ export class ClubOwnerAddacademyPage {
 
   Inserted(msg: any) {
     const alert = this.alertCtrl.create({
-      title: 'Insertion succeded !',
+      title: 'Succeded !',
       subTitle: msg,
       buttons: ['OK']
     });
