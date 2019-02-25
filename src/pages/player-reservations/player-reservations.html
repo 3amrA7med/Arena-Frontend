@@ -35,23 +35,23 @@
   <ion-item *ngIf="selclub">
     <ion-label>Select the pitch</ion-label>
     <ion-select [(ngModel)]="selpitch">
-      <ion-option *ngFor=" let c of pitches " (ionSelect)="pitchChanged(c)" value="{{c.pitch}}Y{{c.price}}">#:{{c.pitch}} Price:{{c.price}} Type:{{c.type}}</ion-option>
+      <ion-option *ngFor=" let c of pitches " (ionSelect)="pitchChanged(c)" value="{{c.pitch}}Y{{c.price}}">#: {{c.pitch}} Price: {{c.price}} Type: {{c.type}}</ion-option>
 
     </ion-select>
   </ion-item>
   <div *ngIf="(selpitch) && (selclub)">
     <ion-card>
       <ion-card-header>
-        Pitch no:{{selpitch2.pitch}}
+        Pitch no: {{selpitch2.pitch}}.
       </ion-card-header>
       <ion-card-content>
-        <li>Club Name : {{selclub2.name}}</li>
-        <li>Address : {{selclub2.city}} , {{selclub2.street}}</li>
-        <li>Price: {{selpitch2.price}}</li>
-        <li>Capacity: {{selpitch2.capacity}}</li>
-        <li>Type:{{selpitch2.type}}</li>
-        <li>Rating:{{selclub2.rating}}</li>
-      </ion-card-content>
+        <li>Club Name: {{selclub2.name}}.</li>
+        <li>Address:  {{selclub2.street}}, {{selclub2.city}}.</li>
+        <li>Price: {{selpitch2.price}}.</li>
+        <li>Capacity: {{selpitch2.capacity}}.</li>
+        <li>Type: {{selpitch2.type}}.</li>
+         <li>Club Rating: {{ratingStr}}</li>
+</ion-card-content>
     </ion-card>
   </div>
 

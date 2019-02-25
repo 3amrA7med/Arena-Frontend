@@ -38,6 +38,7 @@ export class PlayerReservationsPage {
   secondary: any;
   user: any;
   unpaid: any;
+  ratingStr: string;
    current_date;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -90,6 +91,13 @@ export class PlayerReservationsPage {
     this.selpitch = null;
     this.date = null;
     this.date2 = null;
+    this.ratingStr = "";
+    if (this.selclub2.rating == 0) {
+      this.ratingStr = "Nobody rated this club yet.";
+    }
+    else for (var n = 0; n < this.selclub2.rating; n++) {
+      this.ratingStr = this.ratingStr + "★"
+    }
    
   }
   book() {
@@ -97,8 +105,8 @@ export class PlayerReservationsPage {
   
     let hour = this.date2.split(":")[0];
     console.log(this.price);
-    if (this.selcity && this.selclub && this.selpitch && this.date && this.date2) {
-      this.playerProvider.book(this.user, this.selclub.id, this.selpitchno, this.date, hour, this.Pay, this.unpaid).subscribe(data => {
+    if (this.selcity && this.selclub2.id && this.selpitch && this.date && this.date2) {
+      this.playerProvider.book(this.user, this.selclub2.id, this.selpitchno, this.date, hour, this.Pay, this.unpaid).subscribe(data => {
         if (data)
           this.showAlert("Your reservation is done!", "Operation Successful");
         else this.showAlert("An error has occured, please retry later.", "Error!");
@@ -148,9 +156,6 @@ export class PlayerReservationsPage {
     this.price = parseInt(this.selpitch.split("Y")[1], 10);
     this.selpitchno = parseInt(this.selpitch.split("Y")[0], 10);
     this.pricemin = this.price / 4;
-    console.log(this.clubs);
-    console.log(this.selclub.id);
-    console.log(this.selpitch);
     this.playerProvider.getbooked(this.date, this.selclub2.id, this.selpitchno).subscribe(data =>
     {
       this.hours = [];

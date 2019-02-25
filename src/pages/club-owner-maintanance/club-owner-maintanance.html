@@ -35,7 +35,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>Start time</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY HH:mm" pickerFormat="MMM/DD/YYYY HH:mm" min="{{currentDate}}" max="3000" [(ngModel)]="data_maintanance_start_date" formControlName="maintanance_start_date" [class.error1]="!clubownermaintananceform.controls.maintanance_start_date.valid && clubownermaintananceform.controls.maintanance_start_date.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY HH" pickerFormat="MMM/DD/YYYY HH" min="{{currentDate}}" max="3000" [(ngModel)]="data_maintanance_start_date" formControlName="maintanance_start_date" [class.error1]="!clubownermaintananceform.controls.maintanance_start_date.valid && clubownermaintananceform.controls.maintanance_start_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_start_date').hasError('required')  && clubownermaintananceform.get('maintanance_start_date').touched">
         <div class="error" *ngIf="clubownermaintananceform.get('maintanance_start_date').hasError('required') && clubownermaintananceform.get('maintanance_start_date').touched">
@@ -45,7 +45,7 @@
       <ion-item>
         <!-- -->
         <ion-label floating>End time</ion-label>
-        <ion-datetime displayFormat="MMM/DD/YYYY HH:mm" pickerFormat="MMM/DD/YYYY HH:mm" min="{{currentDate}}" max="3000" [(ngModel)]="data_maintanance_end_date" formControlName="maintanance_end_date" [class.error1]="!clubownermaintananceform.controls.maintanance_end_date.valid && clubownermaintananceform.controls.maintanance_end_date.dirty"> </ion-datetime>
+        <ion-datetime displayFormat="MMM/DD/YYYY HH" pickerFormat="MMM/DD/YYYY HH" min="{{currentDate}}" max="3000" [(ngModel)]="data_maintanance_end_date" formControlName="maintanance_end_date" [class.error1]="!clubownermaintananceform.controls.maintanance_end_date.valid && clubownermaintananceform.controls.maintanance_end_date.dirty"> </ion-datetime>
       </ion-item>
       <ion-item no-lines *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required')  && clubownermaintananceform.get('maintanance_end_date').touched">
         <div class="error" *ngIf="clubownermaintananceform.get('maintanance_end_date').hasError('required') && clubownermaintananceform.get('maintanance_end_date').touched">
